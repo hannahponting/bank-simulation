@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="888bf59f-9e12-41b4-b066-e42df610d306" name="Changes" comment="Initial functionality with temporary main">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="888bf59f-9e12-41b4-b066-e42df610d306" name="Changes" comment="ReadCSV 2">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/Bank.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/TemporaryMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/TemporaryMain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +78,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696242849274</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="ReadCSV 2">
+      <option name="closed" value="true" />
+      <created>1696251493115</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1696251493115</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -97,7 +103,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
     <MESSAGE value="Initial functionality with temporary main" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial functionality with temporary main" />
+    <MESSAGE value="ReadCSV 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="ReadCSV 2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
