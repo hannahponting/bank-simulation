@@ -14,8 +14,7 @@ public class Bank {
     FileInputStream fis;
     Scanner fileScanner;
 
-    //todo: write method to read in a csv of existing accounts and populate the HashMaps
-
+    //todo: fix createCustomer to work after the hashmap has been read to not repeat account Numbers
     public Customer createCustomer(String customerName){
         Customer customer = new Customer(customerName);
         customerHashMap.put(customerName,customer);
@@ -29,7 +28,8 @@ public class Bank {
             }
         }
 //        customerHashMap.put(accountHolder.getCustomerName(),accountHolder);
-        accountBookHashMap.put(account.getAccountNumber(),account);
+        int sizeOfAccountMap = accountBookHashMap.size() + 1;
+        accountBookHashMap.put(sizeOfAccountMap, account);
         accountHolder.accountArrayList.add(account);
     }
 
