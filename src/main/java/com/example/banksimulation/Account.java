@@ -1,12 +1,27 @@
 package com.example.banksimulation;
 
 public class Account {
-    int accountNumber;
+    private int accountNumber;
+    public int getAccountNumber() {
+        return accountNumber;
+    }
+    public void setAccountNumber(int accountNumber) {
+        this.accountNumber = accountNumber;
+    }
     double accountBalance;
     Customer accountHolder;
     private static int nextAccountNumber = 1;
-    public void deposit(){};
-    public void withdraw(){};
+    public void deposit(Account account, double depositAmount){
+        account.accountBalance += depositAmount;
+    }
+    public void withdraw(Account account, double withdrawAmount){
+        if (withdrawAmount <= account.accountBalance) {
+            account.accountBalance -= withdrawAmount;
+        }
+        else {
+            System.out.println("Insufficient funds");
+        }
+    }
     Account(int accountNumber, int accountBalance, Customer accountHolder){
         this.accountNumber = accountNumber;
         this.accountBalance = accountBalance;
