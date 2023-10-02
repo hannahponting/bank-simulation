@@ -21,6 +21,8 @@ public class Account {
         else {
             System.out.println("Insufficient funds");
         }
+
+        //todo: add method to return account details including balance for UI to show to customer or bank staff
     }
     Account(int accountNumber, int accountBalance, Customer accountHolder){
         this.accountNumber = accountNumber;

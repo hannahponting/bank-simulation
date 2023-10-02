@@ -6,6 +6,8 @@ public class Bank {
     HashMap<Integer,Account> accountBookHashMap = new HashMap<>();
     HashMap<String,Customer> customerHashMap = new HashMap<>();
 
+    //todo: write method to read in a csv of existing accounts and populate the HashMaps
+
     public Customer createCustomer(String customerName){
         Customer customer = new Customer(customerName);
         customerHashMap.put(customerName,customer);
