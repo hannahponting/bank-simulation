@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Bank {
     HashMap<Integer,Account> accountBookHashMap = new HashMap<>();
@@ -32,24 +33,35 @@ public class Bank {
         accountHolder.accountArrayList.add(account);
     }
 
-    public void readCSVbankbook (){
+    public void readCSVBankAndCustomerBook (){
         try {
-            fis = new FileInputStream("src/main/resources");
+            fis = new FileInputStream("src/main/resources/com/example/banksimulation/ExampleCurrentAccounts.txt");
             fileScanner = new Scanner (fis);
+            fileScanner.nextLine();
             while (fileScanner.hasNextLine()){
+                String line = fileScanner.nextLine();
+                String [] accountInfo = line.split(Pattern.quote(","));
+                Customer customer1 = new Customer(accountInfo[1]);
+                int accountNumber = Integer.parseInt(accountInfo[0]);
+                int accountBalance = Integer.parseInt(accountInfo[2]);
+                Account newAccount = new Account(accountNumber, accountBalance,customer1);
+                accountBookHashMap.put(accountNumber, newAccount);
+
+                customerHashMap.put(accountInfo[1], customer1);
 
             }
             fis.close();
 
         }
         catch (FileNotFoundException fileNotFoundException){
-            System.out.println("Placeholder");
+            System.out.println("Hey, we couldn't find the file.");
         }
         catch (IOException ae){
             throw new RuntimeException();
         }
-
     }
+
+
 
 
 

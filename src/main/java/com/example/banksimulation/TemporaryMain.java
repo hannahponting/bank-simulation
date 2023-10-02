@@ -7,6 +7,7 @@ public class TemporaryMain {
         barclays.createAccount(firstCustomer,"current");
         Customer secondCustomer = barclays.createCustomer("Jane Doe");
         barclays.createAccount(secondCustomer, "current");
+        barclays.readCSVBankAndCustomerBook();
         System.out.println(barclays.customerHashMap);
         System.out.println(barclays.accountBookHashMap);
     }
