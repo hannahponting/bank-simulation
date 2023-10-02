@@ -1,0 +1,21 @@
+Account Number,Name,Account Balance (£),Account Type
+1,Alice Johnson,10500,current
+2,Bob Smith,8750,current
+3,Claire Davis,12200,current
+4,David Wilson,15300,current
+5,Emily Brown,9800,current
+6,Frank Miller,11600,current
+7,Grace Martinez,14750,current
+8,Henry Turner,7900,current
+9,Isabella Clark,13450,current
+10,Jack Harris,6700,current
+11,Kate Anderson,16900,current
+12,Liam White,5300,current
+13,Mia Thompson,18200,current
+14,Noah Lee,4950,current
+15,Olivia Jackson,20150,current
+16,Peter Garcia,3600,current
+17,Quinn Adams,22300,current
+18,Ryan Taylor,2800,current
+19,Sophia King,24500,current
+20,Tyler Brown,2100,current
