@@ -22,8 +22,19 @@ public class Account {
             System.out.println("Insufficient funds");
         }
 
-        //todo: add method to return account details including balance for UI to show to customer or bank staff
+
     }
+
+    //todo: add method to return account details including balance for UI to show to customer or bank staff
+    public String toString(){
+        return("Account number: "+accountNumber +"\n" +
+                "Account holder: "+accountHolder+"\n" +
+                "Balance: "+accountBalance
+        );
+
+    }
+
+
     Account(int accountNumber, int accountBalance, Customer accountHolder){
         this.accountNumber = accountNumber;
         this.accountBalance = accountBalance;
