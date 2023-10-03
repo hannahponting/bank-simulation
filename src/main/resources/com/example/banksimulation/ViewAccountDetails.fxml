@@ -6,20 +6,34 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="balanceLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="balanceLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="506.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="94.0" layoutY="117.0" prefHeight="40.0" prefWidth="137.0" text=" Account Number">
+      <Label layoutX="94.0" layoutY="117.0" prefHeight="40.0" prefWidth="137.0" text="Account Number">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
       <TextField fx:id="accountNumberInput" layoutX="247.0" layoutY="124.0" />
-      <Button fx:id="submitButton" layoutX="353.0" layoutY="211.0" mnemonicParsing="false" onAction="#getAccountDetails" text="Submit" />
-      <Label fx:id="allAccountDetails" layoutX="101.0" layoutY="272.0" prefHeight="17.0" prefWidth="102.0" text="Balance">
+      <Button fx:id="submitButton" layoutX="408.0" layoutY="124.0" mnemonicParsing="false" onAction="#getAccountDetails" text="Submit" />
+      <Label fx:id="allAccountDetails" layoutX="94.0" layoutY="157.0" prefHeight="17.0" prefWidth="102.0" text="Balance">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label fx:id="testLabelId" layoutX="272.0" layoutY="285.0" text="test label" />
+      <Label layoutX="94.0" layoutY="319.0" text="Deposit">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="94.0" layoutY="346.0" text="Withdrawal">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="depositTextField" layoutX="193.0" layoutY="317.0" promptText="0.00" />
+      <TextField fx:id="withdrawalTextField" layoutX="193.0" layoutY="344.0" promptText="0.00" />
+      <Button fx:id="depositConfirmButton" layoutX="370.0" layoutY="317.0" mnemonicParsing="false" onAction="#makeDeposit" text="Confirm" />
+      <Button fx:id="withdrawalConfirmButton" layoutX="370.0" layoutY="344.0" mnemonicParsing="false" onAction="#makeWithdrawal" text="Confirm" />
+      <Label fx:id="depositWithdrawalStatus" layoutX="94.0" layoutY="384.0" />
    </children>
 </Pane>
