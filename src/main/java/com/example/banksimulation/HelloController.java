@@ -66,9 +66,8 @@ public class HelloController {
     }
     @FXML
     protected void getCustomerAccounts(){
-        String customerName = customerNameInput.getText();
-        Customer currentCustomer = bank.customerHashMap.get(customerName);
-        System.out.println(currentCustomer);
+//        String customerName = customerNameInput.getText();
+//        currentCustomer = bank.customerHashMap.get(customerName);
         ToggleGroup toggleGroup = new ToggleGroup();
         for (Account accountToBeAdded: currentCustomer.accountArrayList
              ) {

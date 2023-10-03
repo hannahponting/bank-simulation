@@ -9,13 +9,6 @@
 
 <Pane fx:id="balanceLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="506.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="94.0" layoutY="117.0" prefHeight="40.0" prefWidth="137.0" text="Customer Name">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <TextField fx:id="customerNameInput" layoutX="247.0" layoutY="124.0" />
-      <Button fx:id="submitButton" layoutX="408.0" layoutY="124.0" mnemonicParsing="false" onAction="#getCustomerAccounts" text="Submit" />
       <Label fx:id="allAccountDetails" layoutX="92.0" layoutY="275.0" prefHeight="26.0" prefWidth="300.0" text="Balance">
          <font>
             <Font size="17.0" />
@@ -36,7 +29,7 @@
       <Button fx:id="depositConfirmButton" layoutX="392.0" layoutY="317.0" mnemonicParsing="false" onAction="#makeDeposit" text="Confirm" />
       <Button fx:id="withdrawalConfirmButton" layoutX="392.0" layoutY="344.0" mnemonicParsing="false" onAction="#makeWithdrawal" text="Confirm" />
       <Label fx:id="depositWithdrawalStatus" layoutX="94.0" layoutY="397.0" prefHeight="26.0" prefWidth="354.0" />
-      <VBox fx:id="accountSelectionRadioButtonHolder" layoutX="93.0" layoutY="170.0" prefHeight="84.0" prefWidth="403.0" />
+      <VBox fx:id="accountSelectionRadioButtonHolder" layoutX="92.0" layoutY="117.0" prefHeight="84.0" prefWidth="403.0" />
       <Label layoutX="94.0" layoutY="374.0" text="Transfer">
          <font>
             <Font size="14.0" />

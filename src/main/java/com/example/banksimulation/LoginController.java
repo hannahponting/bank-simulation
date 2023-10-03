@@ -42,8 +42,7 @@ public class LoginController {
         Customer currentCustomer  = bank.customerHashMap.get(userName);
         controller.setCurrentCustomer(currentCustomer);
         controller.welcomeLabel.setText("Welcome, " + userName);
-        System.out.println("deg");
-
+        controller.getCustomerAccounts();
 //        String password = passwordTextField.getText();
 //
 //        if (isValidLogin(userName, password)) {
