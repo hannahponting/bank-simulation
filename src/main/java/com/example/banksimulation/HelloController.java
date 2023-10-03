@@ -30,6 +30,17 @@ public class HelloController {
 
     @FXML
     private VBox accountSelectionRadioButtonHolder;
+
+    private Customer currentCustomer;
+
+    public void setCurrentCustomer(Customer currentCustomer) {
+        this.currentCustomer = currentCustomer;
+    }
+
+
+
+
+
 //    @FXML
 //    private Button confirmAccountSelection;
 

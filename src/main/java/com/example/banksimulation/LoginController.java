@@ -37,9 +37,12 @@ public class LoginController {
         userInterfaceStage.setScene(scene);
         userInterfaceStage.show();
 
+        String userName = userTextField.getText();
 
+        Customer currentCustomer  = bank.customerHashMap.get(userName);
+        controller.setCurrentCustomer(currentCustomer);
+        System.out.println("deg");
 
-//        String userName = userTextField.getText();
 //        String password = passwordTextField.getText();
 //
 //        if (isValidLogin(userName, password)) {
