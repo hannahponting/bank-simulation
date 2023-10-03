@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0fdac193-46f7-4ad2-a614-715cd90f90ae" name="Changes" comment="Loan 3">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/banksimulation/ExampleLoans.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/banksimulation/ExampleLoans.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/Bank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/CarLoan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/CarLoan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/HomeLoan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/HomeLoan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/PersonalLoan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/PersonalLoan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/TemporaryMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/TemporaryMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/banksimulation/ExampleMixOfAccounts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/banksimulation/ExampleMixOfAccounts.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +45,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "loan"
+    "git-widget-placeholder": "loanShark"
   }
 }]]></component>
   <component name="RunManager">
