@@ -10,6 +10,8 @@ import java.text.NumberFormat;
 
 public class HelloController {
     @FXML
+    public Label welcomeLabel;
+    @FXML
     private Label welcomeText;
     @FXML
     private TextField accountNumberInput;

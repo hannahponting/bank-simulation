@@ -45,5 +45,10 @@
       <TextField fx:id="transferAmountTextField" layoutX="193.0" layoutY="371.0" prefHeight="25.0" prefWidth="79.0" promptText="0.00" />
       <TextField fx:id="destinationAccountTextField" layoutX="278.0" layoutY="372.0" prefHeight="25.0" prefWidth="110.0" promptText="Recipient account" />
       <Button fx:id="transferConfirmationButton" layoutX="392.0" layoutY="372.0" mnemonicParsing="false" onAction="#makeTransfer" text="Confirm" />
+      <Label fx:id="welcomeLabel" layoutX="92.0" layoutY="84.0" text="Hello">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
