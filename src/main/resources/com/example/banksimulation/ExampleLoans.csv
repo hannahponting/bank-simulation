@@ -1,11 +1,11 @@
 Name,Loan Amount,Loan Type, Year
-Emma Williams,15000,car,3
-James Brown,22000,personal,2
-Olivia Taylor,180000,home,20
-William Clark,20000,car,5
-Sophia Davis,12000,personal,2
-Liam Miller,90000,home,15
-Ava Anderson,17000,car,4
-Charlotte Garcia,14000,personal,5
-Noah Martinez,210000,home,30
-Amelia Johnson,12000,car,4
+Emma Williams,15000,CarLoan,3
+James Brown,22000,Personal,2
+Olivia Taylor,1800,HomeLoan,20
+William Clark,20000,CarLoan,5
+Sophia Davis,12000,Personal,2
+Liam Miller,900000,HomeLoan,15
+Ava Anderson,17000,CarLoan,4
+Charlotte Garcia,14000,Personal,5
+Noah Martinez,200000,HomeLoan,30
+Amelia Johnson,12000,CarLoan,4

@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0fdac193-46f7-4ad2-a614-715cd90f90ae" name="Changes" comment="Loan 2">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/Bank.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/CarLoan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/CarLoan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/TemporaryMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/TemporaryMain.java" afterDir="false" />
+    <list default="true" id="0fdac193-46f7-4ad2-a614-715cd90f90ae" name="Changes" comment="Loan 3">
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/banksimulation/ExampleLoans.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/banksimulation/ExampleLoans.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,7 +95,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696340351990</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Loan 3">
+      <option name="closed" value="true" />
+      <created>1696344433847</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1696344433847</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -117,7 +121,8 @@
     <MESSAGE value="CDInterest Rates" />
     <MESSAGE value="Loan" />
     <MESSAGE value="Loan 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Loan 2" />
+    <MESSAGE value="Loan 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Loan 3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
