@@ -72,39 +72,12 @@ public class Bank {
     public void createLoan(Customer customer, int length, double amount, String type) {
         Loan loan;
         double maxLoanMoney = 0.9 * calculateTotalDeposit();
+//        System.out.println(maxLoanMoney);
         double currentLoanMoney = calculateTotalLoans();
+//        System.out.println(currentLoanMoney);
         if (!loanHashMap.containsKey(customer.getCustomerName())) {
             if (currentLoanMoney < maxLoanMoney) {
-                switch (type) {
-                    case "HomeLoan" -> {
-                        if (amount > 2000000001) {
-                            System.err.println("Error, cannot borrow that much money");
-                        } else {
-                            loan = new HomeLoan(customer, length, amount, type);
-                            loanHashMap.put(customer.getCustomerName(), loan);
-                            customer.loanArrayList.add(loan);
-                        }
-                    }
-                    case "CarLoan" -> {
-                        if (amount > 50001) {
-                            System.err.println("Error, cannot borrow that much money");
-                        } else {
-                            loan = new CarLoan(customer, length, amount, type);
-                            loanHashMap.put(customer.getCustomerName(), loan);
-                            customer.loanArrayList.add(loan);
-                        }
-                    }
-                    default -> {
-                        if (amount > 45001) {
-                            System.err.println("Error, cannot borrow that much money");
-
-                        } else {
-                            loan = new PersonalLoan(customer, length, amount, type);
-                            loanHashMap.put(customer.getCustomerName(), loan);
-                            customer.loanArrayList.add(loan);
-                        }
-                    }
-                }
+                createLoanDependingOnType(customer, length, amount, type);
             }
             else {
                 System.err.println("Cannot lend money");
@@ -112,6 +85,40 @@ public class Bank {
         }
         else{
             System.out.println("Person does not exist");
+        }
+    }
+
+    private void createLoanDependingOnType(Customer customer, int length, double amount, String type) {
+        Loan loan;
+        switch (type) {
+            case "HomeLoan" -> {
+                if (amount > 2000000001) {
+                    System.err.println("Error, cannot borrow that much money");
+                } else {
+                    loan = new HomeLoan(customer, length, amount, type);
+                    loanHashMap.put(customer.getCustomerName(), loan);
+                    customer.loanArrayList.add(loan);
+                }
+            }
+            case "CarLoan" -> {
+                if (amount > 50001) {
+                    System.err.println("Error, cannot borrow that much money");
+                } else {
+                    loan = new CarLoan(customer, length, amount, type);
+                    loanHashMap.put(customer.getCustomerName(), loan);
+                    customer.loanArrayList.add(loan);
+                }
+            }
+            default -> {
+                if (amount > 45001) {
+                    System.err.println("Error, cannot borrow that much money");
+
+                } else {
+                    loan = new PersonalLoan(customer, length, amount, type);
+                    loanHashMap.put(customer.getCustomerName(), loan);
+                    customer.loanArrayList.add(loan);
+                }
+            }
         }
     }
 
@@ -211,7 +218,7 @@ public class Bank {
             double accountBalance = account.accountBalance;
             totalDeposit = accountBalance + totalDeposit;
         }
-        System.out.println(totalDeposit);
+
         return totalDeposit;
     }
 
@@ -222,7 +229,7 @@ public class Bank {
             totalLoans = totalLoans + x;
 
         }
-        System.out.println(totalLoans);
+
         return totalLoans;
     }
 }
