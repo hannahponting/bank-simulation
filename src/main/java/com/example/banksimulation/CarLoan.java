@@ -2,7 +2,7 @@ package com.example.banksimulation;
 
 public class CarLoan extends Loan{
 
-    String loanType ="car";
+    String loanType ="CarLoan";
     int loanDuration;
 
     double loanAmount;
