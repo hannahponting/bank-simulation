@@ -11,6 +11,7 @@ import static java.lang.Integer.valueOf;
 
 public class Bank {
     HashMap<Integer,Account> accountBookHashMap = new HashMap<>();
+    HashMap<String,Loan> loanHashMap = new HashMap<>();
     HashMap<String,Customer> customerHashMap = new HashMap<>();
     public double totalDeposit;
 
@@ -62,6 +63,26 @@ public class Bank {
         accountBookHashMap.put(account.getAccountNumber(), account);
         customerHashMap.put(accountHolder.getCustomerName(), accountHolder);
         accountHolder.accountArrayList.add(account);
+    }
+
+
+    public void createLoan(Customer customer, int length, double amount, String type) {
+        Loan loan;
+        switch(type){
+            case "HomeLoan"->{
+                loan = new HomeLoan(customer, length, amount, type);
+            }
+            case "CarLoan"->{
+                loan = new CarLoan(customer, length, amount);
+            }
+            default -> {
+                loan = new PersonalLoan(customer, length, amount);
+            }
+
+        }
+        loanHashMap.put(customer.getCustomerName(), loan);
+        customer.loanArrayList.add(loan);
+
     }
 
     public void readCSVBankAndCustomerBook (){
