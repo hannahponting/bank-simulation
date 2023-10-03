@@ -22,6 +22,10 @@ public class HelloController {
     @FXML
     private TextField withdrawalTextField;
     @FXML
+    private TextField destinationAccountTextField;
+    @FXML
+    private TextField transferAmountTextField;
+    @FXML
     private Label depositWithdrawalStatus;
 
     @FXML
@@ -96,6 +100,41 @@ public class HelloController {
         catch (NumberFormatException numberFormatException){
             depositWithdrawalStatus.setText("Please check you have entered a valid number");}
     }
+    @FXML
+    protected void makeTransfer(){
+        Account fromAccount = requestedAccount;
+        Account toAccount = null;
+        try{
+            int destinationAccountNumber = Integer.parseInt(destinationAccountTextField.getText());
+            toAccount = bank.accountBookHashMap.get(destinationAccountNumber);
+            if (toAccount == null){
+                throw new NullPointerException();
+            }
+        }
+        catch(NullPointerException accountNotFound){
+            depositWithdrawalStatus.setText("Recipient account number invalid");
+        }
+        catch(NumberFormatException invalidAccountInput){
+            depositWithdrawalStatus.setText("Recipient account number invalid");
+        }
+        try {
+            double transferAmount = Double.parseDouble(transferAmountTextField.getText());
+            if (transferAmount <= 0){
+                throw new NumberFormatException("You can't transfer a negative number");
+            }
+            fromAccount.withdraw(fromAccount,transferAmount);
+            toAccount.deposit(toAccount,transferAmount);
+            System.out.println(toAccount);
+            getAccountDetails(requestedAccount.getAccountNumber());
+            depositWithdrawalStatus.setText("Transfer successful, balance updated");
+        }
+        catch (NumberFormatException invalidDouble){
+            depositWithdrawalStatus.setText("Transfer amount number invalid");
+        }
+        catch (IllegalArgumentException overdrawn){
+            depositWithdrawalStatus.setText(overdrawn.getMessage());
+        }
 
+}
 
 }
