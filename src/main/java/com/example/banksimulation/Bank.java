@@ -73,10 +73,10 @@ public class Bank {
                 loan = new HomeLoan(customer, length, amount, type);
             }
             case "CarLoan"->{
-                loan = new CarLoan(customer, length, amount);
+                loan = new CarLoan(customer, length, amount, type);
             }
             default -> {
-                loan = new PersonalLoan(customer, length, amount);
+                loan = new PersonalLoan(customer, length, amount, type);
             }
 
         }

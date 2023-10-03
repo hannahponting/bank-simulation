@@ -8,10 +8,11 @@ public class PersonalLoan extends Loan{
     double loanAmount;
     Customer customer;
 
-    PersonalLoan(Customer customer, int length, double amount){
+    PersonalLoan(Customer customer, int length, double amount, String loanType){
         this.loanDuration=length;
         this.loanAmount=amount;
         this.customer = customer;
+        this.loanType = loanType;
 
     }
 
