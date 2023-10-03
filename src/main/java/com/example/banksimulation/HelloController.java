@@ -18,7 +18,6 @@ public class HelloController {
         this.bank= bank;
     }
 
-
     @FXML
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
