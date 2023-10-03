@@ -1,13 +1,20 @@
 package com.example.banksimulation;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Bank {
     HashMap<Integer,Account> accountBookHashMap = new HashMap<>();
     HashMap<String,Customer> customerHashMap = new HashMap<>();
 
-    //todo: write method to read in a csv of existing accounts and populate the HashMaps
+    FileInputStream fis;
+    Scanner fileScanner;
 
+    //todo: fix createCustomer to work after the hashmap has been read to not repeat account Numbers
     public Customer createCustomer(String customerName){
         Customer customer = new Customer(customerName);
         customerHashMap.put(customerName,customer);
@@ -21,14 +28,37 @@ public class Bank {
             }
         }
 //        customerHashMap.put(accountHolder.getCustomerName(),accountHolder);
-        accountBookHashMap.put(account.getAccountNumber(),account);
+        int sizeOfAccountMap = accountBookHashMap.size() + 1;
+        accountBookHashMap.put(sizeOfAccountMap, account);
         accountHolder.accountArrayList.add(account);
     }
-//    public void createAccount(double balance, String accountNameHolder) {
-//
-//        Account account = new Account(balance);
-//        account.setAccountHolderName(accountNameHolder);
-//        accountMap.put(account.getAccountNumber(), account);
-//        System.out.println("Account created");
+
+    public void readCSVBankAndCustomerBook (){
+        try {
+            fis = new FileInputStream("src/main/resources/com/example/banksimulation/ExampleCurrentAccounts.txt");
+            fileScanner = new Scanner (fis);
+            fileScanner.nextLine();
+            while (fileScanner.hasNextLine()){
+                String line = fileScanner.nextLine();
+                String [] accountInfo = line.split(Pattern.quote(","));
+                Customer customer1 = new Customer(accountInfo[1]);
+                int accountNumber = Integer.parseInt(accountInfo[0]);
+                int accountBalance = Integer.parseInt(accountInfo[2]);
+                Account newAccount = new Account(accountNumber, accountBalance,customer1);
+                accountBookHashMap.put(accountNumber, newAccount);
+
+                customerHashMap.put(accountInfo[1], customer1);
+
+            }
+            fis.close();
+
+        }
+        catch (FileNotFoundException fileNotFoundException){
+            System.out.println("Hey, we couldn't find the file.");
+        }
+        catch (IOException ae){
+            throw new RuntimeException();
+        }
+    }
 }
 

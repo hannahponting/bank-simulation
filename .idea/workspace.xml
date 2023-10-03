@@ -4,11 +4,6 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="888bf59f-9e12-41b4-b066-e42df610d306" name="Changes" comment="Add toString to show account details.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/banksimulation/Untitled.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/banksimulation/ViewAccountDetails.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +63,12 @@
       </list>
     </recent_temporary>
   </component>
+
+    &quot;git-widget-placeholder&quot;: &quot;csvreader&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/María O'Mullony/Desktop/Programming bootcamp/bank-simulation&quot;
+  }
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -110,6 +111,31 @@
       <updated>1696243557561</updated>
     </task>
     <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00004" summary="ReadCSV 2">
+      <option name="closed" value="true" />
+      <created>1696251493115</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1696251493115</updated>
+    </task>
+    <task id="LOCAL-00005" summary="ReadCSV 3">
+      <option name="closed" value="true" />
+      <created>1696252237483</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1696252237483</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Add customer after reading hash map">
+      <option name="closed" value="true" />
+      <created>1696253853739</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1696253853739</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -126,16 +152,14 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
     <MESSAGE value="Initial functionality with temporary main" />
-    <MESSAGE value="Adding todos for csv reader and returning account details" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding todos for csv reader and returning account details" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/banksimulation/TemporaryMain.java</url>
-          <line>10</line>
-          <option name="timeStamp" value="1" />
+          <line>12</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

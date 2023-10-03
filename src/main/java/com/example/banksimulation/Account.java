@@ -39,11 +39,11 @@ public class Account {
         this.accountNumber = accountNumber;
         this.accountBalance = accountBalance;
         this.accountHolder = accountHolder;
+        nextAccountNumber++;
     }
     Account(Customer accountHolder){
         this.accountHolder = accountHolder;
         accountBalance = 0;
         accountNumber = nextAccountNumber++;
-
     }
 }
