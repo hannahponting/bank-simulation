@@ -33,7 +33,7 @@ public class HelloController {
     Account requestedAccount;
     @FXML
     protected void getAccountDetails(){
-        String output = "";
+        String output = "Balance: ";
         int requestedAccountNumber = Integer.parseInt(accountNumberInput.getText());
         requestedAccount= bank.accountBookHashMap.get(requestedAccountNumber);
         NumberFormat format = new DecimalFormat("#0.00");
@@ -45,19 +45,31 @@ public class HelloController {
     @FXML
         protected void makeDeposit(){
         Account depositAccount = requestedAccount;
-        double depositAmount = Double.parseDouble(depositTextField.getText());
+        try{
+            double depositAmount = Double.parseDouble(depositTextField.getText());
         depositAccount.deposit(depositAccount,depositAmount);
         depositWithdrawalStatus.setText("Deposit successful, balance updated.");
-        getAccountDetails();
+        getAccountDetails();}
+        catch (NumberFormatException numberFormatException){
+            depositWithdrawalStatus.setText("Please check you have entered a valid number");
+        }
 
     }
     @FXML
     protected void makeWithdrawal(){
         Account withdrawalAccount = requestedAccount;
-        double withdrawalAmount = Double.parseDouble(withdrawalTextField.getText());
-        withdrawalAccount.withdraw(withdrawalAccount,withdrawalAmount);
-        depositWithdrawalStatus.setText("Withdrawal successful, balance updated.");
-        getAccountDetails();
+        try {
+            double withdrawalAmount = Double.parseDouble(withdrawalTextField.getText());
+            try {
+                withdrawalAccount.withdraw(withdrawalAccount, withdrawalAmount);
+                depositWithdrawalStatus.setText("Withdrawal successful, balance updated.");
+                getAccountDetails();
+            } catch (IllegalArgumentException overdrawn) {
+                depositWithdrawalStatus.setText(overdrawn.getMessage());
+            }
+        }
+        catch (NumberFormatException numberFormatException){
+            depositWithdrawalStatus.setText("Please check you have entered a valid number");}
     }
 
 

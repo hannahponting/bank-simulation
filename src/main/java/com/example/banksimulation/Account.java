@@ -19,7 +19,7 @@ public class Account {
             account.accountBalance -= withdrawAmount;
         }
         else {
-            System.out.println("Insufficient funds");
+            throw new IllegalArgumentException("Insufficient funds");
         }
 
 

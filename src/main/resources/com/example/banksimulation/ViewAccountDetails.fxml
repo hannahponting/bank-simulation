@@ -15,7 +15,7 @@
       </Label>
       <TextField fx:id="accountNumberInput" layoutX="247.0" layoutY="124.0" />
       <Button fx:id="submitButton" layoutX="408.0" layoutY="124.0" mnemonicParsing="false" onAction="#getAccountDetails" text="Submit" />
-      <Label fx:id="allAccountDetails" layoutX="94.0" layoutY="157.0" prefHeight="17.0" prefWidth="102.0" text="Balance">
+      <Label fx:id="allAccountDetails" layoutX="94.0" layoutY="157.0" prefHeight="26.0" prefWidth="300.0" text="Balance">
          <font>
             <Font size="17.0" />
          </font>
