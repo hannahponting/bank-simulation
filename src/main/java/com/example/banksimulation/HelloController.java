@@ -78,7 +78,8 @@ public class HelloController {
             double depositAmount = Double.parseDouble(depositTextField.getText());
         depositAccount.deposit(depositAccount,depositAmount);
         depositWithdrawalStatus.setText("Deposit successful, balance updated.");
-        getAccountDetails(requestedAccount.getAccountNumber());}
+        getAccountDetails(requestedAccount.getAccountNumber());
+        depositTextField.clear();}
         catch (NumberFormatException numberFormatException){
             depositWithdrawalStatus.setText("Please check you have entered a valid number");
         }
@@ -93,6 +94,7 @@ public class HelloController {
                 withdrawalAccount.withdraw(withdrawalAccount, withdrawalAmount);
                 depositWithdrawalStatus.setText("Withdrawal successful, balance updated.");
                 getAccountDetails(requestedAccount.getAccountNumber());
+                withdrawalTextField.clear();
             } catch (IllegalArgumentException overdrawn) {
                 depositWithdrawalStatus.setText(overdrawn.getMessage());
             }
@@ -127,6 +129,8 @@ public class HelloController {
             System.out.println(toAccount);
             getAccountDetails(requestedAccount.getAccountNumber());
             depositWithdrawalStatus.setText("Transfer successful, balance updated");
+            transferAmountTextField.clear();
+            destinationAccountTextField.clear();
         }
         catch (NumberFormatException invalidDouble){
             depositWithdrawalStatus.setText("Transfer amount number invalid");
