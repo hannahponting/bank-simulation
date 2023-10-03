@@ -19,7 +19,7 @@ public class HelloApplication extends Application {
         barclays.createAccount(firstCustomer,"current");
         Customer secondCustomer = barclays.createCustomer("Jane Doe");
         barclays.createAccount(secondCustomer, "current");
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load(), 500, 600);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();

@@ -4,6 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 public class HelloController {
     @FXML
     private Label welcomeText;
@@ -11,6 +14,13 @@ public class HelloController {
     private TextField accountNumberInput;
     @FXML
     private Label allAccountDetails;
+    @FXML
+    private TextField depositTextField;
+    @FXML
+    private TextField withdrawalTextField;
+    @FXML
+    private Label depositWithdrawalStatus;
+
 
     Bank bank;
     public void setBank(Bank bank){
@@ -20,15 +30,34 @@ public class HelloController {
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
-
+    Account requestedAccount;
     @FXML
     protected void getAccountDetails(){
         String output = "";
         int requestedAccountNumber = Integer.parseInt(accountNumberInput.getText());
-        Account requestedAccount= bank.accountBookHashMap.get(requestedAccountNumber);
-        output += requestedAccount.accountBalance;
+        requestedAccount= bank.accountBookHashMap.get(requestedAccountNumber);
+        NumberFormat format = new DecimalFormat("#0.00");
+        output += format.format(requestedAccount.accountBalance);
         allAccountDetails.setText(output);
 
+    }
+
+    @FXML
+        protected void makeDeposit(){
+        Account depositAccount = requestedAccount;
+        double depositAmount = Double.parseDouble(depositTextField.getText());
+        depositAccount.deposit(depositAccount,depositAmount);
+        depositWithdrawalStatus.setText("Deposit successful, balance updated.");
+        getAccountDetails();
+
+    }
+    @FXML
+    protected void makeWithdrawal(){
+        Account withdrawalAccount = requestedAccount;
+        double withdrawalAmount = Double.parseDouble(withdrawalTextField.getText());
+        withdrawalAccount.withdraw(withdrawalAccount,withdrawalAmount);
+        depositWithdrawalStatus.setText("Withdrawal successful, balance updated.");
+        getAccountDetails();
     }
 
 
