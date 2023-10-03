@@ -10,6 +10,7 @@ public class Customer {
     private String customerName;
 
     ArrayList<Account> accountArrayList = new ArrayList<>();
+    ArrayList<Loan> loanArrayList = new ArrayList<>();
     public String getCustomerName() {
         return customerName;
     }
