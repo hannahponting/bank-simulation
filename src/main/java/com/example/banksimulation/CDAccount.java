@@ -5,7 +5,7 @@ public class CDAccount extends Account {
 
 
 
-    CDAccount(int accountNumber, int accountBalance, Customer accountHolder) {
+    CDAccount(int accountNumber, double accountBalance, Customer accountHolder) {
         super(accountNumber, accountBalance, accountHolder);
     }
 
