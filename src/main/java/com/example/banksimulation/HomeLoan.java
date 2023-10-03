@@ -13,6 +13,7 @@ public class HomeLoan extends Loan{
         this.loanDuration=length;
         this.loanAmount=amount;
         this.customer = customer;
+        this.loanType = loanType;
 
     }
 }
