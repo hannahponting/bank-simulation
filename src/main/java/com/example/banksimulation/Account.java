@@ -2,6 +2,7 @@ package com.example.banksimulation;
 
 public class Account {
     private int accountNumber;
+    String accountType;
     public int getAccountNumber() {
         return accountNumber;
     }
@@ -34,8 +35,7 @@ public class Account {
 
     }
 
-
-    Account(int accountNumber, int accountBalance, Customer accountHolder){
+    Account(int accountNumber, double accountBalance, Customer accountHolder){
         this.accountNumber = accountNumber;
         this.accountBalance = accountBalance;
         this.accountHolder = accountHolder;
