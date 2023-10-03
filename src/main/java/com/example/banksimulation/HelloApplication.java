@@ -11,8 +11,9 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Bank barclays = new Bank();
-        HelloController helloController = new HelloController(barclays);
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ViewAccountDetails.fxml"));
+        HelloController controller = fxmlLoader.getController();
+        controller.setBank(barclays);
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("Hello!");
         stage.setScene(scene);

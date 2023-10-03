@@ -13,11 +13,9 @@ public class HelloController {
     private Label allAccountDetails;
 
     Bank bank;
-
-    HelloController(Bank bank){
-        this.bank= bank;
+    public void setBank(Bank bank){
+        this.bank = bank;
     }
-
     @FXML
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
