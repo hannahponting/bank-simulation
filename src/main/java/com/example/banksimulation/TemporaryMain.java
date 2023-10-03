@@ -8,8 +8,14 @@ public class TemporaryMain {
         barclays.createAccount(firstCustomer,"current");
         Customer secondCustomer = barclays.createCustomer("Jane Doe");
         barclays.createAccount(secondCustomer, "current");
-        System.out.println(barclays.customerHashMap);
-        System.out.println(barclays.accountBookHashMap);
+
+
+
+        CDAccount cdAccount = new CDAccount(firstCustomer);
+        cdAccount.calculateInterest(100);
+
+        SavingsAccount savingsAccount = new SavingsAccount(firstCustomer);
+        savingsAccount.calculateInterest(100, 5);
 
 
     }
