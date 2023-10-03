@@ -6,7 +6,6 @@ public class Customer {
 
     Customer(String customerName){
         this.customerName = customerName;
-
     }
     private String customerName;
 
@@ -17,6 +16,10 @@ public class Customer {
 
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
+    }
+
+    public String toString(){
+        return (customerName);
     }
 
 }

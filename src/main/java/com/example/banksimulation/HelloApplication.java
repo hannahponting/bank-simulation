@@ -10,11 +10,21 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Bank barclays = new Bank();
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ViewAccountDetails.fxml"));
+        HelloController controller = new HelloController();
+        fxmlLoader.setController(controller);
+        controller.setBank(barclays);
+        Customer firstCustomer = barclays.createCustomer("Joe Bloggs");
+        barclays.createAccount(firstCustomer,"current");
+        Customer secondCustomer = barclays.createCustomer("Jane Doe");
+        barclays.createAccount(secondCustomer, "current");
+        Scene scene = new Scene(fxmlLoader.load(), 500, 600);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
+
+
     }
 
     public static void main(String[] args) {

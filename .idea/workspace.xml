@@ -4,9 +4,6 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="888bf59f-9e12-41b4-b066-e42df610d306" name="Changes" comment="Add customer after reading hash map">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/TemporaryMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/TemporaryMain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +38,32 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/edmun/IdeaProjects/bank-simulation&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.banksimulation.HelloApplication" />
+      <module name="bank-simulation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.banksimulation.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.HelloApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+
     &quot;git-widget-placeholder&quot;: &quot;csvreader&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/María O'Mullony/Desktop/Programming bootcamp/bank-simulation&quot;
@@ -79,6 +102,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696242849274</updated>
     </task>
+    <task id="LOCAL-00004" summary="Adding todos for csv reader and returning account details">
+      <option name="closed" value="true" />
+      <created>1696243557561</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1696243557561</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <task id="LOCAL-00004" summary="ReadCSV 2">
       <option name="closed" value="true" />
       <created>1696251493115</created>
@@ -120,10 +152,6 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
     <MESSAGE value="Initial functionality with temporary main" />
-    <MESSAGE value="ReadCSV 2" />
-    <MESSAGE value="ReadCSV 3" />
-    <MESSAGE value="Add customer after reading hash map" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add customer after reading hash map" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
