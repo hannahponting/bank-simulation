@@ -12,6 +12,7 @@ import static java.lang.Integer.valueOf;
 public class Bank {
     HashMap<Integer,Account> accountBookHashMap = new HashMap<>();
     HashMap<String,Customer> customerHashMap = new HashMap<>();
+    public double totalDeposit;
 
     FileInputStream fis;
     Scanner fileScanner;
@@ -32,10 +33,8 @@ public class Bank {
                 account.accountType = "cd";}
             default -> {account = new CurrentAccount(accountHolder);
                 account.accountType = "current";
+            }
         }
-        }
-//        customerHashMap.put(accountHolder.getCustomerName(),accountHolder);
-//        int sizeOfAccountMap = accountBookHashMap.size() + 1;
         accountBookHashMap.put(account.getAccountNumber(), account);
         accountHolder.accountArrayList.add(account);
     }
@@ -117,6 +116,16 @@ public class Bank {
         }
         catch (IOException e){
             System.out.println("cant do this");
+        }
+    }
+    public void calculateTotalDeposit (){
+
+        for (int i = 1; i < accountBookHashMap.size()+1; i++) {
+            Account account = accountBookHashMap.get(valueOf(i));
+            double accountBalance = account.accountBalance;
+            totalDeposit = accountBalance + totalDeposit;
+            System.out.println(totalDeposit);
+
         }
     }
 }

@@ -1,6 +1,4 @@
 package com.example.banksimulation;
 
-public class Loan {
-
-
+public class PersonalLoan {
 }

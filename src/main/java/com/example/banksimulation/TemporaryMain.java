@@ -6,6 +6,7 @@ public class TemporaryMain {
         barclays.readCSVBankAndCustomerBook();
         System.out.println(barclays.customerHashMap);
         System.out.println(barclays.accountBookHashMap);
+        barclays.calculateTotalDeposit();
         barclays.writeCSVBankAndCustomerBook("src/main/resources/com/example/banksimulation/ExampleMixOfAccounts.txt");
 
     }
