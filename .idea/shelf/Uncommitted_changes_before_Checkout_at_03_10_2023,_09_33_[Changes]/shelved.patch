@@ -1,0 +1,127 @@
+Index: src/main/java/com/example/banksimulation/HelloApplication.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.banksimulation;\n\nimport javafx.application.Application;\nimport javafx.fxml.FXMLLoader;\nimport javafx.scene.Scene;\nimport javafx.stage.Stage;\n\nimport java.io.IOException;\n\npublic class HelloApplication extends Application {\n    @Override\n    public void start(Stage stage) throws IOException {\n        Bank barclays = new Bank();\n        HelloController helloController = new HelloController(barclays);\n        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(\"ViewAccountDetails.fxml\"));\n        Scene scene = new Scene(fxmlLoader.load(), 320, 240);\n        stage.setTitle(\"Hello!\");\n        stage.setScene(scene);\n        stage.show();\n\n    }\n\n    public static void main(String[] args) {\n        launch();\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/banksimulation/HelloApplication.java b/src/main/java/com/example/banksimulation/HelloApplication.java
+--- a/src/main/java/com/example/banksimulation/HelloApplication.java	
++++ b/src/main/java/com/example/banksimulation/HelloApplication.java	
+@@ -2,6 +2,7 @@
+ 
+ import javafx.application.Application;
+ import javafx.fxml.FXMLLoader;
++import javafx.scene.Parent;
+ import javafx.scene.Scene;
+ import javafx.stage.Stage;
+ 
+@@ -11,9 +12,17 @@
+     @Override
+     public void start(Stage stage) throws IOException {
+         Bank barclays = new Bank();
+-        HelloController helloController = new HelloController(barclays);
++        Customer firstCustomer = barclays.createCustomer("Joe Bloggs");
++        barclays.createAccount(firstCustomer,"current");
++        Customer secondCustomer = barclays.createCustomer("Jane Doe");
++        barclays.createAccount(secondCustomer, "current");
++//        HelloController helloController = new HelloController();
++//        helloController.setBank(barclays);
+         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ViewAccountDetails.fxml"));
+-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
++        Parent root = fxmlLoader.load();
++        HelloController helloController = fxmlLoader.getController();
++        helloController.setBank(barclays);
++        Scene scene = new Scene(root,500, 400);
+         stage.setTitle("Hello!");
+         stage.setScene(scene);
+         stage.show();
+Index: src/main/java/com/example/banksimulation/HelloController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.banksimulation;\n\nimport javafx.fxml.FXML;\nimport javafx.scene.control.Label;\nimport javafx.scene.control.TextField;\n\npublic class HelloController {\n    @FXML\n    private Label welcomeText;\n    @FXML\n    private TextField accountNumberInput;\n    @FXML\n    private Label allAccountDetails;\n\n    Bank bank;\n\n    HelloController(Bank bank){\n        this.bank= bank;\n    }\n\n\n    @FXML\n    protected void onHelloButtonClick() {\n        welcomeText.setText(\"Welcome to JavaFX Application!\");\n    }\n\n    @FXML\n    protected void getAccountDetails(){\n        String output = \"\";\n        int requestedAccountNumber = Integer.parseInt(accountNumberInput.getText());\n        Account requestedAccount= bank.accountBookHashMap.get(requestedAccountNumber);\n        output += requestedAccount.accountBalance;\n        allAccountDetails.setText(output);\n\n    }\n\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/banksimulation/HelloController.java b/src/main/java/com/example/banksimulation/HelloController.java
+--- a/src/main/java/com/example/banksimulation/HelloController.java	
++++ b/src/main/java/com/example/banksimulation/HelloController.java	
+@@ -12,12 +12,15 @@
+     @FXML
+     private Label allAccountDetails;
+ 
+-    Bank bank;
++    private Bank bank;
+ 
+-    HelloController(Bank bank){
+-        this.bank= bank;
++    public void setBank(Bank bank) {
++        this.bank = bank;
+     }
+ 
++//    public HelloController(Bank bank){
++//        this.bank= bank;
++//    }
+ 
+     @FXML
+     protected void onHelloButtonClick() {
+@@ -35,4 +38,5 @@
+     }
+ 
+ 
++
+ }
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"888bf59f-9e12-41b4-b066-e42df610d306\" name=\"Changes\" comment=\"Add toString to show account details.\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/example/banksimulation/HelloApplication.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/example/banksimulation/HelloApplication.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/example/banksimulation/HelloController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/example/banksimulation/HelloController.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/com/example/banksimulation/Untitled.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/com/example/banksimulation/ViewAccountDetails.fxml\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 1\n}</component>\n  <component name=\"ProjectId\" id=\"2WCUvpofFHwrm5BOYvblQAaLYSu\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;git-widget-placeholder&quot;: &quot;main&quot;,\n    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/edmun/IdeaProjects/bank-simulation&quot;\n  }\n}</component>\n  <component name=\"RunManager\">\n    <configuration name=\"HelloApplication\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.example.banksimulation.HelloApplication\" />\n      <module name=\"bank-simulation\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"com.example.banksimulation.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Application.HelloApplication\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"888bf59f-9e12-41b4-b066-e42df610d306\" name=\"Changes\" comment=\"\" />\n      <created>1696236290043</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1696236290043</updated>\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"first commit\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1696236451137</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1696236451137</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"first commit\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1696239534832</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1696239534832</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"Initial functionality with temporary main\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1696242849274</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1696242849274</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"Adding todos for csv reader and returning account details\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1696243557561</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1696243557561</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"5\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"first commit\" />\n    <MESSAGE value=\"Initial functionality with temporary main\" />\n    <MESSAGE value=\"Adding todos for csv reader and returning account details\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Adding todos for csv reader and returning account details\" />\n  </component>\n  <component name=\"XDebuggerManager\">\n    <breakpoint-manager>\n      <breakpoints>\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\n          <url>file://$PROJECT_DIR$/src/main/java/com/example/banksimulation/TemporaryMain.java</url>\n          <line>10</line>\n          <option name=\"timeStamp\" value=\"1\" />\n        </line-breakpoint>\n      </breakpoints>\n    </breakpoint-manager>\n    <watches-manager>\n      <configuration name=\"Application\">\n        <watch expression=\"barclays.accountBookHashMap.entrySet().toArray()[0]\" />\n      </configuration>\n    </watches-manager>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -8,7 +8,7 @@
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/HelloApplication.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/HelloController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/banksimulation/Untitled.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/banksimulation/ViewAccountDetails.fxml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/banksimulation/ViewAccountDetails.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/banksimulation/ViewAccountDetails.fxml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -130,15 +130,6 @@
+     <option name="LAST_COMMIT_MESSAGE" value="Adding todos for csv reader and returning account details" />
+   </component>
+   <component name="XDebuggerManager">
+-    <breakpoint-manager>
+-      <breakpoints>
+-        <line-breakpoint enabled="true" type="java-line">
+-          <url>file://$PROJECT_DIR$/src/main/java/com/example/banksimulation/TemporaryMain.java</url>
+-          <line>10</line>
+-          <option name="timeStamp" value="1" />
+-        </line-breakpoint>
+-      </breakpoints>
+-    </breakpoint-manager>
+     <watches-manager>
+       <configuration name="Application">
+         <watch expression="barclays.accountBookHashMap.entrySet().toArray()[0]" />
+Index: src/main/resources/com/example/banksimulation/ViewAccountDetails.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<?import javafx.scene.control.Button?>\n<?import javafx.scene.control.Label?>\n<?import javafx.scene.control.TextField?>\n<?import javafx.scene.layout.Pane?>\n<?import javafx.scene.text.Font?>\n\n<Pane fx:id=\"balanceLabel\" maxHeight=\"-Infinity\" maxWidth=\"-Infinity\" minHeight=\"-Infinity\" minWidth=\"-Infinity\" prefHeight=\"400.0\" prefWidth=\"600.0\" xmlns=\"http://javafx.com/javafx/20.0.1\" xmlns:fx=\"http://javafx.com/fxml/1\" fx:controller=\"com.example.banksimulation.HelloController\">\n   <children>\n      <Label layoutX=\"94.0\" layoutY=\"117.0\" prefHeight=\"40.0\" prefWidth=\"137.0\" text=\" Account Number\">\n         <font>\n            <Font size=\"16.0\" />\n         </font>\n      </Label>\n      <TextField fx:id=\"accountNumberInput\" layoutX=\"247.0\" layoutY=\"124.0\" />\n      <Button fx:id=\"submitButton\" layoutX=\"353.0\" layoutY=\"211.0\" mnemonicParsing=\"false\" onAction=\"#getAccountDetails\" text=\"Submit\" />\n      <Label fx:id=\"allAccountDetails\" layoutX=\"101.0\" layoutY=\"272.0\" prefHeight=\"17.0\" prefWidth=\"102.0\" text=\"Balance\">\n         <font>\n            <Font size=\"17.0\" />\n         </font>\n      </Label>\n      <Label fx:id=\"testLabelId\" layoutX=\"272.0\" layoutY=\"285.0\" text=\"test label\" />\n   </children>\n</Pane>\n
+===================================================================
+diff --git a/src/main/resources/com/example/banksimulation/ViewAccountDetails.fxml b/src/main/resources/com/example/banksimulation/ViewAccountDetails.fxml
+--- a/src/main/resources/com/example/banksimulation/ViewAccountDetails.fxml	
++++ b/src/main/resources/com/example/banksimulation/ViewAccountDetails.fxml	
+@@ -6,7 +6,9 @@
+ <?import javafx.scene.layout.Pane?>
+ <?import javafx.scene.text.Font?>
+ 
++<?import com.example.banksimulation.Bank?>
+ <Pane fx:id="balanceLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.banksimulation.HelloController">
++
+    <children>
+       <Label layoutX="94.0" layoutY="117.0" prefHeight="40.0" prefWidth="137.0" text=" Account Number">
+          <font>
