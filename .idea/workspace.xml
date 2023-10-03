@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="888bf59f-9e12-41b4-b066-e42df610d306" name="Changes" comment="first commit">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/banksimulation/Empty.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/banksimulation/ExampleMixOfAccounts.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/Bank.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/CDAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/CDAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/CurrentAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/CurrentAccount.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/SavingsAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/SavingsAccount.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/TemporaryMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/TemporaryMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +55,11 @@
     &quot;last_opened_file_path&quot;: &quot;C:/Users/María O'Mullony/Desktop/Programming bootcamp/bank-simulation&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/com/example/banksimulation" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="TemporaryMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.banksimulation.TemporaryMain" />
@@ -139,6 +151,15 @@
     <option name="LAST_COMMIT_MESSAGE" value="ReadCSV 3" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/banksimulation/TemporaryMain.java</url>
+          <line>8</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="barclays.accountBookHashMap.entrySet().toArray()[0]" />

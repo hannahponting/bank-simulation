@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 public class SavingsAccount extends Account {
 
-    SavingsAccount(int accountNumber, int accountBalance, Customer accountHolder) {
+    SavingsAccount(int accountNumber, double accountBalance, Customer accountHolder) {
         super(accountNumber, accountBalance, accountHolder);
     }
     SavingsAccount(Customer accountHolder) {
