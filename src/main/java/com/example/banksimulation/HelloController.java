@@ -10,6 +10,8 @@ import java.text.NumberFormat;
 
 public class HelloController {
     @FXML
+    public Label welcomeLabel;
+    @FXML
     private Label welcomeText;
     @FXML
     private TextField accountNumberInput;
@@ -30,6 +32,17 @@ public class HelloController {
 
     @FXML
     private VBox accountSelectionRadioButtonHolder;
+
+    private Customer currentCustomer;
+
+    public void setCurrentCustomer(Customer currentCustomer) {
+        this.currentCustomer = currentCustomer;
+    }
+
+
+
+
+
 //    @FXML
 //    private Button confirmAccountSelection;
 
@@ -53,9 +66,8 @@ public class HelloController {
     }
     @FXML
     protected void getCustomerAccounts(){
-        String customerName = customerNameInput.getText();
-        Customer currentCustomer = bank.customerHashMap.get(customerName);
-        System.out.println(currentCustomer);
+//        String customerName = customerNameInput.getText();
+//        currentCustomer = bank.customerHashMap.get(customerName);
         ToggleGroup toggleGroup = new ToggleGroup();
         for (Account accountToBeAdded: currentCustomer.accountArrayList
              ) {
