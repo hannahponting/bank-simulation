@@ -74,8 +74,6 @@ public void setLoginController(LoginController loginController){
         stage.setTitle("Create CD account");
         stage.setScene(sceneCd);
         stage.show();
-        Bank barclays = new Bank();
-        controller.setBank(barclays);
 
     }
 
