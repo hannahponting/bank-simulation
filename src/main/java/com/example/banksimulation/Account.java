@@ -11,6 +11,9 @@ public class Account {
     }
     double accountBalance;
     Customer accountHolder;
+    double interestRateFromCSV = 00.00;
+
+    double accountTerm = 00;
     private static int nextAccountNumber = 1;
     public void deposit(Account account, double depositAmount){
         account.accountBalance += depositAmount;

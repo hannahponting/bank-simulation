@@ -10,13 +10,13 @@ import java.io.IOException;
 public class TemporaryApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoaderCD = new FXMLLoader(HelloApplication.class.getResource("CdCreateView.fxml"));
-        Scene sceneLogin = new Scene(fxmlLoaderCD.load(), 520, 340);
-        stage.setTitle("Create CD");
+        FXMLLoader fxmlLoaderCD = new FXMLLoader(HelloApplication.class.getResource("CarLoanView.fxml"));
+        Scene sceneLogin = new Scene(fxmlLoaderCD.load(), 500, 600);
+        stage.setTitle("Create Car Loan");
         stage.setScene(sceneLogin);
         stage.show();
         Bank barclays = new Bank();
-        CdCreateController cdController = fxmlLoaderCD.getController();
+        CarLoanController cdController = fxmlLoaderCD.getController();
         cdController.setBank(barclays);
 
 

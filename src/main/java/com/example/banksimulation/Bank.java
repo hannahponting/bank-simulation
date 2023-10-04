@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import com.opencsv.CSVWriter;
+import javafx.scene.control.SpinnerValueFactory;
 
 import static java.lang.Integer.valueOf;
 
@@ -29,7 +30,7 @@ public class Bank {
         return customer;
     }
 
-    public void createAccount(Customer accountHolder, String accountType) {
+    public void createAccount(Customer accountHolder, String accountType, double accountTerm, double interestRate) {
         Account account;
         switch (accountType) {
             case "savings" -> {
@@ -39,6 +40,8 @@ public class Bank {
             case "cd" -> {
                 account = new CDAccount(accountHolder);
                 account.accountType = "cd";
+                account.interestRateFromCSV = interestRate;
+                account.accountTerm = accountTerm;
             }
             default -> {
                 account = new CurrentAccount(accountHolder);
@@ -49,7 +52,7 @@ public class Bank {
         accountHolder.accountArrayList.add(account);
     }
 
-    public void createAccount(Customer accountHolder, String accountType, int accountNumber, double accountBalance) {
+    public void createAccount(Customer accountHolder, String accountType, int accountNumber, double accountBalance, double accountTerm, double interestRate) {
         Account account;
         switch (accountType) {
             case "savings" -> {
@@ -60,6 +63,8 @@ public class Bank {
             case "cd" -> {
                 account = new CDAccount(accountNumber, accountBalance, accountHolder);
                 account.accountType = "cd";
+                account.accountTerm = accountTerm;
+                account.interestRateFromCSV = interestRate;
             }
 
             default -> {
@@ -178,8 +183,10 @@ public class Bank {
                 }
                 int accountNumber = Integer.parseInt(accountInfo[0]);
                 double accountBalance = Double.parseDouble(accountInfo[2]);
+                double accountTerm = Double.parseDouble(accountInfo[4]);
+                double interestRate = Double.parseDouble(accountInfo[5]);
                 String accountType = accountInfo[3];
-                createAccount(customer1,accountType, accountNumber, accountBalance);
+                createAccount(customer1,accountType, accountNumber, accountBalance, accountTerm, interestRate);
             }
             fis.close();
         }
@@ -227,7 +234,7 @@ public class Bank {
         }
     }
 
-
+//TODO: Add the accountTerm and the interestRate
     public void writeCSVBankAndCustomerBook(){
         File file = new File("src/main/resources/com/example/banksimulation/ExampleMixOfAccounts.txt");
         try{
@@ -235,16 +242,20 @@ public class Bank {
             CSVWriter writer = new CSVWriter(outputFile, ',', CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER,
                     CSVWriter.DEFAULT_LINE_END);
 
-            String[] header = {"Account Number","Name","Account Balance (£)","Account Type"};
+            String[] header = {"Account Number","Name","Account Balance (£)","Account Type","Term","InterestRate"};
             writer.writeNext(header);
 
             for (int i = 1; (i < accountBookHashMap.size()+1); i++) {
                 Account account = accountBookHashMap.get(valueOf(i));
-                String accountNumber = ""+i;
+                String accountNumber = String.valueOf(i);
                 String name = account.accountHolder.getCustomerName();
-                String accountBalance = ""+account.accountBalance;
+                String accountBalance = String.valueOf(account.accountBalance);
                 String accountType = account.accountType;
-                String[] data = {accountNumber, name, accountBalance, accountType};
+                String accountTerm = String.valueOf(account.accountTerm);
+                String interestRate = String.valueOf(account.interestRateFromCSV);
+
+
+                String[] data = {accountNumber, name, accountBalance, accountType, accountTerm, interestRate};
                 writer.writeNext(data);
             }
             writer.close();

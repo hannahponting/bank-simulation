@@ -10,9 +10,16 @@ import java.util.regex.Pattern;
 
 public class CDAccount extends Account {
     ArrayList <Integer> yearList = new ArrayList<>();
+
+    public ArrayList<Double> getInterestRate() {
+        return interestRate;
+    }
+
     ArrayList<Double> interestRate = new ArrayList<>();
-    ArrayList<Double> investment = new ArrayList<>();
+
     private static final DecimalFormat df = new DecimalFormat("0.00");
+
+
 
 
 
@@ -58,7 +65,8 @@ public class CDAccount extends Account {
 
 
 
-    public void calculateInterest(double initialInvestmentAmount) {
+    public ArrayList<Double> calculateInterest(double initialInvestmentAmount) {
+        ArrayList<Double> investment = new ArrayList<>();
         readCSVBankAndCustomerBook();
         for (int i = 0; i < yearList.size(); i++) {
             double totalAmountWithInterest = initialInvestmentAmount * (1 + ((interestRate.get(i)/100) * yearList.get(i)));
@@ -66,6 +74,7 @@ public class CDAccount extends Account {
             double totalAmountWithInterest2 = Double.parseDouble(trimmedNumber);
             investment.add(totalAmountWithInterest2);
         }
+        return investment;
     }
 
 

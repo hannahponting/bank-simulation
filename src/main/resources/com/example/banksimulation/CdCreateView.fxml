@@ -4,80 +4,119 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="balanceLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="506.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.banksimulation.CdCreateController">
+<Pane fx:id="balanceLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.banksimulation.CdCreateController">
    <children>
-      <VBox fx:id="accountSelectionRadioButtonHolder" layoutX="92.0" layoutY="148.0" prefHeight="53.0" prefWidth="321.0" />
-      <Label fx:id="welcomeLabel" contentDisplay="CENTER" layoutX="150.0" layoutY="29.0" text="Create CD Account">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
-      <Label fx:id="welcomeLabel1" contentDisplay="CENTER" layoutX="92.0" layoutY="94.0" text="Initial deposit (£)">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <RadioButton fx:id="oneYearInvetsmentButton" layoutX="118.0" layoutY="192.0" mnemonicParsing="false" text="1 Year Investment">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="twoYearInvetsmentButton" layoutX="118.0" layoutY="231.0" mnemonicParsing="false" text="2 Year Investment">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </RadioButton>
-      <Button fx:id="calculateInterestButton" layoutX="413.0" layoutY="122.0" mnemonicParsing="false" text="Check" />
-      <RadioButton fx:id="threeYearInvetsmentButton" layoutX="118.0" layoutY="263.0" mnemonicParsing="false" text="3 Year Investment">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="fourYearInvetsmentButton" layoutX="165.0" layoutY="318.0" mnemonicParsing="false" text="4 Year Investment">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="fourYearInvetsmentButton" layoutX="150.0" layoutY="353.0" mnemonicParsing="false" text="5 Year Investment">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </RadioButton>
-      <TextField fx:id="initialInvetsmentInput" layoutX="92.0" layoutY="121.0" prefHeight="26.0" prefWidth="311.0" />
-      <Label layoutX="305.0" layoutY="187.0" prefHeight="37.0" prefWidth="98.0" text="Label">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="301.0" layoutY="226.0" prefHeight="37.0" prefWidth="98.0" text="Label">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="305.0" layoutY="258.0" prefHeight="37.0" prefWidth="98.0" text="Label">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="354.0" layoutY="313.0" prefHeight="37.0" prefWidth="98.0" text="Label">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="350.0" layoutY="348.0" prefHeight="37.0" prefWidth="98.0" text="Label">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Button fx:id="submitCDAccountButton" layoutX="266.0" layoutY="411.0" mnemonicParsing="false" text="Submit" />
-      <Label fx:id="printCongratulationMessagebutton" layoutX="237.0" layoutY="444.0" prefHeight="37.0" prefWidth="98.0" text="Label">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
+      <VBox fx:id="accountSelectionRadioButtonHolder" alignment="TOP_CENTER" layoutX="-1.0" prefHeight="600.0" prefWidth="500.0">
+         <children>
+            <Label fx:id="welcomeLabel" contentDisplay="CENTER" prefHeight="53.0" prefWidth="302.0" text="Create CD Account">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="welcomeLabel1" contentDisplay="CENTER" text="Initial deposit (£)">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="initialInvetsmentInput" prefHeight="39.0" prefWidth="390.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="calculateInterestButton" mnemonicParsing="false" onAction="#printPotentialMoney" text="Check" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <RadioButton fx:id="oneYearInvetsmentButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#createOneYearCDAcc" prefHeight="27.0" prefWidth="198.0" text="1 Year Investment">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </RadioButton>
+                  <Label fx:id="oneYearMoney" prefHeight="27.0" prefWidth="198.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <RadioButton fx:id="twoYearInvetsmentButton" mnemonicParsing="false" onAction="#createTwoYearCDAcc" prefHeight="27.0" prefWidth="198.0" text="2 Year Investment">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </RadioButton>
+                  <Label fx:id="twoYearMoney" prefHeight="27.0" prefWidth="198.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <RadioButton fx:id="threeYearInvetsmentButton" mnemonicParsing="false" onAction="#createThreeYearCDAcc" prefHeight="27.0" prefWidth="198.0" text="3 Year Investment">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </RadioButton>
+                  <Label fx:id="threeYearMoney" prefHeight="27.0" prefWidth="198.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <RadioButton fx:id="fourYearInvetsmentButton" mnemonicParsing="false" onAction="#createFourYearCDAcc" prefHeight="27.0" prefWidth="198.0" text="4 Year Investment">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </RadioButton>
+                  <Label fx:id="fourYearMoney" prefHeight="27.0" prefWidth="198.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <RadioButton fx:id="fiveYearInvetsmentButton" mnemonicParsing="false" onAction="#createFiveYearCDAcc" prefHeight="27.0" prefWidth="198.0" text="5 Year Investment">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </RadioButton>
+                  <Label fx:id="fiveYearMoney" prefHeight="27.0" prefWidth="198.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox alignment="CENTER" prefHeight="89.0" prefWidth="500.0">
+               <children>
+                  <Button fx:id="submitCDAccountButton" mnemonicParsing="false" onAction="#addCDAccountToCSV" prefHeight="46.0" prefWidth="81.0" text="Submit">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="printCongratulationMessagebutton" prefHeight="37.0" prefWidth="98.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children></VBox>
    </children>
 </Pane>
