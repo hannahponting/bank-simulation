@@ -17,5 +17,5 @@ Account Number,Name,Account Balance (£),Account Type
 16,Jack Thompson,3750.0,current
 17,Harper Lee,14800.0,savings
 18,Leo Turner,6800.0,cd
-19,Scarlett Adams,22500.0,current
-20,Aiden King,10300.0,savings
+19,Scarlett Adams,225000.0,current
+20,Aiden King,103000.0,savings

@@ -75,51 +75,11 @@ public class Bank {
     }
 
 
-    public void createLoan(Customer customer, int length, double amount, String type, int loanNumber) {
-        Loan loan;
-        switch (type) {
-            case "HomeLoan" -> {
-                if (amount > 2000000001) {
-                    System.err.println("Error, cannot borrow that much money");
-                } else {
-                    loan = new HomeLoan(customer, length, amount, loanNumber);
-
-                    loanHashMap.put(loanNumber, loan);
-                    customer.loanArrayList.add(loan);
-                }
-            }
-            case "CarLoan" -> {
-                if (amount > 50001) {
-                    System.err.println("Error, cannot borrow that much money");
-                } else {
-                    loan = new CarLoan(customer, length, amount, loanNumber);
-                    loanHashMap.put(loanNumber, loan);
-                    customer.loanArrayList.add(loan);
-                }
-            }
-            default -> {
-                if (amount > 45001) {
-                    System.err.println("Error, cannot borrow that much money");
-
-                } else {
-                    loan = new PersonalLoan(customer, length, amount, loanNumber);
-                    loanHashMap.put(loanNumber, loan);
-                    customer.loanArrayList.add(loan);
-                }
-            }
-
-        }
-
-    }
-
     public void createLoan(Customer customer, int length, double amount, String type) {
-        Loan loan;
         double maxLoanMoney = 0.9 * calculateTotalDeposit();
-//        System.out.println(maxLoanMoney);
         double currentLoanMoney = calculateTotalLoans();
-//        System.out.println(currentLoanMoney);
         if (!loanHashMap.containsKey(customer.getCustomerName())) {
-            if (currentLoanMoney < maxLoanMoney) {
+            if ((currentLoanMoney < maxLoanMoney) && (amount < (currentLoanMoney * 0.1))){
                 createLoanDependingOnType(customer, length, amount, type);
             } else {
                 System.err.println("Cannot lend money");
@@ -130,7 +90,7 @@ public class Bank {
     }
 
 
-    private void createLoanDependingOnType(Customer customer, int length, double amount, String type) {
+   public void createLoanDependingOnType(Customer customer, int length, double amount, String type) {
         Loan loan;
         switch (type) {
             case "HomeLoan" -> {
@@ -165,6 +125,40 @@ public class Bank {
         }
     }
 
+    public void createLoanDependingOnType(Customer customer, int length, double amount, String type, int loanNumber) {
+        Loan loan;
+        switch (type) {
+            case "HomeLoan" -> {
+                if (amount > 2000000001) {
+                    System.err.println("Error, cannot borrow that much money");
+                } else {
+                    loan = new HomeLoan(customer, length, amount, loanNumber);
+                    loanHashMap.put(loan.loanNumber, loan);
+                    customer.loanArrayList.add(loan);
+                }
+            }
+            case "CarLoan" -> {
+                if (amount > 50001) {
+                    System.err.println("Error, cannot borrow that much money");
+                } else {
+                    loan = new CarLoan(customer, length, amount, loanNumber);
+                    loanHashMap.put(loan.loanNumber, loan);
+                    customer.loanArrayList.add(loan);
+                }
+            }
+
+            default -> {
+                if (amount > 45001) {
+                    System.err.println("Error, cannot borrow that much money");
+
+                } else {
+                    loan = new PersonalLoan(customer, length, amount, loanNumber);
+                    loanHashMap.put(loan.loanNumber, loan);
+                    customer.loanArrayList.add(loan);
+                }
+            }
+        }
+    }
 
 
 
@@ -219,7 +213,7 @@ public class Bank {
                 String loanType = loanInfo[3];
                 int loanLength = Integer.parseInt(loanInfo[4]);
                 int loanNumber = Integer.parseInt(loanInfo[0]);
-                createLoan(customer1,loanLength,loanAmount, loanType, loanNumber);
+                createLoanDependingOnType(customer1,loanLength,loanAmount, loanType, loanNumber);
                 loanAmountList.add(loanAmount);
 
             }

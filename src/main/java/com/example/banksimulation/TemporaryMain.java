@@ -8,8 +8,9 @@ public class TemporaryMain {
 
         System.out.println(barclays.customerHashMap);
         System.out.println(barclays.accountBookHashMap);
-//
-//      barclays.createLoan(customer1, 2, 1300, "PersonalLoan");
+
+//        Customer customer = new Customer("Hannah");
+//        barclays.createLoan(customer, 2, 1, "PersonalLoan");
 
         barclays.writeLoanCSV();
         barclays.writeCSVBankAndCustomerBook();

@@ -4,8 +4,8 @@ Loan Number,Name,Loan Amount(£),Loan Type,Year
 3,Olivia Taylor,1800.0,HomeLoan,20
 4,William Clark,20000.0,CarLoan,5
 5,Sophia Davis,12000.0,PersonalLoan,2
-6,Liam Miller,900000.0,HomeLoan,15
+6,Liam Miller,100000.0,HomeLoan,15
 7,Ava Anderson,17000.0,CarLoan,4
 8,Charlotte Garcia,14000.0,PersonalLoan,5
-9,Noah Martinez,200000.0,HomeLoan,30
+9,Noah Martinez,100000.0,HomeLoan,30
 10,Amelia Johnson,12000.0,CarLoan,4
