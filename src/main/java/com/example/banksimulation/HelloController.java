@@ -44,10 +44,13 @@ public class HelloController {
     private Hyperlink createNewAccountHyperLink;
 
     @FXML
+    private Hyperlink createLoanHyperLink;
+
+    @FXML
     private Label loanAmountLabel;
 
     private Customer currentCustomer;
-    Stage createAccountStage = new Stage();
+    Stage createLoanStage = new Stage();
 
     public void setCurrentCustomer(Customer currentCustomer) {
         this.currentCustomer = currentCustomer;
@@ -204,13 +207,31 @@ public class HelloController {
         controller.setBank(bank);
         controller.setCustomer(currentCustomer);
         Scene scene = new Scene(fxmlLoaderCreateAccount.load(), 500, 600);
-        createAccountStage.setTitle("Create Account");
-        createAccountStage.setScene(scene);
-        createAccountStage.show();
+        createLoanStage.setTitle("Create Account");
+        createLoanStage.setScene(scene);
+        createLoanStage.show();
         controller.initialiseToggleGroup();
         controller.setLoginController(loginController);
 
     }
+
+    @FXML
+    protected void launchLoanAppWindow() throws IOException {
+        FXMLLoader fxmlLoaderCreateLoan = new FXMLLoader(HelloApplication.class.getResource("LoanCreationView.fxml"));
+        CreateLoanController controller = new CreateLoanController();
+        fxmlLoaderCreateLoan.setController(controller);
+        controller.setBank(bank);
+        controller.setCustomer(currentCustomer);
+        Scene scene = new Scene(fxmlLoaderCreateLoan.load(), 500, 600);
+        createLoanStage.setTitle("Apply for loan");
+        createLoanStage.setScene(scene);
+        createLoanStage.show();
+        controller.initialiseToggleGroup();
+        controller.setLoginController(loginController);
+
+    }
+
+
 
 
 

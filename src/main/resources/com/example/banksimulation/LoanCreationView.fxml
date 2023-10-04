@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="500.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <AnchorPane prefHeight="312.0" prefWidth="445.0" style="-fx-background-color: #A9A9A9;">
+      <children>
+         <Label layoutX="46.0" layoutY="51.0" prefHeight="18.0" prefWidth="323.0" text="Please select the loan type you wish to apply for">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+         <Button fx:id="createLoanButton" layoutX="46.0" layoutY="131.0" mnemonicParsing="false" onAction="#createSelectedLoan" text="Apply" />
+         <Label fx:id="statusLabel" layoutX="46.0" layoutY="170.0" />
+         <RadioButton fx:id="personalLoanRadioButton" layoutX="46.0" layoutY="90.0" mnemonicParsing="false" onAction="#selectPersonalLoan" text="Personal Loan" />
+         <RadioButton fx:id="homeLoanRadioButton" layoutX="173.0" layoutY="90.0" mnemonicParsing="false" onAction="#selectHomeLoan" text="Home Loan" />
+         <RadioButton fx:id="carLoanRadioButton" layoutX="302.0" layoutY="90.0" mnemonicParsing="false" onAction="#selectCarLoan" text="Car Loan" />
+         <Label fx:id="statusLabel" layoutX="46.0" layoutY="193.0" prefHeight="26.0" prefWidth="142.0" textFill="#eb3d08" />
+      </children>
+   </AnchorPane>
+</VBox>
