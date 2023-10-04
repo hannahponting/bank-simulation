@@ -21,44 +21,44 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <RadioButton layoutX="165.0" layoutY="187.0" mnemonicParsing="false" text="1 Year Investment">
+      <RadioButton fx:id="oneYearInvetsmentButton" layoutX="118.0" layoutY="192.0" mnemonicParsing="false" text="1 Year Investment">
          <font>
             <Font size="18.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="160.0" layoutY="231.0" mnemonicParsing="false" text="2 Year Investment">
+      <RadioButton fx:id="twoYearInvetsmentButton" layoutX="118.0" layoutY="231.0" mnemonicParsing="false" text="2 Year Investment">
          <font>
             <Font size="18.0" />
          </font>
       </RadioButton>
-      <Button layoutX="413.0" layoutY="122.0" mnemonicParsing="false" text="Check" />
-      <RadioButton layoutX="165.0" layoutY="277.0" mnemonicParsing="false" text="3 Year Investment">
+      <Button fx:id="calculateInterestButton" layoutX="413.0" layoutY="122.0" mnemonicParsing="false" text="Check" />
+      <RadioButton fx:id="threeYearInvetsmentButton" layoutX="118.0" layoutY="263.0" mnemonicParsing="false" text="3 Year Investment">
          <font>
             <Font size="18.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="165.0" layoutY="318.0" mnemonicParsing="false" text="4 Year Investment">
+      <RadioButton fx:id="fourYearInvetsmentButton" layoutX="165.0" layoutY="318.0" mnemonicParsing="false" text="4 Year Investment">
          <font>
             <Font size="18.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="150.0" layoutY="353.0" mnemonicParsing="false" text="5 Year Investment">
+      <RadioButton fx:id="fourYearInvetsmentButton" layoutX="150.0" layoutY="353.0" mnemonicParsing="false" text="5 Year Investment">
          <font>
             <Font size="18.0" />
          </font>
       </RadioButton>
-      <TextField layoutX="92.0" layoutY="121.0" prefHeight="26.0" prefWidth="311.0" />
-      <Label layoutX="364.0" layoutY="187.0" prefHeight="37.0" prefWidth="98.0" text="Label">
+      <TextField fx:id="initialInvetsmentInput" layoutX="92.0" layoutY="121.0" prefHeight="26.0" prefWidth="311.0" />
+      <Label layoutX="305.0" layoutY="187.0" prefHeight="37.0" prefWidth="98.0" text="Label">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="350.0" layoutY="226.0" prefHeight="37.0" prefWidth="98.0" text="Label">
+      <Label layoutX="301.0" layoutY="226.0" prefHeight="37.0" prefWidth="98.0" text="Label">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="354.0" layoutY="272.0" prefHeight="37.0" prefWidth="98.0" text="Label">
+      <Label layoutX="305.0" layoutY="258.0" prefHeight="37.0" prefWidth="98.0" text="Label">
          <font>
             <Font size="18.0" />
          </font>
@@ -73,8 +73,8 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="266.0" layoutY="411.0" mnemonicParsing="false" text="Submit" />
-      <Label layoutX="237.0" layoutY="444.0" prefHeight="37.0" prefWidth="98.0" text="Label">
+      <Button fx:id="submitCDAccountButton" layoutX="266.0" layoutY="411.0" mnemonicParsing="false" text="Submit" />
+      <Label fx:id="printCongratulationMessagebutton" layoutX="237.0" layoutY="444.0" prefHeight="37.0" prefWidth="98.0" text="Label">
          <font>
             <Font size="18.0" />
          </font>
