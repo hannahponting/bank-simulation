@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0fdac193-46f7-4ad2-a614-715cd90f90ae" name="Changes" comment="Loan 3">
+    <list default="true" id="0fdac193-46f7-4ad2-a614-715cd90f90ae" name="Changes" comment="Loan Update">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/Bank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/TemporaryMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/TemporaryMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/banksimulation/ExampleLoans.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/banksimulation/ExampleLoans.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,7 +42,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "loan"
+    "git-widget-placeholder": "loanShark"
   }
 }]]></component>
   <component name="RunManager">
@@ -103,7 +106,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696344433847</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Loan Update">
+      <option name="closed" value="true" />
+      <created>1696347563577</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1696347563577</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -122,18 +133,10 @@
     <MESSAGE value="Loan" />
     <MESSAGE value="Loan 2" />
     <MESSAGE value="Loan 3" />
-    <option name="LAST_COMMIT_MESSAGE" value="Loan 3" />
+    <MESSAGE value="Loan Update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Loan Update" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/banksimulation/TemporaryMain.java</url>
-          <line>15</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="barclays.accountBookHashMap.entrySet().toArray()[0]" />

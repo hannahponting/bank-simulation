@@ -1,6 +1,7 @@
 package com.example.banksimulation;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -10,10 +11,13 @@ import static java.lang.Integer.valueOf;
 
 
 public class Bank {
-    HashMap<Integer, Account> accountBookHashMap = new HashMap<>();
     HashMap<Integer, Loan> loanHashMap = new HashMap<>();
     HashMap<String, Customer> customerHashMap = new HashMap<>();
-    public double totalDeposit;
+    HashMap<Integer,Account> accountBookHashMap = new HashMap<>();
+    ArrayList<Integer> loanAmountList = new ArrayList<>();
+  
+  public double totalDeposit;
+
 
     FileInputStream fis;
     Scanner fileScanner;
@@ -107,46 +111,55 @@ public class Bank {
         }
 
     }
+        double maxLoanMoney = 0.9 * calculateTotalDeposit();
+//        System.out.println(maxLoanMoney);
+        double currentLoanMoney = calculateTotalLoans();
+//        System.out.println(currentLoanMoney);
+        if (!loanHashMap.containsKey(customer.getCustomerName())) {
+            if (currentLoanMoney < maxLoanMoney) {
+                createLoanDependingOnType(customer, length, amount, type);
+            }
+            else {
+                System.err.println("Cannot lend money");
+            }
+        }
+        else{
+            System.out.println("Person does not exist");
+        }
+    }
 
-
-    public void createLoan(Customer customer, int length, double amount, String type) {
+    private void createLoanDependingOnType(Customer customer, int length, double amount, String type) {
         Loan loan;
-            switch(type){
-                case "HomeLoan"->{
-                    if (amount > 2000000001){
-                        System.err.println("Error, cannot borrow that much money");
-                    }
-
-                    else{
-                        loan = new HomeLoan(customer, length, amount);
-                        loanHashMap.put(loan.loanNumber, loan);
-                        customer.loanArrayList.add(loan);
-                    }
+        switch (type) {
+            case "HomeLoan" -> {
+                if (amount > 2000000001) {
+                    System.err.println("Error, cannot borrow that much money");
+                } else {
+                    loan = new HomeLoan(customer, length, amount, type);
+                    loanHashMap.put(customer.getCustomerName(), loan);
+                    customer.loanArrayList.add(loan);
                 }
-                case "CarLoan"->{
-                    if (amount > 50001){
-                        System.err.println("Error, cannot borrow that much money");
-                    }
-                    else {
-                        loan = new CarLoan(customer, length, amount);
-                        loanHashMap.put(loan.loanNumber, loan);
-                        customer.loanArrayList.add(loan);
-                    }
+            }
+            case "CarLoan" -> {
+                if (amount > 50001) {
+                    System.err.println("Error, cannot borrow that much money");
+                } else {
+                    loan = new CarLoan(customer, length, amount, type);
+                    loanHashMap.put(customer.getCustomerName(), loan);
+                    customer.loanArrayList.add(loan);
                 }
-                default -> {
-                    if (amount > 45001){
-                        System.err.println("Error, cannot borrow that much money");
-
-                    }
-                    else {
-                        loan = new PersonalLoan(customer, length, amount);
-                        loanHashMap.put(loan.loanNumber, loan);
-                        customer.loanArrayList.add(loan);
-                    }
-                }
-
             }
 
+            default -> {
+                if (amount > 45001) {
+                    System.err.println("Error, cannot borrow that much money");
+
+                } else {
+                    loan = new PersonalLoan(customer, length, amount, type);
+                    loanHashMap.put(customer.getCustomerName(), loan);
+                    customer.loanArrayList.add(loan);
+                }
+            }
         }
 
 
@@ -198,11 +211,14 @@ public class Bank {
                 else{
                     customer1 = customerHashMap.get(loanInfo[1]);
                 }
+             
                 double loanAmount = Double.parseDouble(loanInfo[2]);
                 String loanType = loanInfo[3];
                 int loanLength = Integer.parseInt(loanInfo[4]);
                 int loanNumber = Integer.parseInt(loanInfo[0]);
                 createLoan(customer1,loanLength,loanAmount,loanType, loanNumber);
+                loanAmountList.add(loanAmount);
+
             }
             fis.close();
         }
@@ -268,15 +284,26 @@ public class Bank {
         }
     }
 
-    public void calculateTotalDeposit (){
-
+  
+    public double calculateTotalDeposit (){
+        double totalDeposit = 0;
         for (int i = 1; i < accountBookHashMap.size()+1; i++) {
             Account account = accountBookHashMap.get(valueOf(i));
             double accountBalance = account.accountBalance;
             totalDeposit = accountBalance + totalDeposit;
-            System.out.println(totalDeposit);
+        }
+        return totalDeposit;
+    }
+
+    public double calculateTotalLoans (){
+        double totalLoans = 0;
+
+        for (Integer x:loanAmountList) {
+            totalLoans = totalLoans + x;
 
         }
+
+        return totalLoans;
     }
 }
 
