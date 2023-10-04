@@ -20,20 +20,6 @@ public class HelloApplication extends Application {
         LoginController loginController = fxmlLoaderLogin.getController();
         loginController.setBank(barclays);
 
-
-//        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ViewAccountDetails.fxml"));
-//        HelloController controller = new HelloController();
-//        fxmlLoader.setController(controller);
-//        controller.setBank(barclays);
-//        barclays.readCSVBankAndCustomerBook();
-//        Scene scene = new Scene(fxmlLoader.load(), 500, 600);
-//        stage.setTitle("Hello!");
-//        stage.setScene(scene);
-//        stage.show();
-
-
-
-
     }
 
     public static void main(String[] args) {
