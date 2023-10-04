@@ -43,6 +43,9 @@ public class HelloController {
     @FXML
     private Hyperlink createNewAccountHyperLink;
 
+    @FXML
+    private Label loanAmountLabel;
+
     private Customer currentCustomer;
     Stage createAccountStage = new Stage();
 
@@ -61,6 +64,10 @@ public class HelloController {
     }
 
     Account requestedAccount;
+
+    Loan requestedLoan;
+    @FXML
+    VBox loanSelectionRadioButtonHolder;
 
     @FXML
     protected void getAccountDetails(int selectedAccount) {
@@ -90,6 +97,36 @@ public class HelloController {
 
         }
     }
+
+
+    @FXML
+    protected void getCustomerLoans() {
+        ToggleGroup toggleGroup = new ToggleGroup();
+        for (Loan loanToBeAdded : currentCustomer.loanArrayList
+        ) {
+            HBox accountHbox = new HBox();
+            RadioButton radioButton = new RadioButton(loanToBeAdded.loanType);
+            accountHbox.getChildren().add(radioButton);
+            radioButton.setToggleGroup(toggleGroup);
+            radioButton.setOnAction(e -> getLoanDetails(loanToBeAdded.loanNumber));
+//            Label accountBalance = new Label("Balance: " + accountToBeAdded.accountBalance);
+//            accountHbox.getChildren().add(accountBalance);
+            loanSelectionRadioButtonHolder.getChildren().add(accountHbox);
+
+        }
+    }
+    @FXML
+    private void getLoanDetails(int selectedLoan){
+
+            String output = "Loan Balance: ";
+//        int requestedAccountNumber = Integer.parseInt(accountNumberInput.getText());
+            requestedLoan = bank.loanHashMap.get(selectedLoan);
+            NumberFormat format = new DecimalFormat("#0.00");
+            output += format.format(requestedLoan.loanAmount);
+            loanAmountLabel.setText(output);
+
+    }
+
 
     @FXML
     protected void makeDeposit() {
@@ -174,6 +211,10 @@ public class HelloController {
         controller.setLoginController(loginController);
 
     }
+
+
+
+
 
 
 }

@@ -41,7 +41,9 @@ public class LoginController {
         userInterfaceStage.show();
         controller.setCurrentCustomer(currentCustomer);
         controller.welcomeLabel.setText("Welcome, " + userName);
-        controller.getCustomerAccounts();}
+        controller.getCustomerAccounts();
+        controller.getCustomerLoans();
+        }
         else{
             messageLabel.setText("That account does not exist. Check input or register new account.");
         }
