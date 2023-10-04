@@ -19,4 +19,3 @@ Account Number,Name,Account Balance (£),Account Type
 18,Leo Turner,6800.0,cd
 19,Scarlett Adams,22500.0,current
 20,Aiden King,10300.0,savings
-21,Joe Bloggs,0.0,current
