@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class CdCreateController {
@@ -28,12 +29,19 @@ public class CdCreateController {
     private Bank bank;
     private CDAccount cdAccount;
     private double interestrateWeSet;
+    private LoginController loginController;
+    public void setLoginController(LoginController loginController){
+        this.loginController = loginController;
+    }
 
     public void setBank(Bank bank) {
         this.bank = bank;
 
     }
-    private Customer currentCustomer = new Customer("Hannah"); //TODO: This is just a placeholder
+    private Customer currentCustomer; //TODO: This is just a placeholder
+    public void setCurrentCustomer(Customer customer){
+        this.currentCustomer = customer;
+    }
 
     public void printPotentialMoney(ActionEvent event) {
         CDAccount cdAccount1 = new CDAccount(currentCustomer); //TODO: Change to actual client from login, this is just placeholder
@@ -49,11 +57,14 @@ public class CdCreateController {
     }
     //TODO: Do something in case no value is inputted and check is pressed
 
-    public void addCDAccountToCSV(ActionEvent event) {
-       bank.createAccount(currentCustomer, "cd", cdLength, interestrateWeSet);
+    public void addCDAccountToCSV(ActionEvent event) throws IOException {
+        double accountBalance = Double.parseDouble(initialInvetsmentInput.getText());
+        bank.createNewCdAccount(currentCustomer,cdLength,interestrateWeSet,accountBalance);
         printCongratulationMessagebutton.setText("done");
+        loginController.onHelloButtonClick();
 
-//        cdAccount.accountBalance = Double.parseDouble(initialInvetsmentInput.getText());
+
+
 //        cdAccount.interestRateFromCSV = cdAccount.getInterestRate().get(cdLength-1);
 //        cdAccount.accountTerm = (cdLength-1);
 

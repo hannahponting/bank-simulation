@@ -51,6 +51,14 @@ public class Bank {
         accountBookHashMap.put(account.getAccountNumber(), account);
         accountHolder.accountArrayList.add(account);
     }
+    public void createNewCdAccount(Customer accountHolder, double accountTerm, double interestRate, double balance) {
+        Account account = new CDAccount(accountHolder);
+        account.accountBalance = balance;
+        account.accountType = "cd";
+        account.interestRateFromCSV = interestRate;
+        account.accountTerm = accountTerm;
+        accountBookHashMap.put(account.getAccountNumber(), account);
+        accountHolder.accountArrayList.add(account);}
 
     public void createAccount(Customer accountHolder, String accountType, int accountNumber, double accountBalance, double accountTerm, double interestRate) {
         Account account;

@@ -1,7 +1,10 @@
 package com.example.banksimulation;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -51,7 +54,7 @@ public void setLoginController(LoginController loginController){
     private void createSelectedAccount() throws IOException {
         switch (accountType){
             case "current", "savings" -> {
-                bank.createAccount(customer, accountType);
+                bank.createAccount(customer, accountType,0,0);
                 statusLabel.setText("New account created");
                 loginController.onHelloButtonClick();
             }
@@ -59,7 +62,20 @@ public void setLoginController(LoginController loginController){
             default -> statusLabel.setText("You must select an account type first");
         }
     }
-    private void launchCdWindow(){
+    Stage stage = new Stage();
+    private void launchCdWindow() throws IOException {
+        FXMLLoader fxmlLoaderCD = new FXMLLoader(CdCreateController.class.getResource("CdCreateView.fxml"));
+        CdCreateController controller = new CdCreateController();
+        fxmlLoaderCD.setController(controller);
+        controller.setBank(bank);
+        controller.setCurrentCustomer(customer);
+        controller.setLoginController(loginController);
+        Scene sceneCd = new Scene(fxmlLoaderCD.load(), 500, 600);
+        stage.setTitle("Create CD account");
+        stage.setScene(sceneCd);
+        stage.show();
+        Bank barclays = new Bank();
+        controller.setBank(barclays);
 
     }
 
