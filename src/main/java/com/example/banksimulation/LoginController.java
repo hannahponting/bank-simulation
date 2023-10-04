@@ -23,6 +23,7 @@ public class LoginController {
     private Hyperlink registerHyperlink;
 
     Stage userInterfaceStage = new Stage();
+    Stage registrationStage = new Stage();
 
 
     @FXML
@@ -32,7 +33,7 @@ public class LoginController {
         HelloController controller = new HelloController();
         fxmlLoader.setController(controller);
         controller.setBank(bank);
-        bank.readCSVBankAndCustomerBook();
+//        bank.readCSVBankAndCustomerBook();
         String userName = userTextField.getText();
         Customer currentCustomer  = bank.customerHashMap.get(userName);
         if(currentCustomer != null){
@@ -56,8 +57,15 @@ public class LoginController {
 //        }
     }
     @FXML
-    private void launchCustomerRegistration(){
-
+    private void launchCustomerRegistration() throws IOException {
+        FXMLLoader fxmlLoaderRegistration = new FXMLLoader(HelloApplication.class.getResource("CustomerCreationView.fxml"));
+        CustomerCreationController controller = new CustomerCreationController();
+        fxmlLoaderRegistration.setController(controller);
+        controller.setBank(bank);
+        Scene scene = new Scene(fxmlLoaderRegistration.load(), 500, 600);
+        registrationStage.setTitle("Registration");
+        registrationStage.setScene(scene);
+        registrationStage.show();
     }
 
     private boolean isValidLogin(String userName, String password) {
