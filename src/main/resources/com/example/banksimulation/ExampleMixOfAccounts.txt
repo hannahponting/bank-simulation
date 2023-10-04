@@ -1,7 +1,7 @@
 Account Number,Name,Account Balance (£),Account Type
 1,Emma Williams,9500.0,current
-2,Emma Williams,12750.0,savings
-3,Emma Williams,15200.0,cd
+2,James Brown,12750.0,savings
+3,Olivia Taylor,15200.0,cd
 4,William Clark,18700.0,current
 5,Sophia Davis,8200.0,savings
 6,Liam Miller,11500.0,current

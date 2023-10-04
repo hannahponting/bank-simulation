@@ -1,23 +1,12 @@
-Account Number,Name,Account Balance (£),Account Type
-1,Emma Williams,9500.0,current
-2,James Brown,12750.0,savings
-3,Olivia Taylor,15200.0,cd
-4,William Clark,18700.0,current
-5,Sophia Davis,8200.0,savings
-6,Liam Miller,11500.0,current
-7,Ava Anderson,13450.0,cd
-8,Charlotte Garcia,7600.0,savings
-9,Noah Martinez,10200.0,current
-10,Amelia Johnson,9600.0,cd
-11,Oliver Wilson,14600.0,savings
-12,Ella Smith,5400.0,current
-13,Isabella White,17800.0,current
-14,Lucas Harris,4800.0,savings
-15,Mia Jackson,21000.0,cd
-16,Jack Thompson,3750.0,current
-17,Harper Lee,14800.0,savings
-18,Leo Turner,6800.0,cd
-19,Scarlett Adams,22500.0,current
-20,Aiden King,10300.0,savings
-21,Joe Bloggs,0.0,
-22,Jane Doe,0.0,
+Loan Number,Name,Loan Amount(£),Loan Type,Year
+1,Emma Williams,15000.0,CarLoan,3
+2,James Brown,22000.0,PersonalLoan,2
+3,Olivia Taylor,1800.0,HomeLoan,20
+4,William Clark,20000.0,CarLoan,5
+5,Sophia Davis,12000.0,PersonalLoan,2
+6,Liam Miller,900000.0,HomeLoan,15
+7,Ava Anderson,17000.0,CarLoan,4
+8,Charlotte Garcia,14000.0,PersonalLoan,5
+9,Noah Martinez,200000.0,HomeLoan,30
+10,Amelia Johnson,12000.0,CarLoan,4
+11,Joe Bloggs,10000.0,HomeLoan,10
