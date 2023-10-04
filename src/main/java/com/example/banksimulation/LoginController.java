@@ -24,16 +24,14 @@ public class LoginController {
 
     Stage userInterfaceStage = new Stage();
     Stage registrationStage = new Stage();
-
-
     @FXML
-    private void onHelloButtonClick() throws IOException {
+    public void onHelloButtonClick() throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ViewAccountDetails.fxml"));
         HelloController controller = new HelloController();
+        controller.setLoginController(this);
         fxmlLoader.setController(controller);
         controller.setBank(bank);
-//        bank.readCSVBankAndCustomerBook();
         String userName = userTextField.getText();
         Customer currentCustomer  = bank.customerHashMap.get(userName);
         if(currentCustomer != null){
@@ -75,6 +73,5 @@ public class LoginController {
     private  Bank bank;
     public void setBank(Bank bank) {
         this.bank = bank;
-
     }
 }

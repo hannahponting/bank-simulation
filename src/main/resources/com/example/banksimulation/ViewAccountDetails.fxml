@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
@@ -43,5 +44,10 @@
             <Font size="14.0" />
          </font>
       </Label>
+      <Hyperlink fx:id="createNewAccountHyperLink" layoutX="90.0" layoutY="220.0" onAction="#launchNewAccountWindow" text="Create a new account">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Hyperlink>
    </children>
 </Pane>
