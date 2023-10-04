@@ -16,6 +16,7 @@ public class HelloApplication extends Application {
         stage.setScene(sceneLogin);
         stage.show();
         Bank barclays = new Bank();
+        barclays.readCSVBankAndCustomerBook();
         LoginController loginController = fxmlLoaderLogin.getController();
         loginController.setBank(barclays);
 
