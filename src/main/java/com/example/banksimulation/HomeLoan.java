@@ -4,19 +4,16 @@ import java.text.DecimalFormat;
 
 public class HomeLoan extends Loan{
 
-    String loanType = "HomeLoan";
 
-    int loanDuration;
 
-    double loanAmount;
-    Customer customer;
+    HomeLoan(Customer customer, int length, double amount, int loanNumber) {
+        super(customer, length, amount, loanNumber);
+        loanType = "HomeLoan";
+    }
 
-    HomeLoan(Customer customer, int length, double amount, String loanType){
-        this.loanDuration=length;
-        this.loanAmount=amount;
-        this.customer = customer;
-        this.loanType = loanType;
-
+    HomeLoan(Customer customer, int length, double amount) {
+        super(customer, length, amount);
+        loanType = "HomeLoan";
     }
 
     double interestRate = 6;

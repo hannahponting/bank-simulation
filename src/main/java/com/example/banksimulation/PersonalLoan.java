@@ -4,18 +4,9 @@ import java.text.DecimalFormat;
 
 public class PersonalLoan extends Loan{
 
-    String loanType = "Personal";
-    int loanDuration;
-
-    double loanAmount;
-    Customer customer;
-
-    PersonalLoan(Customer customer, int length, double amount, String loanType){
-        this.loanDuration=length;
-        this.loanAmount=amount;
-        this.customer = customer;
-        this.loanType = loanType;
-
+    PersonalLoan(Customer customer, int length, double amount, int loanNumber) {
+        super(customer, length, amount, loanNumber);
+        loanType="PersonalLoan";
     }
     double interestRate = 9.9;
     int daysInYear = 365;
@@ -31,4 +22,8 @@ public class PersonalLoan extends Loan{
         }
     }
 
+    PersonalLoan(Customer customer, int length, double amount) {
+        super(customer, length, amount);
+        loanType="PersonalLoan";
+    }
 }

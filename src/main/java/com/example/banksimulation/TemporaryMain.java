@@ -4,14 +4,14 @@ public class TemporaryMain {
     public static void main(String[] args) {
         Bank barclays = new Bank();
         barclays.readCSVBankAndCustomerBook();
-
-        Customer customer1 = new Customer("Joe Bloggs");
-
         barclays.readLoanCSV();
 
+        System.out.println(barclays.customerHashMap);
+        System.out.println(barclays.accountBookHashMap);
+//
+//      barclays.createLoan(customer1, 2, 1300, "PersonalLoan");
 
-//        barclays.createLoan(customer1, 2, 1300, "PersonalLoan");
-        barclays.writeCSVBankAndCustomerBook("src/main/resources/com/example/banksimulation/ExampleMixOfAccounts.txt");
-
+        barclays.writeLoanCSV();
+        barclays.writeCSVBankAndCustomerBook();
     }
 }

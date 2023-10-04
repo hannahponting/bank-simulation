@@ -4,23 +4,19 @@ import java.text.DecimalFormat;
 
 public class CarLoan extends Loan{
 
-    String loanType ="CarLoan";
-    int loanDuration;
-
-    double loanAmount;
-    Customer customer;
-
-    CarLoan(Customer customer, int length, double amount, String loanType){
-        this.loanDuration=length;
-        this.loanAmount=amount;
-        this.customer = customer;
-        this.loanType = loanType;
-
+    CarLoan(Customer customer, int length, double amount, int loanNumber) {
+        super(customer, length, amount, loanNumber);
+        loanType="CarLoan";
     }
+
+    CarLoan(Customer customer, int length, double amount) {
+        super(customer, length, amount);
+        loanType="CarLoan";
+    }
+  
     double interestRate = 7;
     int daysInYear = 365;
     private static final DecimalFormat df = new DecimalFormat("0.00");
-
 
     public void addInterestToLoan(double initialLoan, int dayOftheYear) {
         double finalLoan = initialLoan;
@@ -33,3 +29,5 @@ public class CarLoan extends Loan{
         }
     }
 }
+
+
