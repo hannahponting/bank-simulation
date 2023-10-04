@@ -35,13 +35,15 @@ public class LoginController {
         String userName = userTextField.getText();
         Customer currentCustomer  = bank.customerHashMap.get(userName);
         if(currentCustomer != null){
-        Scene scene = new Scene(fxmlLoader.load(), 500, 600);
+        Scene scene = new Scene(fxmlLoader.load(),408.0 , 622.0);
         userInterfaceStage.setTitle("Hello!");
         userInterfaceStage.setScene(scene);
         userInterfaceStage.show();
         controller.setCurrentCustomer(currentCustomer);
         controller.welcomeLabel.setText("Welcome, " + userName);
-        controller.getCustomerAccounts();}
+        controller.getCustomerAccounts();
+        controller.getCustomerLoans();
+        }
         else{
             messageLabel.setText("That account does not exist. Check input or register new account.");
         }

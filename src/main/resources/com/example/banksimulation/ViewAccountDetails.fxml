@@ -4,50 +4,80 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="balanceLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="506.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="balanceLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="allAccountDetails" layoutX="92.0" layoutY="275.0" prefHeight="26.0" prefWidth="300.0" text="Balance">
+      <AnchorPane layoutY="35.0" prefHeight="345.0" prefWidth="332.0" style="-fx-background-color: #b2babf;">
+         <children>
+            <Label fx:id="allAccountDetails" layoutX="2.0" layoutY="197.0" prefHeight="26.0" prefWidth="300.0" text="Account Balance">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="4.0" layoutY="241.0" text="Deposit">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="4.0" layoutY="268.0" text="Withdrawal">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="depositTextField" layoutX="103.0" layoutY="239.0" prefHeight="25.0" prefWidth="79.0" promptText="0.00" />
+            <TextField fx:id="withdrawalTextField" layoutX="103.0" layoutY="266.0" prefHeight="25.0" prefWidth="79.0" promptText="0.00" />
+            <Button fx:id="depositConfirmButton" layoutX="302.0" layoutY="239.0" mnemonicParsing="false" onAction="#makeDeposit" text="Confirm" />
+            <Button fx:id="withdrawalConfirmButton" layoutX="302.0" layoutY="266.0" mnemonicParsing="false" onAction="#makeWithdrawal" text="Confirm" />
+            <Label fx:id="depositWithdrawalStatus" layoutX="4.0" layoutY="319.0" prefHeight="26.0" prefWidth="354.0" />
+            <VBox fx:id="accountSelectionRadioButtonHolder" layoutX="4.0" layoutY="44.0" prefHeight="84.0" prefWidth="403.0" />
+            <Label layoutX="4.0" layoutY="296.0" text="Transfer">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="transferAmountTextField" layoutX="103.0" layoutY="293.0" prefHeight="25.0" prefWidth="79.0" promptText="0.00" />
+            <TextField fx:id="destinationAccountTextField" layoutX="188.0" layoutY="294.0" prefHeight="25.0" prefWidth="110.0" promptText="Recipient account" />
+            <Button fx:id="transferConfirmationButton" layoutX="302.0" layoutY="294.0" mnemonicParsing="false" onAction="#makeTransfer" text="Confirm" />
+            <Hyperlink fx:id="createNewAccountHyperLink" layoutY="142.0" onAction="#launchNewAccountWindow" text="Create a new account">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Hyperlink>
+            <Label layoutX="2.0" prefHeight="26.0" prefWidth="124.0" text="Your Accounts:">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label fx:id="welcomeLabel" prefHeight="26.0" prefWidth="431.0" text="Hello">
          <font>
-            <Font size="17.0" />
+            <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="94.0" layoutY="319.0" text="Deposit">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="94.0" layoutY="346.0" text="Withdrawal">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <TextField fx:id="depositTextField" layoutX="193.0" layoutY="317.0" prefHeight="25.0" prefWidth="79.0" promptText="0.00" />
-      <TextField fx:id="withdrawalTextField" layoutX="193.0" layoutY="344.0" prefHeight="25.0" prefWidth="79.0" promptText="0.00" />
-      <Button fx:id="depositConfirmButton" layoutX="392.0" layoutY="317.0" mnemonicParsing="false" onAction="#makeDeposit" text="Confirm" />
-      <Button fx:id="withdrawalConfirmButton" layoutX="392.0" layoutY="344.0" mnemonicParsing="false" onAction="#makeWithdrawal" text="Confirm" />
-      <Label fx:id="depositWithdrawalStatus" layoutX="94.0" layoutY="397.0" prefHeight="26.0" prefWidth="354.0" />
-      <VBox fx:id="accountSelectionRadioButtonHolder" layoutX="92.0" layoutY="117.0" prefHeight="84.0" prefWidth="403.0" />
-      <Label layoutX="94.0" layoutY="374.0" text="Transfer">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <TextField fx:id="transferAmountTextField" layoutX="193.0" layoutY="371.0" prefHeight="25.0" prefWidth="79.0" promptText="0.00" />
-      <TextField fx:id="destinationAccountTextField" layoutX="278.0" layoutY="372.0" prefHeight="25.0" prefWidth="110.0" promptText="Recipient account" />
-      <Button fx:id="transferConfirmationButton" layoutX="392.0" layoutY="372.0" mnemonicParsing="false" onAction="#makeTransfer" text="Confirm" />
-      <Label fx:id="welcomeLabel" layoutX="92.0" layoutY="84.0" text="Hello">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Hyperlink fx:id="createNewAccountHyperLink" layoutX="90.0" layoutY="220.0" onAction="#launchNewAccountWindow" text="Create a new account">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Hyperlink>
+      <AnchorPane layoutY="380.0" prefHeight="240.0" prefWidth="336.0" style="-fx-background-color: #dbd7ce;">
+         <children>
+            <VBox fx:id="loanSelectionRadioButtonHolder" layoutX="4.0" layoutY="39.0" prefHeight="96.0" prefWidth="403.0" />
+            <Label fx:id="loanAmountLabel" layoutY="204.0" prefHeight="36.0" prefWidth="344.0" text="Loan Balance">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Hyperlink fx:id="createLoanHyperLink" layoutY="153.0" onAction="#launchLoanAppWindow" prefHeight="25.0" prefWidth="156.0" text="Apply for a new loan ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Hyperlink>
+            <Label layoutY="1.0" prefHeight="26.0" prefWidth="124.0" text="Your Loans:">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </Pane>
