@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="balanceLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.banksimulation.CarLoanController">
+   <children>
+      <VBox fx:id="accountSelectionRadioButtonHolder" alignment="CENTER" layoutX="-1.0" prefHeight="600.0" prefWidth="500.0">
+         <children>
+            <Label fx:id="welcomeLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="302.0" text="Car Loan">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="welcomeLabel1" alignment="CENTER" contentDisplay="CENTER" text="Loan Amount (£)" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="loanAmount" prefHeight="39.0" prefWidth="390.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="calculateInterestButton" mnemonicParsing="false" text="Check" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Loan Term " />
+                  <SplitMenuButton fx:id="loanLengthSelector" mnemonicParsing="false" text="Years">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Action 1" />
+                      <MenuItem mnemonicParsing="false" text="Action 2" />
+                    </items>
+                  </SplitMenuButton>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Repayment (£/month)" />
+                  <Label fx:id="repaymentLabel" prefHeight="27.0" prefWidth="198.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Interest Rate (%)" />
+                  <Label fx:id="interestRateLabel" prefHeight="27.0" prefWidth="198.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox alignment="CENTER" prefHeight="89.0" prefWidth="500.0">
+               <children>
+                  <Button fx:id="submitLoanButton" mnemonicParsing="false" onAction="#createLoan" prefHeight="46.0" prefWidth="81.0" text="Submit">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="printCongratulationMessagebutton" prefHeight="37.0" prefWidth="98.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children></VBox>
+   </children>
+</Pane>

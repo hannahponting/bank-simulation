@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0fdac193-46f7-4ad2-a614-715cd90f90ae" name="Changes" comment="Loan Update">
+    <list default="true" id="0fdac193-46f7-4ad2-a614-715cd90f90ae" name="Changes" comment="CD Scene Buidler">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/banksimulation/ExampleLoans.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/banksimulation/ExampleLoans.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/banksimulation/ExampleMixOfAccounts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/banksimulation/ExampleMixOfAccounts.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/CdCreateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/banksimulation/CdCreateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/banksimulation/CdCreateView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/banksimulation/CdCreateView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +41,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main"
+    "git-widget-placeholder": "cdUI"
   }
 }]]></component>
   <component name="RunManager">
@@ -113,7 +113,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696347563577</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="CD Scene Buidler">
+      <option name="closed" value="true" />
+      <created>1696414229083</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1696414229083</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -133,7 +141,8 @@
     <MESSAGE value="Loan 2" />
     <MESSAGE value="Loan 3" />
     <MESSAGE value="Loan Update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Loan Update" />
+    <MESSAGE value="CD Scene Buidler" />
+    <option name="LAST_COMMIT_MESSAGE" value="CD Scene Buidler" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

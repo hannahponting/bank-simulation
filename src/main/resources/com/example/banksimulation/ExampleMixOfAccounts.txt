@@ -1,21 +1,22 @@
-Account Number,Name,Account Balance (£),Account Type
-1,Emma Williams,9500.0,current
-2,James Brown,12750.0,savings
-3,Olivia Taylor,15200.0,cd
-4,William Clark,18700.0,current
-5,Sophia Davis,8200.0,savings
-6,Liam Miller,11500.0,current
-7,Ava Anderson,13450.0,cd
-8,Charlotte Garcia,7600.0,savings
-9,Noah Martinez,10200.0,current
-10,Amelia Johnson,9600.0,cd
-11,Oliver Wilson,14600.0,savings
-12,Ella Smith,5400.0,current
-13,Isabella White,17800.0,current
-14,Lucas Harris,4800.0,savings
-15,Mia Jackson,21000.0,cd
-16,Jack Thompson,3750.0,current
-17,Harper Lee,14800.0,savings
-18,Leo Turner,6800.0,cd
-19,Scarlett Adams,225000.0,current
-20,Aiden King,103000.0,savings
+Account Number,Name,Account Balance (£),Account Type,Term,InterestRate
+1,Emma Williams,9500.0,current,0.0,0.0
+2,James Brown,12750.0,savings,0.0,0.0
+3,Olivia Taylor,15200.0,cd,1.0,2.5
+4,William Clark,18700.0,current,0.0,0.0
+5,Sophia Davis,8200.0,savings,0.0,0.0
+6,Liam Miller,11500.0,current,0.0,0.0
+7,Ava Anderson,13450.0,cd,2.0,2.8
+8,Charlotte Garcia,7600.0,savings,0.0,0.0
+9,Noah Martinez,10200.0,current,0.0,0.0
+10,Amelia Johnson,9600.0,cd,1.0,2.5
+11,Oliver Wilson,14600.0,savings,0.0,0.0
+12,Ella Smith,5400.0,current,0.0,0.0
+13,Isabella White,17800.0,current,0.0,0.0
+14,Lucas Harris,4800.0,savings,0.0,0.0
+15,Mia Jackson,21000.0,cd,4.0,3.1
+16,Jack Thompson,3750.0,current,0.0,0.0
+17,Harper Lee,14800.0,savings,0.0,0.0
+18,Leo Turner,6800.0,cd,5.0,3.3
+19,Scarlett Adams,225000.0,current,0.0,0.0
+20,Aiden King,103000.0,savings,0.0,0.0
+21,Hannah,0.0,cd,4.0,3.4

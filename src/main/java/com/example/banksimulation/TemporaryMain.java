@@ -13,6 +13,9 @@ public class TemporaryMain {
 //        barclays.createLoan(customer, 2, 1, "PersonalLoan");
 
         barclays.writeLoanCSV();
+
+
+//        barclays.createAccount(customer, "cd", 4, 3.4);
         barclays.writeCSVBankAndCustomerBook();
     }
 }
