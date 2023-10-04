@@ -3,15 +3,14 @@ package com.example.banksimulation;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class LoginController {
+    @FXML
+    private Label messageLabel;
     @FXML
     private Label welcomeText;
     @FXML
@@ -20,6 +19,8 @@ public class LoginController {
     private PasswordField passwordTextField;
     @FXML
     private Button loginButton;
+    @FXML
+    private Hyperlink registerHyperlink;
 
     Stage userInterfaceStage = new Stage();
 
@@ -32,17 +33,20 @@ public class LoginController {
         fxmlLoader.setController(controller);
         controller.setBank(bank);
         bank.readCSVBankAndCustomerBook();
+        String userName = userTextField.getText();
+        Customer currentCustomer  = bank.customerHashMap.get(userName);
+        if(currentCustomer != null){
         Scene scene = new Scene(fxmlLoader.load(), 500, 600);
         userInterfaceStage.setTitle("Hello!");
         userInterfaceStage.setScene(scene);
         userInterfaceStage.show();
-
-        String userName = userTextField.getText();
-
-        Customer currentCustomer  = bank.customerHashMap.get(userName);
         controller.setCurrentCustomer(currentCustomer);
         controller.welcomeLabel.setText("Welcome, " + userName);
-        controller.getCustomerAccounts();
+        controller.getCustomerAccounts();}
+        else{
+            messageLabel.setText("That account does not exist. Check input or register new account.");
+        }
+
 //        String password = passwordTextField.getText();
 //
 //        if (isValidLogin(userName, password)) {
@@ -50,6 +54,10 @@ public class LoginController {
 //        } else {
 //            welcomeText.setText("Invalid login. Please try again.");
 //        }
+    }
+    @FXML
+    private void launchCustomerRegistration(){
+
     }
 
     private boolean isValidLogin(String userName, String password) {
