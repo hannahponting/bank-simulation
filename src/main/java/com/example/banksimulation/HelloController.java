@@ -74,7 +74,7 @@ public class HelloController {
 
     @FXML
     protected void getAccountDetails(int selectedAccount) {
-        String output = "Balance: ";
+        String output = "Account Balance: ";
 //        int requestedAccountNumber = Integer.parseInt(accountNumberInput.getText());
         requestedAccount = bank.accountBookHashMap.get(selectedAccount);
         NumberFormat format = new DecimalFormat("#0.00");

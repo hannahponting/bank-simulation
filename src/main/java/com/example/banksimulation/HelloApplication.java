@@ -18,7 +18,6 @@ public class HelloApplication extends Application {
         Bank barclays = new Bank();
         barclays.readCSVBankAndCustomerBook();
         barclays.readLoanCSV();
-
         LoginController loginController = fxmlLoaderLogin.getController();
         loginController.setBank(barclays);
 
