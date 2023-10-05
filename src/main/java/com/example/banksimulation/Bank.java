@@ -93,7 +93,8 @@ public class Bank {
     }
 
 
-    public void createLoan(Customer customer, int length, double amount, String type) {
+    public boolean createLoan(Customer customer, int length, double amount, String type) {
+        boolean isCreated = true;
         double maxLoanMoney = 0.9 * calculateTotalDeposit();
         double currentLoanMoney = calculateTotalLoans();
         if (!loanHashMap.containsKey(customer.getCustomerName())) {
@@ -101,10 +102,13 @@ public class Bank {
                 createLoanDependingOnType(customer, length, amount, type);
             } else {
                 System.err.println("Cannot lend money");
+                isCreated = false;
             }
         } else {
             System.out.println("Person does not exist");
+            isCreated = false;
         }
+        return isCreated;
     }
 
 

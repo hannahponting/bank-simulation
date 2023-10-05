@@ -8,11 +8,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import javafx.scene.control.ComboBox;
+import javafx.scene.paint.Paint;
 
 
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.ResourceBundle;
 
 public class CarLoanController implements Initializable {
@@ -57,9 +59,25 @@ public class CarLoanController implements Initializable {
 //TODO: Add exceptions to everything in case of wrong string input in TextField
     @FXML
     public void createLoan(ActionEvent event) throws IOException {
-        bank.createLoan(currentCustomer,loanTerm,initialLoan,"CarLoan");
-        loginController.onHelloButtonClick();
-        printCongratulationMessagebutton.setText("Loan application approved");
+        try {
+
+            double amount = Double.parseDouble(loanAmount.getText());
+            if (amount > 0) {
+                boolean confirmCreation = bank.createLoan(currentCustomer, loanTerm, initialLoan, "CarLoan");
+                loginController.onHelloButtonClick();
+
+                if (confirmCreation) {
+                    printCongratulationMessagebutton.setText("Loan application approved");
+                } else printCongratulationMessagebutton.setText("Loan application denied");
+                printCongratulationMessagebutton.setTextFill(Paint.valueOf("red"));
+            }
+        } catch (NumberFormatException nfe) {
+            printCongratulationMessagebutton.setText("Input valid amount");
+        }
+
+
+
+
     }
     //TODO: set text if the loan is denied
 
@@ -72,26 +90,31 @@ double initialLoan;
     private static final DecimalFormat df = new DecimalFormat("0.00");
         @FXML
     void calculateInterest (ActionEvent event){
-        initialLoan = Double.parseDouble(loanAmount.getText());
+            try {
+                initialLoan = Double.parseDouble(loanAmount.getText());
 
-        CarLoan carLoan = new CarLoan(currentCustomer, loanTerm, initialLoan);
-
-
-        loanTerm = Integer.parseInt(loanLengthSelector.getValue());
+                CarLoan carLoan = new CarLoan(currentCustomer, loanTerm, initialLoan);
 
 
+                loanTerm = Integer.parseInt(loanLengthSelector.getValue());
 
 
-        double loanWithInterest = initialLoan + carLoan.addInterestToLoan(initialLoan);
-        String trimmedNumber2 = df.format(loanWithInterest);
-        double loanWithInterest2 = Double.parseDouble(trimmedNumber2);
-        totalAmountWithInterest.setText(String.valueOf(loanWithInterest2));
 
 
-        double repaymentPerMonth = loanWithInterest/12/loanTerm;
-        String trimmedNumber = df.format(repaymentPerMonth);
-        double repaymentPerMonth2 = Double.parseDouble(trimmedNumber);
-        repaymentLabel.setText(String.valueOf(repaymentPerMonth2));
+                double loanWithInterest = initialLoan + carLoan.addInterestToLoan(initialLoan);
+                String trimmedNumber2 = df.format(loanWithInterest);
+                double loanWithInterest2 = Double.parseDouble(trimmedNumber2);
+                totalAmountWithInterest.setText(String.valueOf(loanWithInterest2));
+
+
+                double repaymentPerMonth = loanWithInterest/12/loanTerm;
+                String trimmedNumber = df.format(repaymentPerMonth);
+                double repaymentPerMonth2 = Double.parseDouble(trimmedNumber);
+                repaymentLabel.setText(String.valueOf(repaymentPerMonth2));
+            } catch (NumberFormatException nfe) {
+                printCongratulationMessagebutton.setText("Input valid amount");
+            }
+
     }
 
 }
