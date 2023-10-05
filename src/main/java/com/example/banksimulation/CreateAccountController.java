@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -62,19 +63,24 @@ public class CreateAccountController {
 
     @FXML
     private void createSelectedAccount() throws IOException {
-        switch (accountType) {
-            case "current", "savings" -> {
-                try {
-                    bank.createAccount(customer, accountType, 0, 0);
+
+        try {
+            switch (accountType){
+                case "current", "savings" -> {
+                    bank.createAccount(customer, accountType,0,0);
                     statusLabel.setText("New account created");
+                    statusLabel.setTextFill(Paint.valueOf("black"));
                     loginController.onHelloButtonClick();
-                } catch (IllegalArgumentException illegalArgumentException) {
-                    statusLabel.setText(illegalArgumentException.getMessage());
                 }
+                case "cd" -> launchCdWindow();
+                default -> statusLabel.setText("You must select an account type first");
+
             }
-            case "cd" -> launchCdWindow();
-            default -> statusLabel.setText("You must select an account type first");
+        } catch (NullPointerException npe) {
+            statusLabel.setText("You must select an account type first");
+            statusLabel.setTextFill(Paint.valueOf("red"));
         }
+
     }
 
     Stage stage = new Stage();
