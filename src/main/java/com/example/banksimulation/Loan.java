@@ -27,5 +27,12 @@ public class Loan {
         this.loanNumber = Loan.nextLoan++;
     }
 
+    public void makeRepayment(double repaymentAmount){
+        if (repaymentAmount > loanAmount){
+            throw new IllegalArgumentException("That is greater than the remaining balance");
+        }
+        loanAmount -= repaymentAmount;
+    }
+
 
 }
