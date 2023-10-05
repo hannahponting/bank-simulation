@@ -69,7 +69,7 @@ public class CDAccount extends Account {
         ArrayList<Double> investment = new ArrayList<>();
         readCSVBankAndCustomerBook();
         for (int i = 0; i < yearList.size(); i++) {
-            double totalAmountWithInterest = initialInvestmentAmount * (1 + ((interestRate.get(i)/100) * yearList.get(i)));
+            double totalAmountWithInterest = initialInvestmentAmount * (Math.pow((1 + (interestRate.get(i)/100)), yearList.get(i)) - 1);
             String trimmedNumber = df.format(totalAmountWithInterest);
             double totalAmountWithInterest2 = Double.parseDouble(trimmedNumber);
             investment.add(totalAmountWithInterest2);
