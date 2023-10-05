@@ -7,7 +7,18 @@ public class Customer {
     Customer(String customerName){
         this.customerName = customerName;
     }
+    Customer(String customerName, String customerPassword){
+        this.customerName = customerName;
+        this.customerPassword = customerPassword;
+    }
     private String customerName;
+    private String customerPassword =  "password";
+    void setCustomerPassword(String customerPassword){
+        this.customerPassword = customerPassword;
+    }
+    String getCustomerPassword(){
+        return customerPassword;
+    }
 
     ArrayList<Account> accountArrayList = new ArrayList<>();
     ArrayList<Loan> loanArrayList = new ArrayList<>();

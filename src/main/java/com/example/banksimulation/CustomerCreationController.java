@@ -18,12 +18,15 @@ public class CustomerCreationController {
     private Button registerButton;
     @FXML
     private Label statusLabel;
+    @FXML
+    private TextField passwordInput;
 
     @FXML
     private void registerNewCustomer(){
         String proposedName = nameInput.getText();
+        String password = passwordInput.getText();
         if (bank.customerHashMap.get(proposedName) == null){
-            bank.createCustomer(proposedName);
+            bank.createCustomer(proposedName,password);
             statusLabel.setText("Account created");
         }
         else{

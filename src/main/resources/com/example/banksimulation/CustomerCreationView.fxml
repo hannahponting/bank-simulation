@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="500.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" >
+<VBox alignment="CENTER" prefHeight="500.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -19,9 +19,15 @@
                <Font size="14.0" />
             </font>
          </Label>
-         <TextField fx:id="nameInput" layoutX="46.0" layoutY="84.0" prefHeight="26.0" prefWidth="250.0" promptText="Name" />
-         <Button fx:id="registerButton" layoutX="46.0" layoutY="131.0" mnemonicParsing="false" onAction="#registerNewCustomer" text="Register" />
+         <TextField fx:id="nameInput" layoutX="46.0" layoutY="78.0" prefHeight="26.0" prefWidth="250.0" promptText="Name" />
+         <Button fx:id="registerButton" layoutX="46.0" layoutY="188.0" mnemonicParsing="false" onAction="#registerNewCustomer" text="Register" />
          <Label fx:id="statusLabel" layoutX="46.0" layoutY="170.0" />
+         <Label layoutX="46.0" layoutY="122.0" text="Please choose a password">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+         <TextField fx:id="passwordInput" layoutX="46.0" layoutY="143.0" prefHeight="26.0" prefWidth="250.0" promptText="Password" />
       </children>
    </AnchorPane>
 </VBox>

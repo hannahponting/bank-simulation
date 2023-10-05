@@ -24,8 +24,13 @@ public class Bank {
     Scanner fileScanner;
 
     //todo: fix createCustomer to work after the hashmap has been read to not repeat account Numbers
-    public Customer createCustomer(String customerName) {
-        Customer customer = new Customer(customerName);
+//    public Customer createCustomer(String customerName) {
+//        Customer customer = new Customer(customerName);
+//        customerHashMap.put(customerName, customer);
+//        return customer;
+//    }
+    public Customer createCustomer(String customerName, String password) {
+        Customer customer = new Customer(customerName, password);
         customerHashMap.put(customerName, customer);
         return customer;
     }
