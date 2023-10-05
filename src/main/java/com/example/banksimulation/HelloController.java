@@ -14,9 +14,11 @@ import java.text.NumberFormat;
 
 public class HelloController {
     private LoginController loginController;
-    public void setLoginController(LoginController loginController){
+
+    public void setLoginController(LoginController loginController) {
         this.loginController = loginController;
     }
+
     @FXML
     public Label welcomeLabel;
     @FXML
@@ -29,12 +31,15 @@ public class HelloController {
     private Label allAccountDetails;
     @FXML
     private TextField depositTextField;
-    @FXML
-    private TextField withdrawalTextField;
+
     @FXML
     private TextField destinationAccountTextField;
     @FXML
     private TextField transferAmountTextField;
+
+    @FXML
+    private TextField withdrawalTextField;
+
     @FXML
     private Label depositWithdrawalStatus;
 
@@ -48,8 +53,16 @@ public class HelloController {
 
     @FXML
     private Label loanAmountLabel;
+    @FXML
+    private TextField payBillTextField1;
+    @FXML
+    private TextField referenceTextField1;
+
+    @FXML
+    private Button payBillConfirmButton1;
 
     private Customer currentCustomer;
+
     Stage createLoanStage = new Stage();
 
     public void setCurrentCustomer(Customer currentCustomer) {
@@ -92,13 +105,13 @@ public class HelloController {
             HBox accountHbox = new HBox();
             RadioButton radioButton;
 
-            if (accountToBeAdded.accountType =="CD"){
+            if (accountToBeAdded.accountType == "CD") {
 
-                radioButton = new RadioButton(accountToBeAdded.accountType +"  (Acc No." + accountToBeAdded.getAccountNumber()+
-                        " - Interest Rate "+accountToBeAdded.interestRateFromCSV+"% "+ " - Term "+accountToBeAdded.accountTerm+" years"+ " )");}
-             else
-            {
-                 radioButton = new RadioButton(accountToBeAdded.accountType +"  (Acc No." + accountToBeAdded.getAccountNumber()+" )");}
+                radioButton = new RadioButton(accountToBeAdded.accountType + "  (Acc No." + accountToBeAdded.getAccountNumber() +
+                        " - Interest Rate " + accountToBeAdded.interestRateFromCSV + "% " + " - Term " + accountToBeAdded.accountTerm + " years" + " )");
+            } else {
+                radioButton = new RadioButton(accountToBeAdded.accountType + "  (Acc No." + accountToBeAdded.getAccountNumber() + " )");
+            }
 
             accountHbox.getChildren().add(radioButton);
             radioButton.setToggleGroup(toggleGroup);
@@ -117,7 +130,7 @@ public class HelloController {
         for (Loan loanToBeAdded : currentCustomer.loanArrayList
         ) {
             HBox accountHbox = new HBox();
-            RadioButton radioButton = new RadioButton(loanToBeAdded.loanType+" (Loan No."+loanToBeAdded.loanNumber+ " - Term "+ loanToBeAdded.loanDuration+" years"+ " )");
+            RadioButton radioButton = new RadioButton(loanToBeAdded.loanType + " (Loan No." + loanToBeAdded.loanNumber + " - Term " + loanToBeAdded.loanDuration + " years" + " )");
             accountHbox.getChildren().add(radioButton);
             radioButton.setToggleGroup(toggleGroup);
             radioButton.setOnAction(e -> getLoanDetails(loanToBeAdded.loanNumber));
@@ -127,15 +140,16 @@ public class HelloController {
 
         }
     }
-    @FXML
-    private void getLoanDetails(int selectedLoan){
 
-            String output = "Loan Balance: £";
+    @FXML
+    private void getLoanDetails(int selectedLoan) {
+
+        String output = "Loan Balance: £";
 //        int requestedAccountNumber = Integer.parseInt(accountNumberInput.getText());
-            requestedLoan = bank.loanHashMap.get(selectedLoan);
-            NumberFormat format = new DecimalFormat("#0.00");
-            output += format.format(requestedLoan.loanAmount);
-            loanAmountLabel.setText(output);
+        requestedLoan = bank.loanHashMap.get(selectedLoan);
+        NumberFormat format = new DecimalFormat("#0.00");
+        output += format.format(requestedLoan.loanAmount);
+        loanAmountLabel.setText(output);
 
     }
 
@@ -173,78 +187,120 @@ public class HelloController {
         }
     }
 
+
     @FXML
-    protected void makeTransfer() {
-        Account fromAccount = requestedAccount;
-        Account toAccount = null;
+    protected void payBill() {
+        Account withdrawalAccount = requestedAccount;
+        double withdrawalAmount = 0.0;
         try {
-            int destinationAccountNumber = Integer.parseInt(destinationAccountTextField.getText());
-            toAccount = bank.accountBookHashMap.get(destinationAccountNumber);
-            if (toAccount == null) {
-                throw new NullPointerException();
+            withdrawalAmount = Double.parseDouble(payBillTextField1.getText());
+            try {
+                withdrawalAccount.withdraw(withdrawalAccount, withdrawalAmount);
+                depositWithdrawalStatus.setText("Bill payment successful, balance updated.");
+                getAccountDetails(requestedAccount.getAccountNumber());
+                payBillTextField1.clear();
+                referenceTextField1.clear();
+
+            } catch (IllegalArgumentException overdrawn) {
+                Boolean hasSavingAccount = false;
+
+                for (Account savingAccount : currentCustomer.accountArrayList
+                ) {
+                    System.out.println(savingAccount);
+                    if (savingAccount.accountType.equals("Savings")) {
+                        hasSavingAccount = true;
+                        System.out.println(savingAccount);
+                        if (savingAccount.accountBalance >= withdrawalAmount) {
+                            System.out.println("saving account balance is big enough");
+                            depositWithdrawalStatus.setText("insufficient funds, but you have enough money in saving account ");
+                            break;
+                            // TODO: 05/10/2023  pop up a window to move into saving, pay from saving account
+                        } else {
+                            depositWithdrawalStatus.setText(overdrawn.getMessage());
+                            System.out.println("Saving account balance is too low");
+                        }
+                    }
+                }
+                if (!hasSavingAccount)
+                    depositWithdrawalStatus.setText(overdrawn.getMessage());
+
             }
-        } catch (NullPointerException accountNotFound) {
-            depositWithdrawalStatus.setText("Recipient account number invalid");
-        } catch (NumberFormatException invalidAccountInput) {
-            depositWithdrawalStatus.setText("Recipient account number invalid");
+        } catch (NumberFormatException numberFormatException) {
+            depositWithdrawalStatus.setText("Please check you have entered a valid number");
+
         }
-        try {
-            double transferAmount = Double.parseDouble(transferAmountTextField.getText());
-            if (transferAmount <= 0) {
-                throw new NumberFormatException("You can't transfer a negative number");
+    }
+
+
+
+
+
+        @FXML
+        protected void makeTransfer () {
+            Account fromAccount = requestedAccount;
+            Account toAccount = null;
+            try {
+                int destinationAccountNumber = Integer.parseInt(destinationAccountTextField.getText());
+                toAccount = bank.accountBookHashMap.get(destinationAccountNumber);
+                if (toAccount == null) {
+                    throw new NullPointerException();
+                }
+            } catch (NullPointerException accountNotFound) {
+                depositWithdrawalStatus.setText("Recipient account number invalid");
+            } catch (NumberFormatException invalidAccountInput) {
+                depositWithdrawalStatus.setText("Recipient account number invalid");
             }
-            fromAccount.withdraw(fromAccount, transferAmount);
-            toAccount.deposit(toAccount, transferAmount);
-            System.out.println(toAccount);
-            getAccountDetails(requestedAccount.getAccountNumber());
-            depositWithdrawalStatus.setText("Transfer successful, balance updated");
-            transferAmountTextField.clear();
-            destinationAccountTextField.clear();
-        } catch (NumberFormatException invalidDouble) {
-            depositWithdrawalStatus.setText("Transfer amount number invalid");
-        } catch (IllegalArgumentException overdrawn) {
-            depositWithdrawalStatus.setText(overdrawn.getMessage());
+            try {
+                double transferAmount = Double.parseDouble(transferAmountTextField.getText());
+                if (transferAmount <= 0) {
+                    throw new NumberFormatException("You can't transfer a negative number");
+                }
+                fromAccount.withdraw(fromAccount, transferAmount);
+                toAccount.deposit(toAccount, transferAmount);
+                System.out.println(toAccount);
+                getAccountDetails(requestedAccount.getAccountNumber());
+                depositWithdrawalStatus.setText("Transfer successful, balance updated");
+                transferAmountTextField.clear();
+                destinationAccountTextField.clear();
+            } catch (NumberFormatException invalidDouble) {
+                depositWithdrawalStatus.setText("Transfer amount number invalid");
+            } catch (IllegalArgumentException overdrawn) {
+                depositWithdrawalStatus.setText(overdrawn.getMessage());
+            }
+
         }
 
+        @FXML
+        protected void launchNewAccountWindow () throws IOException {
+            FXMLLoader fxmlLoaderCreateAccount = new FXMLLoader(HelloApplication.class.getResource("AccountCreationView.fxml"));
+            CreateAccountController controller = new CreateAccountController();
+            fxmlLoaderCreateAccount.setController(controller);
+            controller.setBank(bank);
+            controller.setCustomer(currentCustomer);
+            Scene scene = new Scene(fxmlLoaderCreateAccount.load(), 500, 600);
+            createLoanStage.setTitle("Create Account");
+            createLoanStage.setScene(scene);
+            createLoanStage.show();
+            controller.initialiseToggleGroup();
+            controller.setLoginController(loginController);
+
+        }
+
+        @FXML
+        protected void launchLoanAppWindow () throws IOException {
+            FXMLLoader fxmlLoaderCreateLoan = new FXMLLoader(HelloApplication.class.getResource("LoanCreationView.fxml"));
+            CreateLoanController controller = new CreateLoanController();
+            fxmlLoaderCreateLoan.setController(controller);
+            controller.setBank(bank);
+            controller.setCustomer(currentCustomer);
+            Scene scene = new Scene(fxmlLoaderCreateLoan.load(), 500, 600);
+            createLoanStage.setTitle("Apply for loan");
+            createLoanStage.setScene(scene);
+            createLoanStage.show();
+            controller.initialiseToggleGroup();
+            controller.setLoginController(loginController);
+
+        }
+
+
     }
-
-    @FXML
-    protected void launchNewAccountWindow() throws IOException {
-        FXMLLoader fxmlLoaderCreateAccount = new FXMLLoader(HelloApplication.class.getResource("AccountCreationView.fxml"));
-        CreateAccountController controller = new CreateAccountController();
-        fxmlLoaderCreateAccount.setController(controller);
-        controller.setBank(bank);
-        controller.setCustomer(currentCustomer);
-        Scene scene = new Scene(fxmlLoaderCreateAccount.load(), 500, 600);
-        createLoanStage.setTitle("Create Account");
-        createLoanStage.setScene(scene);
-        createLoanStage.show();
-        controller.initialiseToggleGroup();
-        controller.setLoginController(loginController);
-
-    }
-
-    @FXML
-    protected void launchLoanAppWindow() throws IOException {
-        FXMLLoader fxmlLoaderCreateLoan = new FXMLLoader(HelloApplication.class.getResource("LoanCreationView.fxml"));
-        CreateLoanController controller = new CreateLoanController();
-        fxmlLoaderCreateLoan.setController(controller);
-        controller.setBank(bank);
-        controller.setCustomer(currentCustomer);
-        Scene scene = new Scene(fxmlLoaderCreateLoan.load(), 500, 600);
-        createLoanStage.setTitle("Apply for loan");
-        createLoanStage.setScene(scene);
-        createLoanStage.show();
-        controller.initialiseToggleGroup();
-        controller.setLoginController(loginController);
-
-    }
-
-
-
-
-
-
-
-
-}
