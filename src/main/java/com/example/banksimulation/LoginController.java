@@ -34,7 +34,7 @@ public class LoginController {
         controller.setBank(bank);
         String userName = userTextField.getText();
         Customer currentCustomer  = bank.customerHashMap.get(userName);
-        if(currentCustomer != null){
+        if(currentCustomer != null && passwordTextField.getText().equals(currentCustomer.getCustomerPassword())){
         Scene scene = new Scene(fxmlLoader.load(),408.0 , 622.0);
         userInterfaceStage.setTitle("Hello!");
         userInterfaceStage.setScene(scene);
@@ -45,10 +45,10 @@ public class LoginController {
         controller.getCustomerLoans();
         }
         else{
-            messageLabel.setText("That account does not exist. Check input or register new account.");
+            messageLabel.setText("Name and password invalid. Check input or register new account.");
         }
 
-//        String password = passwordTextField.getText();
+        String password = passwordTextField.getText();
 //
 //        if (isValidLogin(userName, password)) {
 //            welcomeText.setText("Welcome, " + userName + "!");
@@ -68,9 +68,6 @@ public class LoginController {
         registrationStage.show();
     }
 
-    private boolean isValidLogin(String userName, String password) {
-        return userName.equals("rui") && password.equals("123");
-    }
 
     private  Bank bank;
     public void setBank(Bank bank) {
