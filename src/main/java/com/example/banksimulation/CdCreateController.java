@@ -38,7 +38,7 @@ public class CdCreateController {
         this.bank = bank;
 
     }
-    private Customer currentCustomer; //TODO: This is just a placeholder
+    private Customer currentCustomer;
     public void setCurrentCustomer(Customer customer){
         this.currentCustomer = customer;
     }

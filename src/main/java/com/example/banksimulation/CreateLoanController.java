@@ -1,10 +1,13 @@
 package com.example.banksimulation;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -64,8 +67,19 @@ public class CreateLoanController {
             default -> statusLabel.setText("You must select a loan type first");
         }
     }
+Stage stage = new Stage();
+    private void launchCarLoanWindow() throws IOException {
+        FXMLLoader fxmlLoaderCarLoan = new FXMLLoader(TemporaryApplication.class.getResource("CarLoanView.fxml"));
+        CarLoanController controller = new CarLoanController();
+        fxmlLoaderCarLoan.setController(controller);
+        Scene sceneCarLoan = new Scene(fxmlLoaderCarLoan.load(), 500, 600);
+        controller.setBank(bank);
+        controller.setCurrentCustomer(customer);
+        controller.setLoginController(loginController);
+        stage.setTitle("Create Car Loan");
+        stage.setScene(sceneCarLoan);
+        stage.show();
 
-    private void launchCarLoanWindow() {
     }
 
     private void launchHomeLoanWindow() {

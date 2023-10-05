@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.ComboBox;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ResourceBundle;
@@ -17,14 +18,22 @@ import java.util.ResourceBundle;
 public class CarLoanController implements Initializable {
 
     private Bank bank;
+    private LoginController loginController;
+    public void setLoginController(LoginController loginController){
+        this.loginController = loginController;
+    }
 
-
+    private Customer currentCustomer;
+    public void setCurrentCustomer(Customer customer){
+        this.currentCustomer = customer;
+    }
     public void setBank(Bank bank) {
         this.bank = bank;
 
     }
     int loanTerm;
-
+    @FXML
+    private Label printCongratulationMessagebutton;
     @FXML
     private Label interestRateLabel;
 
@@ -46,23 +55,26 @@ public class CarLoanController implements Initializable {
 
 
 //TODO: Add exceptions to everything in case of wrong string input in TextField
-    public void createLoan(ActionEvent event) {
-
+    @FXML
+    public void createLoan(ActionEvent event) throws IOException {
+        bank.createLoan(currentCustomer,loanTerm,initialLoan,"CarLoan");
+        loginController.onHelloButtonClick();
+        printCongratulationMessagebutton.setText("Loan application approved");
     }
+    //TODO: set text if the loan is denied
 
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle){
         loanLengthSelector.setValue("3");
         loanLengthSelector.setItems(options);
     }
-
+double initialLoan;
     private static final DecimalFormat df = new DecimalFormat("0.00");
         @FXML
     void calculateInterest (ActionEvent event){
-        Customer customer = new Customer ("Hannah");
-        double initialLoan = Double.parseDouble(loanAmount.getText());
+        initialLoan = Double.parseDouble(loanAmount.getText());
 
-        CarLoan carLoan = new CarLoan(customer, loanTerm, initialLoan);
+        CarLoan carLoan = new CarLoan(currentCustomer, loanTerm, initialLoan);
 
 
         loanTerm = Integer.parseInt(loanLengthSelector.getValue());
