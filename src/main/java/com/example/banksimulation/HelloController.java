@@ -116,8 +116,14 @@ public class HelloController {
         ToggleGroup toggleGroup = new ToggleGroup();
         for (Loan loanToBeAdded : currentCustomer.loanArrayList
         ) {
+            RadioButton radioButton;
             HBox accountHbox = new HBox();
-            RadioButton radioButton = new RadioButton(loanToBeAdded.loanType+" (Loan No."+loanToBeAdded.loanNumber+ " - Term "+ loanToBeAdded.loanDuration+" years"+ " )");
+            if (loanToBeAdded.loanType =="PersonalLoan"){
+                 radioButton = new RadioButton(loanToBeAdded.loanType + " (Loan No." + loanToBeAdded.loanNumber + " )");
+            }
+            else {
+                radioButton = new RadioButton(loanToBeAdded.loanType + " (Loan No." + loanToBeAdded.loanNumber + " - Term " + loanToBeAdded.loanDuration + " years" + " )");
+            }
             accountHbox.getChildren().add(radioButton);
             radioButton.setToggleGroup(toggleGroup);
             radioButton.setOnAction(e -> getLoanDetails(loanToBeAdded.loanNumber));
