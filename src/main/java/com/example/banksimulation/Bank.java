@@ -60,7 +60,7 @@ public class Bank {
     }
 
     private void checkCurrentAccountNull(Customer accountHolder) {
-        Boolean customerHasCurrentAccount = false;
+        boolean customerHasCurrentAccount = false;
         for (Account account: customerHashMap.get(accountHolder.getCustomerName()).accountArrayList
              ) {if (account.accountType.equals("Current")){
                  customerHasCurrentAccount = true;
@@ -84,7 +84,7 @@ public class Bank {
     }
 
     private void checkSavingsAccountNull(Customer accountHolder) {
-        Boolean customerHasSavingsAccount = false;
+        boolean customerHasSavingsAccount = false;
         for (Account account: customerHashMap.get(accountHolder.getCustomerName()).accountArrayList
         ) {if (account.accountType.equals("Savings")){
             customerHasSavingsAccount = true;
