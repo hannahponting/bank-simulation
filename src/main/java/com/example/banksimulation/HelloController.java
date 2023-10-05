@@ -168,6 +168,7 @@ public class HelloController {
     @FXML
     protected void makeDeposit() {
         Account depositAccount = requestedAccount;
+
         try {
             double depositAmount = Double.parseDouble(depositTextField.getText());
             depositAccount.deposit(depositAccount, depositAmount);
@@ -179,6 +180,9 @@ public class HelloController {
         }
         catch (IllegalArgumentException cdDepsosit){
             depositWithdrawalStatus.setText(cdDepsosit.getMessage());
+        }
+        catch ( NullPointerException nullPointerException) {
+            depositWithdrawalStatus.setText("Please select an account to deposit first");
         }
 
     }
@@ -198,6 +202,9 @@ public class HelloController {
             }
         } catch (NumberFormatException numberFormatException) {
             depositWithdrawalStatus.setText("Please check you have entered a valid number");
+        }
+        catch ( NullPointerException nullPointerException) {
+            depositWithdrawalStatus.setText("Please select an account to withdraw first");
         }
     }
 
@@ -242,6 +249,8 @@ public class HelloController {
         } catch (NumberFormatException numberFormatException) {
             depositWithdrawalStatus.setText("Please check you have entered a valid number");
 
+        }catch ( NullPointerException nullPointerException) {
+            depositWithdrawalStatus.setText("Please select an account to pay the bill first");
         }
     }
 
@@ -265,6 +274,8 @@ public class HelloController {
             depositWithdrawalStatus.setText("Transfer amount number invalid");
         } catch (IllegalArgumentException illegalArgumentException) {
             depositWithdrawalStatus.setText(illegalArgumentException.getMessage());
+        }catch ( NullPointerException nullPointerException) {
+            depositWithdrawalStatus.setText("Please select an account to pay the loan first");
         }
 
 
@@ -305,6 +316,8 @@ public class HelloController {
                 depositWithdrawalStatus.setText("Transfer amount number invalid");
             } catch (IllegalArgumentException overdrawn) {
                 depositWithdrawalStatus.setText(overdrawn.getMessage());
+            }catch ( NullPointerException nullPointerException) {
+                depositWithdrawalStatus.setText("Please select an account to transfer the money first");
             }
 
         }
