@@ -24,15 +24,10 @@ public class HomeLoan extends Loan{
         double x = Math.pow((1 + ((interestRate/100)/12)), (length * 12)) - 1;
         double y = ((interestRate/100)/12) * Math.pow((1 + ((interestRate/100)/12)),(length * 12));
 
-        System.out.println(x);
-        System.out.println(y);
-        System.out.println(x/y);
-
-
         double loanWithInterest = initialLoan / ( x / y );
         String trimmedNumber = df.format(loanWithInterest);
         double loanWithInterest2 = Double.parseDouble(trimmedNumber);
-        finalLoan = 12 * loanWithInterest2 * length;
+        finalLoan = loanWithInterest2;
 
         return finalLoan;
     }

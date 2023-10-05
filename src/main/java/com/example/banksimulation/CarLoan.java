@@ -21,13 +21,17 @@ public class CarLoan extends Loan{
     private static final DecimalFormat df = new DecimalFormat("0.00");
 
     public double addInterestToLoan(double initialLoan, int length) {
-        double finalLoan = initialLoan;
-        for (int i = 0; i < length; i++) {
-            double loanWithInterest = initialLoan * (Math.pow((1 + (interestRate/100)), length) - 1);
-            String trimmedNumber = df.format(loanWithInterest);
-            double loanWithInterest2 = Double.parseDouble(trimmedNumber);
-            finalLoan += loanWithInterest2;
-        }
+        double finalLoan;
+
+        double x = Math.pow((1 + ((interestRate/100)/12)), (length * 12)) - 1;
+        double y = ((interestRate/100)/12) * Math.pow((1 + ((interestRate/100)/12)),(length * 12));
+
+
+        double loanWithInterest = initialLoan / ( x / y );
+        String trimmedNumber = df.format(loanWithInterest);
+        double loanWithInterest2 = Double.parseDouble(trimmedNumber);
+        finalLoan = loanWithInterest2;
+
         return finalLoan;
     }
 }

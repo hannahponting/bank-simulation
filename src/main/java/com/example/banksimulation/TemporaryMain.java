@@ -22,5 +22,6 @@ public class TemporaryMain {
 
         double moneys = homeLoan.addInterestToLoan(10000, 3);
         System.out.println(moneys);
+        System.out.println(moneys/(12*3));
     }
 }
