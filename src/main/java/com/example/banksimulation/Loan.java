@@ -17,14 +17,14 @@ public class Loan {
         this.loanAmount=amount;
         this.customer = customer;
         this.loanNumber = loanNumber;
-        nextLoan++;
+
     }
 
     Loan(Customer customer, int length, double amount){
         this.loanDuration=length;
         this.loanAmount=amount;
         this.customer = customer;
-        this.loanNumber = nextLoan++;
+        this.loanNumber = nextLoan;
     }
 
     public void makeRepayment(double repaymentAmount){

@@ -41,16 +41,19 @@ public class Bank {
             case "savings" -> {
                 account = new SavingsAccount(accountHolder);
                 account.accountType = "savings";
+                Account.nextAccountNumber++;
             }
             case "cd" -> {
                 account = new CDAccount(accountHolder);
                 account.accountType = "cd";
                 account.interestRateFromCSV = interestRate;
                 account.accountTerm = accountTerm;
+                Account.nextAccountNumber++;
             }
             default -> {
                 account = new CurrentAccount(accountHolder);
                 account.accountType = "current";
+                Account.nextAccountNumber++;
             }
         }
         accountBookHashMap.put(account.getAccountNumber(), account);
@@ -60,6 +63,7 @@ public class Bank {
         Account account = new CDAccount(accountHolder);
         account.accountBalance = balance;
         account.accountType = "cd";
+        Account.nextAccountNumber++;
         account.interestRateFromCSV = interestRate;
         account.accountTerm = accountTerm;
         accountBookHashMap.put(account.getAccountNumber(), account);
@@ -71,6 +75,7 @@ public class Bank {
             case "savings" -> {
                 account = new SavingsAccount(accountNumber, accountBalance, accountHolder);
                 account.accountType = "savings";
+                Account.nextAccountNumber++;
             }
 
             case "cd" -> {
@@ -78,11 +83,13 @@ public class Bank {
                 account.accountType = "cd";
                 account.accountTerm = accountTerm;
                 account.interestRateFromCSV = interestRate;
+                Account.nextAccountNumber++;
             }
 
             default -> {
                 account = new CurrentAccount(accountNumber, accountBalance, accountHolder);
                 account.accountType = "current";
+                Account.nextAccountNumber++;
             }
         }
 //        customerHashMap.put(accountHolder.getCustomerName(),accountHolder);
@@ -122,6 +129,7 @@ public class Bank {
                     loan = new HomeLoan(customer, length, amount);
                     loanHashMap.put(loan.loanNumber, loan);
                     customer.loanArrayList.add(loan);
+                    Loan.nextLoan++;
                 }
             }
             case "CarLoan" -> {
@@ -131,6 +139,7 @@ public class Bank {
                     loan = new CarLoan(customer, length, amount);
                     loanHashMap.put(loan.loanNumber, loan);
                     customer.loanArrayList.add(loan);
+                    Loan.nextLoan++;
                 }
             }
 
@@ -142,6 +151,7 @@ public class Bank {
                     loan = new PersonalLoan(customer, length, amount);
                     loanHashMap.put(loan.loanNumber, loan);
                     customer.loanArrayList.add(loan);
+                    Loan.nextLoan++;
                 }
             }
         }
@@ -157,6 +167,7 @@ public class Bank {
                     loan = new HomeLoan(customer, length, amount, loanNumber);
                     loanHashMap.put(loan.loanNumber, loan);
                     customer.loanArrayList.add(loan);
+                    Loan.nextLoan++;
                 }
             }
             case "CarLoan" -> {
@@ -166,6 +177,7 @@ public class Bank {
                     loan = new CarLoan(customer, length, amount, loanNumber);
                     loanHashMap.put(loan.loanNumber, loan);
                     customer.loanArrayList.add(loan);
+                    Loan.nextLoan++;
                 }
             }
 
@@ -177,6 +189,7 @@ public class Bank {
                     loan = new PersonalLoan(customer, length, amount, loanNumber);
                     loanHashMap.put(loan.loanNumber, loan);
                     customer.loanArrayList.add(loan);
+                    Loan.nextLoan++;
                 }
             }
         }
