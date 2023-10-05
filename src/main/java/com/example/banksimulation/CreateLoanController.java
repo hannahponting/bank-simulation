@@ -59,13 +59,18 @@ public class CreateLoanController {
     private void createSelectedLoan() throws IOException {
         try {
             switch (loanType){
-                case "PersonalLoan"->
-                        launchPersonalLoanWindow();
-                case "HomeLoan" ->
-                        launchHomeLoanWindow();
-                case "CarLoan" ->
-                        launchCarLoanWindow();
+                case "PersonalLoan"-> {launchPersonalLoanWindow();
+                    statusLabel.setText(""); }
 
+                case "HomeLoan" -> {launchHomeLoanWindow();
+                    statusLabel.setText("");
+                }
+
+                case "CarLoan" -> {
+                    launchCarLoanWindow();
+                    statusLabel.setText("");
+
+                }
                 default -> statusLabel.setText("You must select a loan type first");
             }
         } catch (NullPointerException nullPointerException) {
