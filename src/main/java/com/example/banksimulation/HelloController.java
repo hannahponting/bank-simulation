@@ -74,7 +74,7 @@ public class HelloController {
 
     @FXML
     protected void getAccountDetails(int selectedAccount) {
-        String output = "Account Balance: ";
+        String output = "Account Balance: £";
 //        int requestedAccountNumber = Integer.parseInt(accountNumberInput.getText());
         requestedAccount = bank.accountBookHashMap.get(selectedAccount);
         NumberFormat format = new DecimalFormat("#0.00");
@@ -90,7 +90,16 @@ public class HelloController {
         for (Account accountToBeAdded : currentCustomer.accountArrayList
         ) {
             HBox accountHbox = new HBox();
-            RadioButton radioButton = new RadioButton(accountToBeAdded.accountType);
+            RadioButton radioButton;
+
+            if (accountToBeAdded.accountType =="CD"){
+
+                radioButton = new RadioButton(accountToBeAdded.accountType +"  (Acc No." + accountToBeAdded.getAccountNumber()+
+                        " - Interest Rate "+accountToBeAdded.interestRateFromCSV+"% "+ " - Term "+accountToBeAdded.accountTerm+" years"+ " )");}
+             else
+            {
+                 radioButton = new RadioButton(accountToBeAdded.accountType +"  (Acc No." + accountToBeAdded.getAccountNumber()+" )");}
+
             accountHbox.getChildren().add(radioButton);
             radioButton.setToggleGroup(toggleGroup);
             radioButton.setOnAction(e -> getAccountDetails(accountToBeAdded.getAccountNumber()));
@@ -108,7 +117,7 @@ public class HelloController {
         for (Loan loanToBeAdded : currentCustomer.loanArrayList
         ) {
             HBox accountHbox = new HBox();
-            RadioButton radioButton = new RadioButton(loanToBeAdded.loanType);
+            RadioButton radioButton = new RadioButton(loanToBeAdded.loanType+" (Loan No."+loanToBeAdded.loanNumber+ " - Term "+ loanToBeAdded.loanDuration+" years"+ " )");
             accountHbox.getChildren().add(radioButton);
             radioButton.setToggleGroup(toggleGroup);
             radioButton.setOnAction(e -> getLoanDetails(loanToBeAdded.loanNumber));
@@ -121,7 +130,7 @@ public class HelloController {
     @FXML
     private void getLoanDetails(int selectedLoan){
 
-            String output = "Loan Balance: ";
+            String output = "Loan Balance: £";
 //        int requestedAccountNumber = Integer.parseInt(accountNumberInput.getText());
             requestedLoan = bank.loanHashMap.get(selectedLoan);
             NumberFormat format = new DecimalFormat("#0.00");

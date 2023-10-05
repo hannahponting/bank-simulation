@@ -26,7 +26,7 @@ public class LoginController {
     Stage registrationStage = new Stage();
     @FXML
     public void onHelloButtonClick() throws IOException {
-
+//
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ViewAccountDetails.fxml"));
         HelloController controller = new HelloController();
         controller.setLoginController(this);
