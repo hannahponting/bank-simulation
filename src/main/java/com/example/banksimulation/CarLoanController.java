@@ -103,16 +103,19 @@ double initialLoan;
 
 
 
-                double loanWithInterest = carLoan.addInterestToLoan(initialLoan, loanTerm);
+
+                double loanWithInterest = (12 * loanTerm) * carLoan.addInterestToLoan(initialLoan, loanTerm);
+
                 String trimmedNumber2 = df.format(loanWithInterest);
                 double loanWithInterest2 = Double.parseDouble(trimmedNumber2);
                 totalAmountWithInterest.setText(String.valueOf(loanWithInterest2));
 
 
-                double repaymentPerMonth = loanWithInterest/12/loanTerm;
+                double repaymentPerMonth = carLoan.addInterestToLoan(initialLoan, loanTerm);
                 String trimmedNumber = df.format(repaymentPerMonth);
                 double repaymentPerMonth2 = Double.parseDouble(trimmedNumber);
                 repaymentLabel.setText(String.valueOf(repaymentPerMonth2));
+
             } catch (NumberFormatException nfe) {
                 printCongratulationMessagebutton.setText("Input valid amount");
             }
