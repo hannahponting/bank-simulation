@@ -166,6 +166,9 @@ public class HelloController {
         } catch (NumberFormatException numberFormatException) {
             depositWithdrawalStatus.setText("Please check you have entered a valid number");
         }
+        catch (IllegalArgumentException cdDepsosit){
+            depositWithdrawalStatus.setText(cdDepsosit.getMessage());
+        }
 
     }
 

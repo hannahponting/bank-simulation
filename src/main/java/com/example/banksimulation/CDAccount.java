@@ -76,7 +76,14 @@ public class CDAccount extends Account {
         }
         return investment;
     }
-
+    @Override
+    public void deposit(Account account, double depositAmount){
+        throw new IllegalArgumentException("CD accounts cannot receive new deposits");
+    }
+    @Override
+    public void withdraw(Account account, double withdrawAmount){
+        throw new IllegalArgumentException("CD accounts cannot perform withdrawals");
+    }
 
 
 
