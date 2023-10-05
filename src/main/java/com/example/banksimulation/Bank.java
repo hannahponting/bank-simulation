@@ -35,17 +35,17 @@ public class Bank {
         switch (accountType) {
             case "savings" -> {
                 account = new SavingsAccount(accountHolder);
-                account.accountType = "savings";
+                account.accountType = "Savings";
             }
             case "cd" -> {
                 account = new CDAccount(accountHolder);
-                account.accountType = "cd";
+                account.accountType = "CD";
                 account.interestRateFromCSV = interestRate;
                 account.accountTerm = accountTerm;
             }
             default -> {
                 account = new CurrentAccount(accountHolder);
-                account.accountType = "current";
+                account.accountType = "Current";
             }
         }
         accountBookHashMap.put(account.getAccountNumber(), account);
@@ -54,7 +54,7 @@ public class Bank {
     public void createNewCdAccount(Customer accountHolder, double accountTerm, double interestRate, double balance) {
         Account account = new CDAccount(accountHolder);
         account.accountBalance = balance;
-        account.accountType = "cd";
+        account.accountType = "CD";
         account.interestRateFromCSV = interestRate;
         account.accountTerm = accountTerm;
         accountBookHashMap.put(account.getAccountNumber(), account);
@@ -65,19 +65,19 @@ public class Bank {
         switch (accountType) {
             case "savings" -> {
                 account = new SavingsAccount(accountNumber, accountBalance, accountHolder);
-                account.accountType = "savings";
+                account.accountType = "Savings";
             }
 
             case "cd" -> {
                 account = new CDAccount(accountNumber, accountBalance, accountHolder);
-                account.accountType = "cd";
+                account.accountType = "CD";
                 account.accountTerm = accountTerm;
                 account.interestRateFromCSV = interestRate;
             }
 
             default -> {
                 account = new CurrentAccount(accountNumber, accountBalance, accountHolder);
-                account.accountType = "current";
+                account.accountType = "Current";
             }
         }
 //        customerHashMap.put(accountHolder.getCustomerName(),accountHolder);

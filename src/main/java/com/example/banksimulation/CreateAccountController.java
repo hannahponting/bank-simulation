@@ -20,6 +20,7 @@ public void setLoginController(LoginController loginController){
         savingsAccountRadioButton.setToggleGroup(toggleGroup);
         cdAccountRadioButton.setToggleGroup(toggleGroup);
     }
+
     public void setCustomer(Customer customer) { this.customer = customer;
     }
     public void setBank(Bank bank) {

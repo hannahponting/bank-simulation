@@ -26,7 +26,7 @@ public class LoginController {
     Stage registrationStage = new Stage();
     @FXML
     public void onHelloButtonClick() throws IOException {
-
+//
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ViewAccountDetails.fxml"));
         HelloController controller = new HelloController();
         controller.setLoginController(this);
@@ -34,6 +34,7 @@ public class LoginController {
         controller.setBank(bank);
         String userName = userTextField.getText();
         Customer currentCustomer  = bank.customerHashMap.get(userName);
+
         if(currentCustomer != null){
         Scene scene = new Scene(fxmlLoader.load(),408.0 , 622.0);
         userInterfaceStage.setTitle("Hello!");
