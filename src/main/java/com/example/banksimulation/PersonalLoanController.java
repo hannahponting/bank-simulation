@@ -31,7 +31,7 @@ public class PersonalLoanController implements Initializable {
         this.bank = bank;
 
     }
-    int loanTerm;
+//    int loanTerm;
     @FXML
     private Label printCongratulationMessagebutton;
     @FXML
@@ -48,7 +48,6 @@ public class PersonalLoanController implements Initializable {
 
     @FXML
     private ComboBox<String> loanLengthSelector;
-    ObservableList<String> options = FXCollections.observableArrayList("15", "20", "30");
 
 
 
@@ -56,14 +55,13 @@ public class PersonalLoanController implements Initializable {
 
 
     @FXML
-    public void createHouseLoan(ActionEvent event) throws IOException {
+    public void createPersonalLoan(ActionEvent event) throws IOException {
         try {
 
             double amount = Double.parseDouble(loanAmount.getText());
             if (amount > 0) {
                 initialLoan = Double.parseDouble(loanAmount.getText());
-                loanTerm = Integer.parseInt(loanLengthSelector.getValue());
-                boolean confirmCreation = bank.createLoan(currentCustomer, loanTerm, initialLoan, "PersonalLoan");
+                boolean confirmCreation = bank.createLoan(currentCustomer, 0, initialLoan, "PersonalLoan");
                 loginController.onHelloButtonClick();
 
                 if (confirmCreation) {
@@ -83,40 +81,38 @@ public class PersonalLoanController implements Initializable {
 
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle){
-        loanLengthSelector.setValue("15");
-        loanLengthSelector.setItems(options);
     }
     double initialLoan;
     private static final DecimalFormat df = new DecimalFormat("0.00");
 
 
-        @FXML
-    void calculateHouseInterest (ActionEvent event){
-            try {
-                initialLoan = Double.parseDouble(loanAmount.getText());
-
-                HomeLoan homeLoan = new HomeLoan(currentCustomer, loanTerm, initialLoan);
-
-
-                loanTerm = Integer.parseInt(loanLengthSelector.getValue());
-
-
-
-
-                double loanWithInterest = initialLoan + homeLoan.addInterestToLoan(initialLoan);
-                String trimmedNumber2 = df.format(loanWithInterest);
-                double loanWithInterest2 = Double.parseDouble(trimmedNumber2);
-                totalAmountWithInterest.setText(String.valueOf(loanWithInterest2));
-
-
-                double repaymentPerMonth = loanWithInterest/12/loanTerm;
-                String trimmedNumber = df.format(repaymentPerMonth);
-                double repaymentPerMonth2 = Double.parseDouble(trimmedNumber);
-                repaymentLabel.setText(String.valueOf(repaymentPerMonth2));
-            } catch (NumberFormatException nfe) {
-                printCongratulationMessagebutton.setText("Input valid amount");
-            }
-
-    }
+//        @FXML
+//    void calculateHouseInterest (ActionEvent event){
+//            try {
+//                initialLoan = Double.parseDouble(loanAmount.getText());
+//
+//                HomeLoan homeLoan = new HomeLoan(currentCustomer, loanTerm, initialLoan);
+//
+//
+//                loanTerm = Integer.parseInt(loanLengthSelector.getValue());
+//
+//
+//
+//
+//                double loanWithInterest = initialLoan + homeLoan.addInterestToLoan(initialLoan);
+//                String trimmedNumber2 = df.format(loanWithInterest);
+//                double loanWithInterest2 = Double.parseDouble(trimmedNumber2);
+//                totalAmountWithInterest.setText(String.valueOf(loanWithInterest2));
+//
+//
+//                double repaymentPerMonth = loanWithInterest/12/loanTerm;
+//                String trimmedNumber = df.format(repaymentPerMonth);
+//                double repaymentPerMonth2 = Double.parseDouble(trimmedNumber);
+//                repaymentLabel.setText(String.valueOf(repaymentPerMonth2));
+//            } catch (NumberFormatException nfe) {
+//                printCongratulationMessagebutton.setText("Input valid amount");
+//            }
+//
+//    }
 
 }
