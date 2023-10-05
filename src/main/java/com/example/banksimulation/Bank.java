@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import com.opencsv.CSVWriter;
-import javafx.scene.control.SpinnerValueFactory;
 
 import static java.lang.Integer.valueOf;
 
@@ -39,16 +38,19 @@ public class Bank {
         Account account;
         switch (accountType) {
             case "savings" -> {
+                checkSavingsAccountNull(accountHolder);
                 account = new SavingsAccount(accountHolder);
                 account.accountType = "Savings";
             }
             case "cd" -> {
+                checkCdAccountLessThanFour(accountHolder);
                 account = new CDAccount(accountHolder);
                 account.accountType = "CD";
                 account.interestRateFromCSV = interestRate;
                 account.accountTerm = accountTerm;
             }
             default -> {
+                checkCurrentAccountNull(accountHolder);
                 account = new CurrentAccount(accountHolder);
                 account.accountType = "Current";
             }
@@ -56,7 +58,46 @@ public class Bank {
         accountBookHashMap.put(account.getAccountNumber(), account);
         accountHolder.accountArrayList.add(account);
     }
+
+    private void checkCurrentAccountNull(Customer accountHolder) {
+        boolean customerHasCurrentAccount = false;
+        for (Account account: customerHashMap.get(accountHolder.getCustomerName()).accountArrayList
+             ) {if (account.accountType.equals("Current")){
+                 customerHasCurrentAccount = true;
+                 break;
+        }
+
+        } if (customerHasCurrentAccount){
+        throw new IllegalArgumentException("You already have a current account");}
+    }
+
+    private void checkCdAccountLessThanFour(Customer accountHolder) {
+        int numberOfCdAccounts = 0;
+        for (Account account: customerHashMap.get(accountHolder.getCustomerName()).accountArrayList
+        ) {
+            if (account.accountType.equals("CD")) {
+                numberOfCdAccounts += 1;
+            }
+        }
+        if (numberOfCdAccounts >= 3){
+        throw new IllegalArgumentException("You may only have up to three CD accounts");}
+    }
+
+    private void checkSavingsAccountNull(Customer accountHolder) {
+        boolean customerHasSavingsAccount = false;
+        for (Account account: customerHashMap.get(accountHolder.getCustomerName()).accountArrayList
+        ) {if (account.accountType.equals("Savings")){
+            customerHasSavingsAccount = true;
+            break;
+        }
+
+        }
+        if (customerHasSavingsAccount){
+        throw new IllegalArgumentException("You already have a savings account");}
+    }
+
     public void createNewCdAccount(Customer accountHolder, double accountTerm, double interestRate, double balance) {
+        checkCdAccountLessThanFour(accountHolder);
         Account account = new CDAccount(accountHolder);
         account.accountBalance = balance;
         account.accountType = "CD";
