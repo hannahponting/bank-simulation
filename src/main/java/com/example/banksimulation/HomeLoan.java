@@ -17,6 +17,7 @@ public class HomeLoan extends Loan{
     }
 
     double interestRate = 6;
+
     private static final DecimalFormat df = new DecimalFormat("0.00");
     public double addInterestToLoan(double initialLoan, int length) {
         double finalLoan;
@@ -28,6 +29,7 @@ public class HomeLoan extends Loan{
         String trimmedNumber = df.format(loanWithInterest);
         double loanWithInterest2 = Double.parseDouble(trimmedNumber);
         finalLoan = loanWithInterest2;
+
 
         return finalLoan;
     }
