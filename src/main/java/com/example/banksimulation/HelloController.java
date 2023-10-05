@@ -117,7 +117,7 @@ public class HelloController {
         for (Loan loanToBeAdded : currentCustomer.loanArrayList
         ) {
             HBox accountHbox = new HBox();
-            RadioButton radioButton = new RadioButton(loanToBeAdded.loanType+" (Loan No."+loanToBeAdded.loanNumber+" )");
+            RadioButton radioButton = new RadioButton(loanToBeAdded.loanType+" (Loan No."+loanToBeAdded.loanNumber+ " - Term "+ loanToBeAdded.loanDuration+" years"+ " )");
             accountHbox.getChildren().add(radioButton);
             radioButton.setToggleGroup(toggleGroup);
             radioButton.setOnAction(e -> getLoanDetails(loanToBeAdded.loanNumber));
