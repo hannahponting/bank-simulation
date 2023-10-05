@@ -35,7 +35,7 @@ public class LoginController {
         String userName = userTextField.getText();
         Customer currentCustomer  = bank.customerHashMap.get(userName);
         if(currentCustomer != null && passwordTextField.getText().equals(currentCustomer.getCustomerPassword())){
-        Scene scene = new Scene(fxmlLoader.load(),408.0 , 622.0);
+        Scene scene = new Scene(fxmlLoader.load(),408.0 , 657);
         userInterfaceStage.setTitle("Hello!");
         userInterfaceStage.setScene(scene);
         userInterfaceStage.show();
