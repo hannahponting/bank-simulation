@@ -103,7 +103,7 @@ public class HouseLoanController implements Initializable {
 
 
 
-                double loanWithInterest = initialLoan + homeLoan.addInterestToLoan(initialLoan);
+                double loanWithInterest = initialLoan + homeLoan.addInterestToLoan(initialLoan, loanTerm);
                 String trimmedNumber2 = df.format(loanWithInterest);
                 double loanWithInterest2 = Double.parseDouble(trimmedNumber2);
                 totalAmountWithInterest.setText(String.valueOf(loanWithInterest2));
