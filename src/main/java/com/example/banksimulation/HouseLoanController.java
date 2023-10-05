@@ -5,19 +5,17 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Paint;
-
 
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
-import java.text.ParseException;
 import java.util.ResourceBundle;
 
-public class CarLoanController implements Initializable {
+public class HouseLoanController implements Initializable {
 
     private Bank bank;
     private LoginController loginController;
@@ -50,7 +48,7 @@ public class CarLoanController implements Initializable {
 
     @FXML
     private ComboBox<String> loanLengthSelector;
-    ObservableList<String> options = FXCollections.observableArrayList("3", "4", "5");
+    ObservableList<String> options = FXCollections.observableArrayList("15", "20", "30");
 
 
 
@@ -58,14 +56,14 @@ public class CarLoanController implements Initializable {
 
 
     @FXML
-    public void createLoan(ActionEvent event) throws IOException {
+    public void createHouseLoan(ActionEvent event) throws IOException {
         try {
 
             double amount = Double.parseDouble(loanAmount.getText());
             if (amount > 0) {
                 initialLoan = Double.parseDouble(loanAmount.getText());
                 loanTerm = Integer.parseInt(loanLengthSelector.getValue());
-                boolean confirmCreation = bank.createLoan(currentCustomer, loanTerm, initialLoan, "CarLoan");
+                boolean confirmCreation = bank.createLoan(currentCustomer, loanTerm, initialLoan, "HomeLoan");
                 loginController.onHelloButtonClick();
 
                 if (confirmCreation) {
@@ -85,17 +83,19 @@ public class CarLoanController implements Initializable {
 
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle){
-        loanLengthSelector.setValue("3");
+        loanLengthSelector.setValue("15");
         loanLengthSelector.setItems(options);
     }
-double initialLoan;
+    double initialLoan;
     private static final DecimalFormat df = new DecimalFormat("0.00");
+
+
         @FXML
-    void calculateInterest (ActionEvent event){
+    void calculateHouseInterest (ActionEvent event){
             try {
                 initialLoan = Double.parseDouble(loanAmount.getText());
 
-                CarLoan carLoan = new CarLoan(currentCustomer, loanTerm, initialLoan);
+                HomeLoan homeLoan = new HomeLoan(currentCustomer, loanTerm, initialLoan);
 
 
                 loanTerm = Integer.parseInt(loanLengthSelector.getValue());
@@ -103,7 +103,7 @@ double initialLoan;
 
 
 
-                double loanWithInterest = initialLoan + carLoan.addInterestToLoan(initialLoan, loanTerm);
+                double loanWithInterest = initialLoan + homeLoan.addInterestToLoan(initialLoan, loanTerm);
                 String trimmedNumber2 = df.format(loanWithInterest);
                 double loanWithInterest2 = Double.parseDouble(trimmedNumber2);
                 totalAmountWithInterest.setText(String.valueOf(loanWithInterest2));

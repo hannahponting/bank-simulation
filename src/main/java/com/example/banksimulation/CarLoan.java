@@ -16,13 +16,14 @@ public class CarLoan extends Loan{
     double amount;
   
     double interestRate = 7;
-    int daysInYear = 365;
+
+
     private static final DecimalFormat df = new DecimalFormat("0.00");
 
-    public double addInterestToLoan(double initialLoan) {
+    public double addInterestToLoan(double initialLoan, int length) {
         double finalLoan = initialLoan;
-        for (int i = 0; i < daysInYear; i++) {
-            double loanWithInterest = initialLoan * (((interestRate/100))/daysInYear);
+        for (int i = 0; i < length; i++) {
+            double loanWithInterest = initialLoan * (Math.pow((1 + (interestRate/100)), length) - 1);
             String trimmedNumber = df.format(loanWithInterest);
             double loanWithInterest2 = Double.parseDouble(trimmedNumber);
             finalLoan += loanWithInterest2;

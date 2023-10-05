@@ -11,15 +11,16 @@ public class PersonalLoan extends Loan{
     double interestRate = 9.9;
     int daysInYear = 365;
     private static final DecimalFormat df = new DecimalFormat("0.00");
-    public void addInterestToLoan(double initialLoan, int dayOftheYear) {
+    public double addInterestToLoan(double initialLoan) {
         double finalLoan = initialLoan;
-        for (int i = 0; i < dayOftheYear; i++) {
-            double loanWithInterest = initialLoan * (((interestRate/100)*dayOftheYear)/daysInYear);
+        for (int i = 0; i < daysInYear; i++) {
+            double loanWithInterest = initialLoan * (((interestRate/100))/daysInYear);
             String trimmedNumber = df.format(loanWithInterest);
             double loanWithInterest2 = Double.parseDouble(trimmedNumber);
             finalLoan += loanWithInterest2;
             System.out.println(finalLoan);
         }
+        return finalLoan;
     }
 
     PersonalLoan(Customer customer, int length, double amount) {

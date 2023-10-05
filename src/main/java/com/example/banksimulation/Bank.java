@@ -93,7 +93,8 @@ public class Bank {
     }
 
 
-    public void createLoan(Customer customer, int length, double amount, String type) {
+    public boolean createLoan(Customer customer, int length, double amount, String type) {
+        boolean isCreated = true;
         double maxLoanMoney = 0.9 * calculateTotalDeposit();
         double currentLoanMoney = calculateTotalLoans();
         if (!loanHashMap.containsKey(customer.getCustomerName())) {
@@ -101,10 +102,13 @@ public class Bank {
                 createLoanDependingOnType(customer, length, amount, type);
             } else {
                 System.err.println("Cannot lend money");
+                isCreated = false;
             }
         } else {
             System.out.println("Person does not exist");
+            isCreated = false;
         }
+        return isCreated;
     }
 
 
@@ -112,7 +116,7 @@ public class Bank {
         Loan loan;
         switch (type) {
             case "HomeLoan" -> {
-                if (amount > 2000000001) {
+                if (amount > 2000000) {
                     System.err.println("Error, cannot borrow that much money");
                 } else {
                     loan = new HomeLoan(customer, length, amount);
@@ -121,7 +125,7 @@ public class Bank {
                 }
             }
             case "CarLoan" -> {
-                if (amount > 50001) {
+                if (amount > 50000) {
                     System.err.println("Error, cannot borrow that much money");
                 } else {
                     loan = new CarLoan(customer, length, amount);
@@ -131,7 +135,7 @@ public class Bank {
             }
 
             default -> {
-                if (amount > 45001) {
+                if (amount > 45000) {
                     System.err.println("Error, cannot borrow that much money");
 
                 } else {
@@ -147,7 +151,7 @@ public class Bank {
         Loan loan;
         switch (type) {
             case "HomeLoan" -> {
-                if (amount > 2000000001) {
+                if (amount > 2000000) {
                     System.err.println("Error, cannot borrow that much money");
                 } else {
                     loan = new HomeLoan(customer, length, amount, loanNumber);
@@ -156,7 +160,7 @@ public class Bank {
                 }
             }
             case "CarLoan" -> {
-                if (amount > 50001) {
+                if (amount > 50000) {
                     System.err.println("Error, cannot borrow that much money");
                 } else {
                     loan = new CarLoan(customer, length, amount, loanNumber);
@@ -166,7 +170,7 @@ public class Bank {
             }
 
             default -> {
-                if (amount > 45001) {
+                if (amount > 45000) {
                     System.err.println("Error, cannot borrow that much money");
 
                 } else {

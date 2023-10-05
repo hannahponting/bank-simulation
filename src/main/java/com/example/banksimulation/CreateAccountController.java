@@ -71,7 +71,7 @@ public void setLoginController(LoginController loginController){
         controller.setBank(bank);
         controller.setCurrentCustomer(customer);
         controller.setLoginController(loginController);
-        Scene sceneCd = new Scene(fxmlLoaderCD.load(), 500, 600);
+        Scene sceneCd = new Scene(fxmlLoaderCD.load(), 500, 630);
         stage.setTitle("Create CD account");
         stage.setScene(sceneCd);
         stage.show();
