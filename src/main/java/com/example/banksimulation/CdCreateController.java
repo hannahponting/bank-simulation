@@ -67,10 +67,15 @@ public class CdCreateController {
             } else {
                 if (amount>0){
                     double accountBalance = Double.parseDouble(initialInvetsmentInput.getText());
-                    bank.createNewCdAccount(currentCustomer, cdLength, interestrateWeSet, accountBalance);
+                    try{
+                        bank.createNewCdAccount(currentCustomer, cdLength, interestrateWeSet, accountBalance);
                     printCongratulationMessagebutton.setText("Your account has been created");
                     printCongratulationMessagebutton.setTextFill(Paint.valueOf("black"));
-                    loginController.onHelloButtonClick();
+                    loginController.onHelloButtonClick();}
+                    catch(IllegalArgumentException illegalArgumentException){
+                        printCongratulationMessagebutton.setText(illegalArgumentException.getMessage());
+                        printCongratulationMessagebutton.setTextFill(Paint.valueOf("red"));
+                    }
                 }
                 else{
                     printCongratulationMessagebutton.setText("Amount can't be negative");
