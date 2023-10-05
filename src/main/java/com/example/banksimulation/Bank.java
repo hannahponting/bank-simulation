@@ -195,7 +195,7 @@ public class Bank {
                 if (amount > 2000000) {
                     System.err.println("Error, cannot borrow that much money");
                 } else {
-                    loan = new HomeLoan(customer, length, amount, loanNumber);
+                    loan = new HomeLoan(customer, length, amount);
                     loanHashMap.put(loan.loanNumber, loan);
                     customer.loanArrayList.add(loan);
                 }
