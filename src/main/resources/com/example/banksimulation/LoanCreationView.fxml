@@ -14,17 +14,26 @@
     </padding>
    <AnchorPane prefHeight="312.0" prefWidth="445.0" style="-fx-background-color: #A9A9A9;">
       <children>
-         <Label layoutX="46.0" layoutY="51.0" prefHeight="18.0" prefWidth="323.0" text="Please select the loan type you wish to apply for">
+         <Label layoutX="28.0" layoutY="51.0" prefHeight="30.0" prefWidth="429.0" text="Please select the loan type you wish to apply for" textFill="#435054">
             <font>
-               <Font size="14.0" />
+               <Font size="20.0" />
             </font>
          </Label>
-         <Button fx:id="createLoanButton" layoutX="46.0" layoutY="131.0" mnemonicParsing="false" onAction="#createSelectedLoan" text="Apply" />
-         <Label fx:id="statusLabel" layoutX="46.0" layoutY="170.0" />
-         <RadioButton fx:id="personalLoanRadioButton" layoutX="46.0" layoutY="90.0" mnemonicParsing="false" onAction="#selectPersonalLoan" text="Personal Loan" />
-         <RadioButton fx:id="homeLoanRadioButton" layoutX="173.0" layoutY="90.0" mnemonicParsing="false" onAction="#selectHomeLoan" text="Home Loan" />
-         <RadioButton fx:id="carLoanRadioButton" layoutX="302.0" layoutY="90.0" mnemonicParsing="false" onAction="#selectCarLoan" text="Car Loan" />
-         <Label fx:id="statusLabel" layoutX="46.0" layoutY="193.0" prefHeight="26.0" prefWidth="142.0" textFill="#eb3d08" />
+         <Button fx:id="createLoanButton" layoutX="74.0" layoutY="186.0" mnemonicParsing="false" onAction="#createSelectedLoan" text="Apply" />
+         <Label fx:id="statusLabel" layoutX="48.0" layoutY="228.0" prefHeight="30.0" prefWidth="153.0" />
+         <RadioButton fx:id="personalLoanRadioButton" layoutX="48.0" layoutY="123.0" mnemonicParsing="false" onAction="#selectPersonalLoan" style="-fx-font-weight: bold;" text="Personal Loan">
+            <font>
+               <Font size="14.0" />
+            </font></RadioButton>
+         <RadioButton fx:id="homeLoanRadioButton" layoutX="184.0" layoutY="123.0" mnemonicParsing="false" onAction="#selectHomeLoan" style="-fx-font-weight: bold;" text="Home Loan">
+            <font>
+               <Font size="14.0" />
+            </font></RadioButton>
+         <RadioButton fx:id="carLoanRadioButton" layoutX="304.0" layoutY="123.0" mnemonicParsing="false" onAction="#selectCarLoan" style="-fx-font-weight: bold;" text="Car Loan">
+            <font>
+               <Font size="14.0" />
+            </font></RadioButton>
+         <Label fx:id="statusLabel" layoutX="46.0" layoutY="227.0" prefHeight="26.0" prefWidth="196.0" textFill="#eb3d08" />
       </children>
    </AnchorPane>
 </VBox>

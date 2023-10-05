@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -56,16 +57,23 @@ public class CreateLoanController {
     }
     @FXML
     private void createSelectedLoan() throws IOException {
-        switch (loanType){
-            case "PersonalLoan"->
-                launchPersonalLoanWindow();
-            case "HomeLoan" ->
-                    launchHomeLoanWindow();
-            case "CarLoan" ->
-                     launchCarLoanWindow();
+        try {
+            switch (loanType){
+                case "PersonalLoan"->
+                        launchPersonalLoanWindow();
+                case "HomeLoan" ->
+                        launchHomeLoanWindow();
+                case "CarLoan" ->
+                        launchCarLoanWindow();
 
-            default -> statusLabel.setText("You must select a loan type first");
+                default -> statusLabel.setText("You must select a loan type first");
+            }
+        } catch (NullPointerException nullPointerException) {
+            statusLabel.setText("You must select a loan type first");
+            statusLabel.setTextFill(Paint.valueOf("red"));
+
         }
+
     }
 Stage stage = new Stage();
     private void launchCarLoanWindow() throws IOException {
