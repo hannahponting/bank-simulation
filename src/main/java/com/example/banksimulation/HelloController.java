@@ -39,7 +39,8 @@ public class HelloController {
 
     @FXML
     private TextField withdrawalTextField;
-
+    @FXML
+    private TextField payLoanTextField;
     @FXML
     private Label depositWithdrawalStatus;
 
@@ -60,7 +61,10 @@ public class HelloController {
 
     @FXML
     private Button payBillConfirmButton1;
-
+    @FXML
+    private ComboBox loanComboBox;
+    @FXML
+    private Button payLoanConfirmButton;
     private Customer currentCustomer;
 
     Stage createLoanStage = new Stage();
@@ -134,6 +138,7 @@ public class HelloController {
             accountHbox.getChildren().add(radioButton);
             radioButton.setToggleGroup(toggleGroup);
             radioButton.setOnAction(e -> getLoanDetails(loanToBeAdded.loanNumber));
+            loanComboBox.getItems().add(loanToBeAdded.loanNumber);
 //            Label accountBalance = new Label("Balance: " + accountToBeAdded.accountBalance);
 //            accountHbox.getChildren().add(accountBalance);
             loanSelectionRadioButtonHolder.getChildren().add(accountHbox);
@@ -229,6 +234,31 @@ public class HelloController {
             depositWithdrawalStatus.setText("Please check you have entered a valid number");
 
         }
+    }
+
+    @FXML
+    private void payLoan(){
+        Account fromAccount = requestedAccount;
+        int loanNumber = (int) loanComboBox.getValue();
+        Loan toLoan = bank.loanHashMap.get(loanNumber);
+        try {
+            double loanPaymentAmount = Double.parseDouble(payLoanTextField.getText());
+            if (loanPaymentAmount <= 0) {
+                throw new NumberFormatException("You can't pay a negative number");
+            }
+            fromAccount.withdraw(fromAccount, loanPaymentAmount);
+            toLoan.makeRepayment(loanPaymentAmount);
+            getAccountDetails(requestedAccount.getAccountNumber());
+            getLoanDetails(loanNumber);
+            depositWithdrawalStatus.setText("Repayment successful, balances updated");
+            payLoanTextField.clear();
+        } catch (NumberFormatException invalidDouble) {
+            depositWithdrawalStatus.setText("Transfer amount number invalid");
+        } catch (IllegalArgumentException illegalArgumentException) {
+            depositWithdrawalStatus.setText(illegalArgumentException.getMessage());
+        }
+
+
     }
 
 
