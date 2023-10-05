@@ -155,6 +155,7 @@ public class Bank {
 
    public void createLoanDependingOnType(Customer customer, int length, double amount, String type) {
         Loan loan;
+       checkLoanTypeNull(customer, type);
         switch (type) {
             case "HomeLoan" -> {
                 if (amount > 2000000) {
@@ -186,6 +187,19 @@ public class Bank {
                 }
             }
         }
+    }
+
+    private void checkLoanTypeNull(Customer accountHolder, String type) {
+        boolean customerHasLoanType = false;
+        for (Loan loan: customerHashMap.get(accountHolder.getCustomerName()).loanArrayList
+        ) {if (loan.loanType.equals(type)){
+            customerHasLoanType = true;
+            break;
+        }
+        }
+        if (customerHasLoanType){
+            throw new IllegalArgumentException("You may only have one loan of this type");}
+
     }
 
     public void createLoanDependingOnType(Customer customer, int length, double amount, String type, int loanNumber) {

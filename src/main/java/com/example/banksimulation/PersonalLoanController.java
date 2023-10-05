@@ -61,13 +61,21 @@ public class PersonalLoanController implements Initializable {
             double amount = Double.parseDouble(loanAmount.getText());
             if (amount > 0) {
                 initialLoan = Double.parseDouble(loanAmount.getText());
-                boolean confirmCreation = bank.createLoan(currentCustomer, 0, initialLoan, "PersonalLoan");
-                loginController.onHelloButtonClick();
-
-                if (confirmCreation) {
-                    printCongratulationMessagebutton.setText("Loan application approved");
-                } else printCongratulationMessagebutton.setText("Loan application denied");
-                printCongratulationMessagebutton.setTextFill(Paint.valueOf("red"));
+                boolean confirmCreation = false;
+                try {
+                    confirmCreation = bank.createLoan(currentCustomer, 0, initialLoan, "PersonalLoan");
+                    if (confirmCreation) {
+                        printCongratulationMessagebutton.setText("Loan application approved");
+                        printCongratulationMessagebutton.setTextFill(Paint.valueOf("black"));
+                        loginController.onHelloButtonClick();
+                    } else {
+                        printCongratulationMessagebutton.setText("Loan application denied");
+                        printCongratulationMessagebutton.setTextFill(Paint.valueOf("red"));
+                    }
+                } catch (IllegalArgumentException illegalArgumentException) {
+                    printCongratulationMessagebutton.setText(illegalArgumentException.getMessage());
+                    printCongratulationMessagebutton.setTextFill(Paint.valueOf("red"));
+                }
             }
         } catch (NumberFormatException nfe) {
             printCongratulationMessagebutton.setText("Input valid amount");
