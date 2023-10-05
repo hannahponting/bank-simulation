@@ -40,7 +40,7 @@
                      <font>
                         <Font size="18.0" />
                      </font></Label>
-                  <Label fx:id="interestRateLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="27.0" prefWidth="198.0" text="7">
+                  <Label fx:id="interestRateLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="27.0" prefWidth="198.0" text="6">
                      <font>
                         <Font size="18.0" />
                      </font>

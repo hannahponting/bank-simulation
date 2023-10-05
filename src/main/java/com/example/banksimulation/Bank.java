@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import com.opencsv.CSVWriter;
-import javafx.scene.control.SpinnerValueFactory;
 
 import static java.lang.Integer.valueOf;
 
@@ -154,7 +153,7 @@ public class Bank {
                 if (amount > 2000000) {
                     System.err.println("Error, cannot borrow that much money");
                 } else {
-                    loan = new HomeLoan(customer, length, amount, loanNumber);
+                    loan = new HomeLoan();
                     loanHashMap.put(loan.loanNumber, loan);
                     customer.loanArrayList.add(loan);
                 }
