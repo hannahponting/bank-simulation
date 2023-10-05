@@ -44,7 +44,7 @@ public class CreateLoanController {
 
     @FXML
     private void selectPersonalLoan(){
-        loanType = "personalLoan";
+        loanType = "PersonalLoan";
     }
     @FXML
     private void selectHomeLoan(){
@@ -57,7 +57,7 @@ public class CreateLoanController {
     @FXML
     private void createSelectedLoan() throws IOException {
         switch (loanType){
-            case "personalLoan"->
+            case "PersonalLoan"->
                 launchPersonalLoanWindow();
             case "HomeLoan" ->
                     launchHomeLoanWindow();
@@ -82,10 +82,30 @@ Stage stage = new Stage();
 
     }
 
-    private void launchHomeLoanWindow() {
+    private void launchHomeLoanWindow() throws IOException {
+        FXMLLoader fxmlLoaderHouseLoan = new FXMLLoader(TemporaryApplication.class.getResource("HouseLoanView.fxml"));
+        HouseLoanController controller = new HouseLoanController();
+        fxmlLoaderHouseLoan.setController(controller);
+        Scene sceneHouseLoan = new Scene(fxmlLoaderHouseLoan.load(), 500, 600);
+        controller.setBank(bank);
+        controller.setCurrentCustomer(customer);
+        controller.setLoginController(loginController);
+        stage.setTitle("Create House Loan");
+        stage.setScene(sceneHouseLoan);
+        stage.show();
     }
 
-    private void launchPersonalLoanWindow() {
+    private void launchPersonalLoanWindow() throws IOException {
+        FXMLLoader fxmlLoaderPersonalLoan = new FXMLLoader(TemporaryApplication.class.getResource("PersonalLoanView.fxml"));
+        PersonalLoanController controller = new PersonalLoanController();
+        fxmlLoaderPersonalLoan.setController(controller);
+        Scene scenePersonalLoan = new Scene(fxmlLoaderPersonalLoan.load(), 500, 600);
+        controller.setBank(bank);
+        controller.setCurrentCustomer(customer);
+        controller.setLoginController(loginController);
+        stage.setTitle("Create Personal Loan");
+        stage.setScene(scenePersonalLoan);
+        stage.show();
     }
 
 
