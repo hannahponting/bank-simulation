@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="balanceLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="balanceLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="714.0" prefWidth="409.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutY="35.0" prefHeight="345.0" prefWidth="332.0" style="-fx-background-color: #b2babf;">
+      <AnchorPane layoutX="1.0" layoutY="35.0" prefHeight="435.0" prefWidth="407.0" style="-fx-background-color: #b2babf;">
          <children>
             <Label fx:id="allAccountDetails" layoutX="2.0" layoutY="197.0" prefHeight="26.0" prefWidth="300.0" text="Account Balance">
                <font>
@@ -23,16 +23,16 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="4.0" layoutY="268.0" text="Withdrawal">
+            <Label layoutX="5.0" layoutY="268.0" text="Withdrawal">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
             <TextField fx:id="depositTextField" layoutX="103.0" layoutY="239.0" prefHeight="25.0" prefWidth="79.0" promptText="0.00" />
-            <TextField fx:id="withdrawalTextField" layoutX="103.0" layoutY="266.0" prefHeight="25.0" prefWidth="79.0" promptText="0.00" />
+            <TextField fx:id="withdrawalTextField" layoutX="104.0" layoutY="266.0" prefHeight="25.0" prefWidth="79.0" promptText="0.00" />
             <Button fx:id="depositConfirmButton" layoutX="302.0" layoutY="239.0" mnemonicParsing="false" onAction="#makeDeposit" text="Confirm" />
             <Button fx:id="withdrawalConfirmButton" layoutX="302.0" layoutY="266.0" mnemonicParsing="false" onAction="#makeWithdrawal" text="Confirm" />
-            <Label fx:id="depositWithdrawalStatus" layoutX="4.0" layoutY="319.0" prefHeight="26.0" prefWidth="354.0" />
+            <Label fx:id="depositWithdrawalStatus" layoutX="5.0" layoutY="408.0" prefHeight="26.0" prefWidth="354.0" />
             <VBox fx:id="accountSelectionRadioButtonHolder" layoutX="4.0" layoutY="44.0" prefHeight="84.0" prefWidth="403.0" />
             <Label layoutX="4.0" layoutY="296.0" text="Transfer">
                <font>
@@ -52,6 +52,14 @@
                   <Font size="16.0" />
                </font>
             </Label>
+            <Label layoutX="4.0" layoutY="321.0" text="Pay  Bill">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="payBillTextField1" layoutX="103.0" layoutY="319.0" prefHeight="25.0" prefWidth="79.0" promptText="0.00" />
+            <Button fx:id="payBillConfirmButton1" layoutX="302.0" layoutY="319.0" mnemonicParsing="false" onAction="#payBill" text="Confirm" />
+            <TextField fx:id="referenceTextField1" layoutX="188.0" layoutY="319.0" prefHeight="25.0" prefWidth="110.0" promptText="Reference" />
          </children>
       </AnchorPane>
       <Label fx:id="welcomeLabel" prefHeight="26.0" prefWidth="431.0" text="Hello">
@@ -59,7 +67,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <AnchorPane layoutY="380.0" prefHeight="240.0" prefWidth="336.0" style="-fx-background-color: #dbd7ce;">
+      <AnchorPane layoutX="1.0" layoutY="470.0" prefHeight="236.0" prefWidth="403.0" style="-fx-background-color: #dbd7ce;">
          <children>
             <VBox fx:id="loanSelectionRadioButtonHolder" layoutX="4.0" layoutY="39.0" prefHeight="96.0" prefWidth="403.0" />
             <Label fx:id="loanAmountLabel" layoutY="204.0" prefHeight="36.0" prefWidth="344.0" text="Loan Balance">
