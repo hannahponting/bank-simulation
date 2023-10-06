@@ -19,3 +19,4 @@ Account Number,Name,Account Balance (£),Account Type,Term,InterestRate
 18,Leo Turner,6800.0,Current,0.0,0.0
 19,Scarlett Adams,225000.0,Current,0.0,0.0
 20,Aiden King,103000.0,Current,0.0,0.0
+21,Hannah,0.0,Current,0.0,0.0
