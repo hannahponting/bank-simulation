@@ -1,5 +1,6 @@
 package com.example.banksimulation;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -72,5 +73,10 @@ public class LoginController {
     private  Bank bank;
     public void setBank(Bank bank) {
         this.bank = bank;
+    }
+
+    public void saveToCSV(ActionEvent actionEvent) {
+        bank.writeCSVBankAndCustomerBook();
+        bank.writeLoanCSV();
     }
 }
