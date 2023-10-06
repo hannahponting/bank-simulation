@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import com.opencsv.CSVWriter;
-import javafx.scene.control.SpinnerValueFactory;
 
 import static java.lang.Integer.valueOf;
 
@@ -39,11 +38,13 @@ public class Bank {
         Account account;
         switch (accountType) {
             case "savings" -> {
+                checkSavingsAccountNull(accountHolder);
                 account = new SavingsAccount(accountHolder);
                 account.accountType = "savings";
                 Account.nextAccountNumber++;
             }
             case "cd" -> {
+                checkCdAccountLessThanFour(accountHolder);
                 account = new CDAccount(accountHolder);
                 account.accountType = "cd";
                 account.interestRateFromCSV = interestRate;
@@ -51,6 +52,7 @@ public class Bank {
                 Account.nextAccountNumber++;
             }
             default -> {
+                checkCurrentAccountNull(accountHolder);
                 account = new CurrentAccount(accountHolder);
                 account.accountType = "current";
                 Account.nextAccountNumber++;
@@ -59,7 +61,46 @@ public class Bank {
         accountBookHashMap.put(account.getAccountNumber(), account);
         accountHolder.accountArrayList.add(account);
     }
+
+    private void checkCurrentAccountNull(Customer accountHolder) {
+        boolean customerHasCurrentAccount = false;
+        for (Account account: customerHashMap.get(accountHolder.getCustomerName()).accountArrayList
+             ) {if (account.accountType.equals("Current")){
+                 customerHasCurrentAccount = true;
+                 break;
+        }
+
+        } if (customerHasCurrentAccount){
+        throw new IllegalArgumentException("You already have a current account");}
+    }
+
+    private void checkCdAccountLessThanFour(Customer accountHolder) {
+        int numberOfCdAccounts = 0;
+        for (Account account: customerHashMap.get(accountHolder.getCustomerName()).accountArrayList
+        ) {
+            if (account.accountType.equals("CD")) {
+                numberOfCdAccounts += 1;
+            }
+        }
+        if (numberOfCdAccounts >= 3){
+        throw new IllegalArgumentException("You may only have up to three CD accounts");}
+    }
+
+    private void checkSavingsAccountNull(Customer accountHolder) {
+        boolean customerHasSavingsAccount = false;
+        for (Account account: customerHashMap.get(accountHolder.getCustomerName()).accountArrayList
+        ) {if (account.accountType.equals("Savings")){
+            customerHasSavingsAccount = true;
+            break;
+        }
+
+        }
+        if (customerHasSavingsAccount){
+        throw new IllegalArgumentException("You already have a savings account");}
+    }
+
     public void createNewCdAccount(Customer accountHolder, double accountTerm, double interestRate, double balance) {
+        checkCdAccountLessThanFour(accountHolder);
         Account account = new CDAccount(accountHolder);
         account.accountBalance = balance;
         account.accountType = "cd";
@@ -121,6 +162,7 @@ public class Bank {
 
    public void createLoanDependingOnType(Customer customer, int length, double amount, String type) {
         Loan loan;
+       checkLoanTypeNull(customer, type);
         switch (type) {
             case "HomeLoan" -> {
                 if (amount > 2000000) {
@@ -157,6 +199,19 @@ public class Bank {
         }
     }
 
+    private void checkLoanTypeNull(Customer accountHolder, String type) {
+        boolean customerHasLoanType = false;
+        for (Loan loan: customerHashMap.get(accountHolder.getCustomerName()).loanArrayList
+        ) {if (loan.loanType.equals(type)){
+            customerHasLoanType = true;
+            break;
+        }
+        }
+        if (customerHasLoanType){
+            throw new IllegalArgumentException("You may only have one loan of this type");}
+
+    }
+
     public void createLoanDependingOnType(Customer customer, int length, double amount, String type, int loanNumber) {
         Loan loan;
         switch (type) {
@@ -164,7 +219,7 @@ public class Bank {
                 if (amount > 2000000) {
                     System.err.println("Error, cannot borrow that much money");
                 } else {
-                    loan = new HomeLoan(customer, length, amount, loanNumber);
+                    loan = new HomeLoan(customer, length, amount);
                     loanHashMap.put(loan.loanNumber, loan);
                     customer.loanArrayList.add(loan);
                     Loan.nextLoan++;

@@ -316,7 +316,7 @@ public class HelloController {
             fxmlLoaderCreateAccount.setController(controller);
             controller.setBank(bank);
             controller.setCustomer(currentCustomer);
-            Scene scene = new Scene(fxmlLoaderCreateAccount.load(), 500, 600);
+            Scene scene = new Scene(fxmlLoaderCreateAccount.load(), 520, 340);
             createLoanStage.setTitle("Create Account");
             createLoanStage.setScene(scene);
             createLoanStage.show();
@@ -332,7 +332,7 @@ public class HelloController {
             fxmlLoaderCreateLoan.setController(controller);
             controller.setBank(bank);
             controller.setCustomer(currentCustomer);
-            Scene scene = new Scene(fxmlLoaderCreateLoan.load(), 500, 600);
+            Scene scene = new Scene(fxmlLoaderCreateLoan.load(), 520, 340);
             createLoanStage.setTitle("Apply for loan");
             createLoanStage.setScene(scene);
             createLoanStage.show();

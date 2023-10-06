@@ -63,7 +63,7 @@ public class LoginController {
         CustomerCreationController controller = new CustomerCreationController();
         fxmlLoaderRegistration.setController(controller);
         controller.setBank(bank);
-        Scene scene = new Scene(fxmlLoaderRegistration.load(), 500, 600);
+        Scene scene = new Scene(fxmlLoaderRegistration.load(), 520, 340);
         registrationStage.setTitle("Registration");
         registrationStage.setScene(scene);
         registrationStage.show();
