@@ -45,15 +45,32 @@ public class CdCreateController {
     }
 
     public void printPotentialMoney(ActionEvent event) {
-        CDAccount cdAccount1 = new CDAccount(currentCustomer); //TODO: Change to actual client from login, this is just placeholder
-        ArrayList<Double> totalInvestment;
-        totalInvestment = cdAccount1.calculateInterest(Double.parseDouble(initialInvetsmentInput.getText()));
 
-        oneYearMoney.setText("(£"+String.valueOf(totalInvestment.get(0))+" at "+String.valueOf(cdAccount1.getInterestRate().get(0))+ "%)");
-        twoYearMoney.setText("(£"+String.valueOf(totalInvestment.get(1))+" at "+String.valueOf(cdAccount1.getInterestRate().get(1))+ "%)");
-        threeYearMoney.setText("(£"+String.valueOf(totalInvestment.get(2))+" at "+String.valueOf(cdAccount1.getInterestRate().get(2))+ "%)");
-        fourYearMoney.setText("(£"+String.valueOf(totalInvestment.get(3))+" at "+String.valueOf(cdAccount1.getInterestRate().get(3))+ "%)");
-        fiveYearMoney.setText("(£"+String.valueOf(totalInvestment.get(4))+" at "+String.valueOf(cdAccount1.getInterestRate().get(4))+ "%)");
+        try {
+            double amount = Double.parseDouble(initialInvetsmentInput.getText());
+            if (amount > 0) {
+                CDAccount cdAccount1 = new CDAccount(currentCustomer);
+                ArrayList<Double> totalInvestment;
+                totalInvestment = cdAccount1.calculateInterest(Double.parseDouble(initialInvetsmentInput.getText()));
+
+                oneYearMoney.setText("(£"+String.valueOf(totalInvestment.get(0))+" at "+String.valueOf(cdAccount1.getInterestRate().get(0))+ "%)");
+                twoYearMoney.setText("(£"+String.valueOf(totalInvestment.get(1))+" at "+String.valueOf(cdAccount1.getInterestRate().get(1))+ "%)");
+                threeYearMoney.setText("(£"+String.valueOf(totalInvestment.get(2))+" at "+String.valueOf(cdAccount1.getInterestRate().get(2))+ "%)");
+                fourYearMoney.setText("(£"+String.valueOf(totalInvestment.get(3))+" at "+String.valueOf(cdAccount1.getInterestRate().get(3))+ "%)");
+                fiveYearMoney.setText("(£"+String.valueOf(totalInvestment.get(4))+" at "+String.valueOf(cdAccount1.getInterestRate().get(4))+ "%)");
+            }
+            else {
+                printCongratulationMessagebutton.setText("Amount can't be negative");
+                printCongratulationMessagebutton.setTextFill(Paint.valueOf("red"));
+            }
+        }
+        catch (NumberFormatException nfe) {
+            printCongratulationMessagebutton.setText("Invalid input");
+            printCongratulationMessagebutton.setTextFill(Paint.valueOf("red"));
+
+        }
+
+
 
     }
     //TODO: Do something in case no value is inputted and check is pressed
