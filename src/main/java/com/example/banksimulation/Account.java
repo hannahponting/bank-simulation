@@ -14,7 +14,7 @@ public class Account {
     double interestRateFromCSV = 00.00;
 
     double accountTerm = 00;
-    public static int nextAccountNumber = 1;
+    private static int nextAccountNumber = 1;
     public void deposit(Account account, double depositAmount){
         account.accountBalance += depositAmount;
     }
@@ -42,11 +42,11 @@ public class Account {
         this.accountNumber = accountNumber;
         this.accountBalance = accountBalance;
         this.accountHolder = accountHolder;
-
+        nextAccountNumber++;
     }
     Account(Customer accountHolder){
         this.accountHolder = accountHolder;
         accountBalance = 0;
-        accountNumber = nextAccountNumber;
+        accountNumber = nextAccountNumber++;
     }
 }
