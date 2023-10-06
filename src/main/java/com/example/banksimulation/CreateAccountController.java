@@ -76,7 +76,12 @@ public class CreateAccountController {
                 default -> statusLabel.setText("You must select an account type first");
 
             }
-        } catch (NullPointerException npe) {
+        }
+        catch (IllegalArgumentException illegalArgumentException){
+            statusLabel.setText(illegalArgumentException.getMessage());
+            statusLabel.setTextFill(Paint.valueOf("red"));
+        }
+        catch (NullPointerException npe) {
             statusLabel.setText("You must select an account type first");
             statusLabel.setTextFill(Paint.valueOf("red"));
         }
