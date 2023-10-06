@@ -25,10 +25,16 @@ public class CustomerCreationController {
     private void registerNewCustomer(){
         String proposedName = nameInput.getText();
         String password = passwordInput.getText();
-        if (bank.customerHashMap.get(proposedName) == null){
+        if (bank.customerHashMap.get(proposedName) == null && proposedName !=""){
             bank.createCustomer(proposedName,password);
             statusLabel.setText("Account created");
         }
+        else if (proposedName =="" || password =="")
+            statusLabel.setText("please enter your name or password first");
+
+//        if(password =="" && proposedName !="")
+//            statusLabel.setText("please enter your password");
+
         else{
             statusLabel.setText("That user already exists");
         }
