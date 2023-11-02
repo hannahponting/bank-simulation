@@ -36,17 +36,15 @@ public class Bank {
 
     public void createAccount(Customer accountHolder, String accountType, double accountTerm, double interestRate) {
         Account account;
-        switch (accountType) {
+        switch (accountType.toLowerCase()) {
             case "savings" -> {
                 checkSavingsAccountNull(accountHolder);
                 account = new SavingsAccount(accountHolder);
-                account.accountType = "Savings";
                 Account.nextAccountNumber++;
             }
             case "cd" -> {
                 checkCdAccountLessThanFour(accountHolder);
                 account = new CDAccount(accountHolder);
-                account.accountType = "CD";
                 account.interestRateFromCSV = interestRate;
                 account.accountTerm = accountTerm;
                 Account.nextAccountNumber++;
@@ -54,7 +52,6 @@ public class Bank {
             default -> {
                 checkCurrentAccountNull(accountHolder);
                 account = new CurrentAccount(accountHolder);
-                account.accountType = "Current";
                 Account.nextAccountNumber++;
             }
         }
@@ -65,7 +62,7 @@ public class Bank {
     private void checkCurrentAccountNull(Customer accountHolder) {
         boolean customerHasCurrentAccount = false;
         for (Account account: customerHashMap.get(accountHolder.getCustomerName()).accountArrayList
-             ) {if (account.accountType.equals("Current")){
+             ) {if (account.accountType.equals(ProductTypes.Current.name())){
                  customerHasCurrentAccount = true;
                  break;
         }
@@ -78,7 +75,7 @@ public class Bank {
         int numberOfCdAccounts = 0;
         for (Account account: customerHashMap.get(accountHolder.getCustomerName()).accountArrayList
         ) {
-            if (account.accountType.equals("CD")) {
+            if (account.accountType.equals(ProductTypes.CD.name())) {
                 numberOfCdAccounts += 1;
             }
         }
@@ -89,7 +86,7 @@ public class Bank {
     private void checkSavingsAccountNull(Customer accountHolder) {
         boolean customerHasSavingsAccount = false;
         for (Account account: customerHashMap.get(accountHolder.getCustomerName()).accountArrayList
-        ) {if (account.accountType.equals("Savings")){
+        ) {if (account.accountType.equals(ProductTypes.Savings.name())){
             customerHasSavingsAccount = true;
             break;
         }
@@ -103,7 +100,6 @@ public class Bank {
         checkCdAccountLessThanFour(accountHolder);
         Account account = new CDAccount(accountHolder);
         account.accountBalance = balance;
-        account.accountType = "CD";
         Account.nextAccountNumber++;
         account.interestRateFromCSV = interestRate;
         account.accountTerm = accountTerm;
@@ -112,16 +108,14 @@ public class Bank {
 
     public void createAccount(Customer accountHolder, String accountType, int accountNumber, double accountBalance, double accountTerm, double interestRate) {
         Account account;
-        switch (accountType) {
+        switch (accountType.toLowerCase()) {
             case "savings" -> {
                 account = new SavingsAccount(accountNumber, accountBalance, accountHolder);
-                account.accountType = "Savings";
                 Account.nextAccountNumber++;
             }
 
             case "cd" -> {
                 account = new CDAccount(accountNumber, accountBalance, accountHolder);
-                account.accountType = "CD";
                 account.accountTerm = accountTerm;
                 account.interestRateFromCSV = interestRate;
                 Account.nextAccountNumber++;
@@ -129,7 +123,6 @@ public class Bank {
 
             default -> {
                 account = new CurrentAccount(accountNumber, accountBalance, accountHolder);
-                account.accountType = "Current";
                 Account.nextAccountNumber++;
             }
         }
@@ -163,8 +156,8 @@ public class Bank {
    public void createLoanDependingOnType(Customer customer, int length, double amount, String type) {
         Loan loan;
        checkLoanTypeNull(customer, type);
-        switch (type) {
-            case "HomeLoan" -> {
+        switch (type.toLowerCase()) {
+            case "homeloan" -> {
                 if (amount > 2000000) {
                     System.err.println("Error, cannot borrow that much money");
                 } else {
@@ -174,7 +167,7 @@ public class Bank {
                     customer.loanArrayList.add(loan);
                 }
             }
-            case "CarLoan" -> {
+            case "carloan" -> {
                 if (amount > 50000) {
                     System.err.println("Error, cannot borrow that much money");
                 } else {
