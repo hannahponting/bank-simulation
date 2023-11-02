@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -173,19 +174,19 @@ public class HelloController {
         Account depositAccount = requestedAccount;
 
         try {
-            double depositAmount = Double.parseDouble(depositTextField.getText());
+            double depositAmount = Utilities.parsePositiveDouble(depositTextField.getText());
             depositAccount.deposit(depositAccount, depositAmount);
             depositWithdrawalStatus.setText("Deposit successful, balance updated.");
+            depositWithdrawalStatus.setTextFill(Paint.valueOf("black"));
             getAccountDetails(requestedAccount.getAccountNumber());
             depositTextField.clear();
-        } catch (NumberFormatException numberFormatException) {
-            depositWithdrawalStatus.setText("Please check you have entered a valid number");
-        }
-        catch (IllegalArgumentException cdDepsosit){
+        } catch (IllegalArgumentException cdDepsosit){
             depositWithdrawalStatus.setText(cdDepsosit.getMessage());
+            depositWithdrawalStatus.setTextFill(Paint.valueOf("red"));
         }
         catch ( NullPointerException nullPointerException) {
             depositWithdrawalStatus.setText("Please select an account to deposit first");
+            depositWithdrawalStatus.setTextFill(Paint.valueOf("red"));
         }
 
     }
@@ -194,20 +195,25 @@ public class HelloController {
     protected void makeWithdrawal() {
         Account withdrawalAccount = requestedAccount;
         try {
-            double withdrawalAmount = Double.parseDouble(withdrawalTextField.getText());
+            double withdrawalAmount = Utilities.parsePositiveDouble(withdrawalTextField.getText());
             try {
                 withdrawalAccount.withdraw(withdrawalAccount, withdrawalAmount);
                 depositWithdrawalStatus.setText("Withdrawal successful, balance updated.");
+                depositWithdrawalStatus.setTextFill(Paint.valueOf("black"));
                 getAccountDetails(requestedAccount.getAccountNumber());
                 withdrawalTextField.clear();
             } catch (IllegalArgumentException overdrawn) {
                 depositWithdrawalStatus.setText(overdrawn.getMessage());
+                depositWithdrawalStatus.setTextFill(Paint.valueOf("red"));
             }
         } catch (NumberFormatException numberFormatException) {
-            depositWithdrawalStatus.setText("Please check you have entered a valid number");
+            depositWithdrawalStatus.setText(numberFormatException.getMessage());
+            depositWithdrawalStatus.setTextFill(Paint.valueOf("red"));
+
         }
         catch ( NullPointerException nullPointerException) {
             depositWithdrawalStatus.setText("Please select an account to withdraw first");
+            depositWithdrawalStatus.setTextFill(Paint.valueOf("red"));
         }
     }
 
@@ -217,10 +223,11 @@ public class HelloController {
         Account withdrawalAccount = requestedAccount;
         double withdrawalAmount = 0.0;
         try {
-            withdrawalAmount = Double.parseDouble(payBillTextField1.getText());
+            withdrawalAmount = Utilities.parsePositiveDouble(payBillTextField1.getText());
             try {
                 withdrawalAccount.withdraw(withdrawalAccount, withdrawalAmount);
                 depositWithdrawalStatus.setText("Bill payment successful, balance updated.");
+                depositWithdrawalStatus.setTextFill(Paint.valueOf("black"));
                 getAccountDetails(requestedAccount.getAccountNumber());
                 payBillTextField1.clear();
                 referenceTextField1.clear();
@@ -237,20 +244,26 @@ public class HelloController {
                         if (savingAccount.accountBalance >= withdrawalAmount) {
                             System.out.println("saving account balance is big enough");
                             depositWithdrawalStatus.setText("insufficient funds, but you have enough money in saving account ");
+                            depositWithdrawalStatus.setTextFill(Paint.valueOf("red"));
                             break;
                             // TODO: 05/10/2023  pop up a window to move into saving, pay from saving account
                         } else {
                             depositWithdrawalStatus.setText(overdrawn.getMessage());
                             System.out.println("Saving account balance is too low");
+                            depositWithdrawalStatus.setTextFill(Paint.valueOf("red"));
                         }
                     }
                 }
                 if (!hasSavingAccount)
                     depositWithdrawalStatus.setText(overdrawn.getMessage());
+                depositWithdrawalStatus.setTextFill(Paint.valueOf("red"));
+
 
             }
         } catch (NumberFormatException numberFormatException) {
-            depositWithdrawalStatus.setText("Please check you have entered a valid number");
+            depositWithdrawalStatus.setText(numberFormatException.getMessage());
+            depositWithdrawalStatus.setTextFill(Paint.valueOf("red"));
+
 
         }catch ( NullPointerException nullPointerException) {
             depositWithdrawalStatus.setText("Please select an account to pay the bill first");
@@ -263,22 +276,21 @@ public class HelloController {
         int loanNumber = (int) loanComboBox.getValue();
         Loan toLoan = bank.loanHashMap.get(loanNumber);
         try {
-            double loanPaymentAmount = Double.parseDouble(payLoanTextField.getText());
-            if (loanPaymentAmount <= 0) {
-                throw new NumberFormatException("You can't pay a negative number");
-            }
+            double loanPaymentAmount = Utilities.parsePositiveDouble(payLoanTextField.getText());
             fromAccount.withdraw(fromAccount, loanPaymentAmount);
             toLoan.makeRepayment(loanPaymentAmount);
             getAccountDetails(requestedAccount.getAccountNumber());
             getLoanDetails(loanNumber);
             depositWithdrawalStatus.setText("Repayment successful, balances updated");
+            depositWithdrawalStatus.setTextFill(Paint.valueOf("black"));
             payLoanTextField.clear();
-        } catch (NumberFormatException invalidDouble) {
-            depositWithdrawalStatus.setText("Transfer amount number invalid");
         } catch (IllegalArgumentException illegalArgumentException) {
             depositWithdrawalStatus.setText(illegalArgumentException.getMessage());
-        }catch ( NullPointerException nullPointerException) {
+            depositWithdrawalStatus.setTextFill(Paint.valueOf("red"));
+        } catch (NullPointerException nullPointerException) {
             depositWithdrawalStatus.setText("Please select an account to pay the loan first");
+            depositWithdrawalStatus.setTextFill(Paint.valueOf("red"));
+
         }
 
 
@@ -298,29 +310,26 @@ public class HelloController {
                 if (toAccount == null) {
                     throw new NullPointerException();
                 }
-            } catch (NullPointerException accountNotFound) {
+            } catch (NullPointerException | NumberFormatException accountNotFound) {
                 depositWithdrawalStatus.setText("Recipient account number invalid");
-            } catch (NumberFormatException invalidAccountInput) {
-                depositWithdrawalStatus.setText("Recipient account number invalid");
+                depositWithdrawalStatus.setTextFill(Paint.valueOf("red"));
             }
             try {
-                double transferAmount = Double.parseDouble(transferAmountTextField.getText());
-                if (transferAmount <= 0) {
-                    throw new NumberFormatException("You can't transfer a negative number");
-                }
+                double transferAmount = Utilities.parsePositiveDouble(transferAmountTextField.getText());
                 fromAccount.withdraw(fromAccount, transferAmount);
                 toAccount.deposit(toAccount, transferAmount);
                 System.out.println(toAccount);
                 getAccountDetails(requestedAccount.getAccountNumber());
                 depositWithdrawalStatus.setText("Transfer successful, balance updated");
+                depositWithdrawalStatus.setTextFill(Paint.valueOf("black"));
                 transferAmountTextField.clear();
                 destinationAccountTextField.clear();
-            } catch (NumberFormatException invalidDouble) {
-                depositWithdrawalStatus.setText("Transfer amount number invalid");
             } catch (IllegalArgumentException overdrawn) {
                 depositWithdrawalStatus.setText(overdrawn.getMessage());
-            }catch ( NullPointerException nullPointerException) {
+                depositWithdrawalStatus.setTextFill(Paint.valueOf("red"));
+            } catch (NullPointerException nullPointerException) {
                 depositWithdrawalStatus.setText("Please select an account to transfer the money first");
+                depositWithdrawalStatus.setTextFill(Paint.valueOf("red"));
             }
 
         }

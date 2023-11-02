@@ -2,6 +2,7 @@ package com.example.banksimulation.controllers;
 
 import com.example.banksimulation.Bank;
 import com.example.banksimulation.Customer;
+import com.example.banksimulation.Utilities;
 import com.example.banksimulation.loans.HomeLoan;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -62,9 +63,8 @@ public class HouseLoanController implements Initializable {
     public void createHouseLoan(ActionEvent event) throws IOException {
         try {
 
-            double amount = Double.parseDouble(loanAmount.getText());
-            if (amount > 0) {
-                initialLoan = Double.parseDouble(loanAmount.getText());
+            double amount = Utilities.parsePositiveDouble(loanAmount.getText());
+                initialLoan = amount;
                 loanTerm = Integer.parseInt(loanLengthSelector.getValue());
                 boolean confirmCreation = false;
                 try{
@@ -81,9 +81,11 @@ public class HouseLoanController implements Initializable {
                     printCongratulationMessagebutton.setTextFill(Paint.valueOf("red"));
                 }
 
-            }
+
         } catch (NumberFormatException nfe) {
-            printCongratulationMessagebutton.setText("Input valid amount");
+            printCongratulationMessagebutton.setText(nfe.getMessage());
+            printCongratulationMessagebutton.setTextFill(Paint.valueOf("red"));
+
         }
 
 
@@ -104,7 +106,7 @@ public class HouseLoanController implements Initializable {
         @FXML
     void calculateHouseInterest (ActionEvent event){
             try {
-                initialLoan = Double.parseDouble(loanAmount.getText());
+                initialLoan = Utilities.parsePositiveDouble(loanAmount.getText());
 
                 HomeLoan homeLoan = new HomeLoan(currentCustomer, loanTerm, initialLoan);
 
@@ -128,7 +130,8 @@ public class HouseLoanController implements Initializable {
 
 
             } catch (NumberFormatException nfe) {
-                printCongratulationMessagebutton.setText("Input valid amount");
+                printCongratulationMessagebutton.setText(nfe.getMessage());
+                printCongratulationMessagebutton.setTextFill(Paint.valueOf("red"));
             }
 
     }

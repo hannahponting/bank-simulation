@@ -2,6 +2,7 @@ package com.example.banksimulation.controllers;
 
 import com.example.banksimulation.Bank;
 import com.example.banksimulation.Customer;
+import com.example.banksimulation.ProductTypes;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -50,24 +51,24 @@ public class CreateAccountController {
 
     @FXML
     private void selectCurrentAccount() {
-        accountType = "current";
+        accountType = ProductTypes.Current.name();
     }
 
     @FXML
     private void selectSavingsAccount() {
-        accountType = "savings";
+        accountType = ProductTypes.Savings.name();
     }
 
     @FXML
     private void selectCdAccount() {
-        accountType = "cd";
+        accountType = ProductTypes.CD.name();
     }
 
     @FXML
     private void createSelectedAccount() throws IOException {
 
         try {
-            switch (accountType){
+            switch (accountType.toLowerCase()){
                 case "current", "savings" -> {
                     bank.createAccount(customer, accountType,0,0);
                     statusLabel.setText("New account created");
@@ -75,7 +76,10 @@ public class CreateAccountController {
                     loginController.onHelloButtonClick();
                 }
                 case "cd" -> launchCdWindow();
-                default -> statusLabel.setText("You must select an account type first");
+                default -> {
+                    statusLabel.setText("You must select an account type first");
+                    statusLabel.setTextFill(Paint.valueOf("red"));
+                }
 
             }
         }

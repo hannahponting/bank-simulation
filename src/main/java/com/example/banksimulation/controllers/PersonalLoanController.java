@@ -2,6 +2,7 @@ package com.example.banksimulation.controllers;
 
 import com.example.banksimulation.Bank;
 import com.example.banksimulation.Customer;
+import com.example.banksimulation.Utilities;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -58,9 +59,7 @@ public class PersonalLoanController implements Initializable {
     public void createPersonalLoan(ActionEvent event) throws IOException {
         try {
 
-            double amount = Double.parseDouble(loanAmount.getText());
-            if (amount > 0) {
-                initialLoan = Double.parseDouble(loanAmount.getText());
+            initialLoan = Utilities.parsePositiveDouble(loanAmount.getText());
                 boolean confirmCreation = false;
                 try {
                     confirmCreation = bank.createLoan(currentCustomer, 0, initialLoan, "PersonalLoan");
@@ -76,9 +75,11 @@ public class PersonalLoanController implements Initializable {
                     printCongratulationMessagebutton.setText(illegalArgumentException.getMessage());
                     printCongratulationMessagebutton.setTextFill(Paint.valueOf("red"));
                 }
-            }
+
         } catch (NumberFormatException nfe) {
-            printCongratulationMessagebutton.setText("Input valid amount");
+            printCongratulationMessagebutton.setText(nfe.getMessage());
+            printCongratulationMessagebutton.setTextFill(Paint.valueOf("red"));
+
         }
 
 

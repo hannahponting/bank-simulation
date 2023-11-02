@@ -74,7 +74,10 @@ public class CreateLoanController {
                     statusLabel.setText("");
 
                 }
-                default -> statusLabel.setText("You must select a loan type first");
+                default -> {
+                    statusLabel.setText("You must select a loan type first");
+                    statusLabel.setTextFill(Paint.valueOf("red"));
+                }
             }
         } catch (NullPointerException nullPointerException) {
             statusLabel.setText("You must select a loan type first");
