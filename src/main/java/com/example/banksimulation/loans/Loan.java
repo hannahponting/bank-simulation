@@ -1,16 +1,18 @@
-package com.example.banksimulation;
+package com.example.banksimulation.loans;
+
+import com.example.banksimulation.Customer;
 
 public abstract class Loan {
 
-    String loanType;
-    int loanDuration;
+    public String loanType;
+   public int loanDuration;
     public static int nextLoan = 1;
     public int loanNumber;
 
 
-    double loanAmount;
+    public double loanAmount;
 
-    Customer customer;
+   public Customer customer;
 
     Loan(Customer customer, int length, double amount, int loanNumber){
         this.loanDuration=length;

@@ -1,21 +1,18 @@
-package com.example.banksimulation;
+package com.example.banksimulation.accounts;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import com.example.banksimulation.Customer;
+import com.example.banksimulation.ProductTypes;
+
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.regex.Pattern;
 
 
 public class SavingsAccount extends Account {
 
-    SavingsAccount(int accountNumber, double accountBalance, Customer accountHolder) {
+    public SavingsAccount(int accountNumber, double accountBalance, Customer accountHolder) {
         super(accountNumber, accountBalance, accountHolder);
         this.accountType = ProductTypes.Savings.name();
     }
-    SavingsAccount(Customer accountHolder) {
+    public SavingsAccount(Customer accountHolder) {
         super(accountHolder);
         this.accountType = ProductTypes.Savings.name();
     }

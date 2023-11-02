@@ -1,10 +1,12 @@
-package com.example.banksimulation;
+package com.example.banksimulation.loans;
+
+import com.example.banksimulation.Customer;
 
 import java.text.DecimalFormat;
 
 public class PersonalLoan extends Loan{
 
-    PersonalLoan(Customer customer, int length, double amount, int loanNumber) {
+    public PersonalLoan(Customer customer, int length, double amount, int loanNumber) {
         super(customer, length, amount, loanNumber);
         loanType="PersonalLoan";
     }
@@ -23,7 +25,7 @@ public class PersonalLoan extends Loan{
         return finalLoan;
     }
 
-    PersonalLoan(Customer customer, int length, double amount) {
+    public PersonalLoan(Customer customer, int length, double amount) {
         super(customer, length, amount);
         loanType="PersonalLoan";
     }

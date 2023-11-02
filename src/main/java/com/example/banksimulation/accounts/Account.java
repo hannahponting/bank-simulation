@@ -1,19 +1,21 @@
-package com.example.banksimulation;
+package com.example.banksimulation.accounts;
+
+import com.example.banksimulation.Customer;
 
 public abstract class Account {
     private int accountNumber;
-    String accountType;
+    public String accountType;
     public int getAccountNumber() {
         return accountNumber;
     }
     public void setAccountNumber(int accountNumber) {
         this.accountNumber = accountNumber;
     }
-    double accountBalance;
-    Customer accountHolder;
-    double interestRateFromCSV = 00.00;
+    public double accountBalance;
+    public Customer accountHolder;
+   public double interestRateFromCSV = 00.00;
 
-    double accountTerm = 00;
+   public double accountTerm = 00;
     public static int nextAccountNumber = 1;
     public void deposit(Account account, double depositAmount){
         account.accountBalance += depositAmount;

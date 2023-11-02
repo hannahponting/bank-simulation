@@ -1,5 +1,8 @@
-package com.example.banksimulation;
+package com.example.banksimulation.controllers;
 
+import com.example.banksimulation.Bank;
+import com.example.banksimulation.accounts.CDAccount;
+import com.example.banksimulation.Customer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

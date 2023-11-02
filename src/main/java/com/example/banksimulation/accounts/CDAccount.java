@@ -1,4 +1,7 @@
-package com.example.banksimulation;
+package com.example.banksimulation.accounts;
+
+import com.example.banksimulation.Customer;
+import com.example.banksimulation.ProductTypes;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -24,12 +27,12 @@ public class CDAccount extends Account {
 
 
 
-    CDAccount(int accountNumber, double accountBalance, Customer accountHolder) {
+    public CDAccount(int accountNumber, double accountBalance, Customer accountHolder) {
         super(accountNumber, accountBalance, accountHolder);
         this.accountType = ProductTypes.CD.name();
     }
 
-    CDAccount(Customer accountHolder) {
+    public CDAccount(Customer accountHolder) {
         super(accountHolder);
         this.accountType = ProductTypes.CD.name();
     }

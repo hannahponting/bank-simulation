@@ -1,5 +1,8 @@
 package com.example.banksimulation;
 
+import com.example.banksimulation.accounts.Account;
+import com.example.banksimulation.loans.Loan;
+
 import java.util.ArrayList;
 
 public class Customer {
@@ -16,12 +19,12 @@ public class Customer {
     void setCustomerPassword(String customerPassword){
         this.customerPassword = customerPassword;
     }
-    String getCustomerPassword(){
+   public String getCustomerPassword(){
         return customerPassword;
     }
 
-    ArrayList<Account> accountArrayList = new ArrayList<>();
-    ArrayList<Loan> loanArrayList = new ArrayList<>();
+   public ArrayList<Account> accountArrayList = new ArrayList<>();
+   public ArrayList<Loan> loanArrayList = new ArrayList<>();
     public String getCustomerName() {
         return customerName;
     }

@@ -1,5 +1,8 @@
-package com.example.banksimulation;
+package com.example.banksimulation.controllers;
 
+import com.example.banksimulation.Bank;
+import com.example.banksimulation.loans.CarLoan;
+import com.example.banksimulation.Customer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,7 +17,6 @@ import javafx.scene.paint.Paint;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
-import java.text.ParseException;
 import java.util.ResourceBundle;
 
 public class CarLoanController implements Initializable {

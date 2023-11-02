@@ -1,5 +1,7 @@
 package com.example.banksimulation;
 
+import com.example.banksimulation.loans.HomeLoan;
+
 public class TemporaryMain {
     public static void main(String[] args) {
         Bank barclays = new Bank();

@@ -1,5 +1,6 @@
 package com.example.banksimulation;
 
+import com.example.banksimulation.controllers.CarLoanController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

@@ -1,5 +1,7 @@
-package com.example.banksimulation;
+package com.example.banksimulation.controllers;
 
+import com.example.banksimulation.Bank;
+import com.example.banksimulation.Customer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

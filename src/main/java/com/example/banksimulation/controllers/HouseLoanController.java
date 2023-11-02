@@ -1,5 +1,8 @@
-package com.example.banksimulation;
+package com.example.banksimulation.controllers;
 
+import com.example.banksimulation.Bank;
+import com.example.banksimulation.Customer;
+import com.example.banksimulation.loans.HomeLoan;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

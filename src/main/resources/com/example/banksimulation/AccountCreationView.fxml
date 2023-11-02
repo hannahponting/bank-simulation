@@ -14,28 +14,16 @@
     </padding>
    <AnchorPane prefHeight="312.0" prefWidth="445.0" style="-fx-background-color: #A9A9A9;">
       <children>
-         <Label layoutX="14.0" layoutY="44.0" text="Please select the account type you wish to create" textFill="#435054">
+         <Label layoutX="46.0" layoutY="51.0" text="Please select the account type you wish to create">
             <font>
-               <Font size="20.0" />
+               <Font size="14.0" />
             </font>
          </Label>
-         <Button fx:id="createAccountButton" layoutX="46.0" layoutY="180.0" mnemonicParsing="false" onAction="#createSelectedAccount" text="Create Account" />
-         <Label fx:id="statusLabel" layoutX="49.0" layoutY="237.0" prefHeight="31.0" prefWidth="261.0">
-            <font>
-               <Font size="14.0" />
-            </font></Label>
-         <RadioButton fx:id="currentAccountRadioButton" layoutX="46.0" layoutY="120.0" mnemonicParsing="false" onAction="#selectCurrentAccount" style="-fx-font-weight: bold;" text="Current Account">
-            <font>
-               <Font size="14.0" />
-            </font></RadioButton>
-         <RadioButton fx:id="savingsAccountRadioButton" layoutX="190.0" layoutY="120.0" mnemonicParsing="false" onAction="#selectSavingsAccount" style="-fx-font-weight: bold;" text="Savings Account">
-            <font>
-               <Font size="14.0" />
-            </font></RadioButton>
-         <RadioButton fx:id="cdAccountRadioButton" layoutX="338.0" layoutY="120.0" mnemonicParsing="false" onAction="#selectCdAccount" style="-fx-font-weight: bold;" text="CD Account">
-            <font>
-               <Font size="14.0" />
-            </font></RadioButton>
+         <Button fx:id="createAccountButton" layoutX="46.0" layoutY="131.0" mnemonicParsing="false" onAction="#createSelectedAccount" text="Create Account" />
+         <Label fx:id="statusLabel" layoutX="46.0" layoutY="170.0" />
+         <RadioButton fx:id="currentAccountRadioButton" layoutX="46.0" layoutY="90.0" mnemonicParsing="false" onAction="#selectCurrentAccount" text="Current Account" />
+         <RadioButton fx:id="savingsAccountRadioButton" layoutX="173.0" layoutY="90.0" mnemonicParsing="false" onAction="#selectSavingsAccount" text="Savings Account" />
+         <RadioButton fx:id="cdAccountRadioButton" layoutX="302.0" layoutY="90.0" mnemonicParsing="false" onAction="#selectCdAccount" text="CD Account" />
       </children>
    </AnchorPane>
 </VBox>

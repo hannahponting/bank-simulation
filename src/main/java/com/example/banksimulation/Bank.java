@@ -5,15 +5,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+
+import com.example.banksimulation.accounts.Account;
+import com.example.banksimulation.accounts.CDAccount;
+import com.example.banksimulation.accounts.CurrentAccount;
+import com.example.banksimulation.accounts.SavingsAccount;
+import com.example.banksimulation.loans.CarLoan;
+import com.example.banksimulation.loans.HomeLoan;
+import com.example.banksimulation.loans.Loan;
+import com.example.banksimulation.loans.PersonalLoan;
 import com.opencsv.CSVWriter;
 
 import static java.lang.Integer.valueOf;
 
 
 public class Bank {
-    HashMap<Integer, Loan> loanHashMap = new HashMap<>();
-    HashMap<String, Customer> customerHashMap = new HashMap<>();
-    HashMap<Integer,Account> accountBookHashMap = new HashMap<>();
+    public HashMap<Integer, Loan> loanHashMap = new HashMap<>();
+    public  HashMap<String, Customer> customerHashMap = new HashMap<>();
+   public HashMap<Integer, Account> accountBookHashMap = new HashMap<>();
     ArrayList<Double> loanAmountList = new ArrayList<>();
   
   public double totalDeposit;

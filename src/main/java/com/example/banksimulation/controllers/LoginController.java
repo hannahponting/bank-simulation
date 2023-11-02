@@ -1,5 +1,8 @@
-package com.example.banksimulation;
+package com.example.banksimulation.controllers;
 
+import com.example.banksimulation.Bank;
+import com.example.banksimulation.Customer;
+import com.example.banksimulation.HelloApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -70,7 +73,7 @@ public class LoginController {
     }
 
 
-    private  Bank bank;
+    private Bank bank;
     public void setBank(Bank bank) {
         this.bank = bank;
     }
