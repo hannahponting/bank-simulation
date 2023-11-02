@@ -1,6 +1,6 @@
 package com.example.banksimulation;
 
-public class Loan {
+public abstract class Loan {
 
     String loanType;
     int loanDuration;

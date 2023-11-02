@@ -26,10 +26,12 @@ public class CDAccount extends Account {
 
     CDAccount(int accountNumber, double accountBalance, Customer accountHolder) {
         super(accountNumber, accountBalance, accountHolder);
+        this.accountType = ProductTypes.CD.name();
     }
 
     CDAccount(Customer accountHolder) {
         super(accountHolder);
+        this.accountType = ProductTypes.CD.name();
     }
 
 
