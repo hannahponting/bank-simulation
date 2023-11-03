@@ -3,6 +3,9 @@ package com.example.banksimulation.controllers;
 import com.example.banksimulation.Bank;
 import com.example.banksimulation.Customer;
 import com.example.banksimulation.ProductTypes;
+import com.example.banksimulation.accounts.Account;
+import com.example.banksimulation.accounts.CurrentAccount;
+import com.example.banksimulation.accounts.SavingsAccount;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,6 +14,7 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 public class CreateAccountController {
     private LoginController loginController;
@@ -21,6 +25,8 @@ public class CreateAccountController {
 
     private Bank bank;
     private Customer customer;
+
+    public HashMap<Integer, Account> accountBookHashMap = new HashMap<>();
 
     public void initialiseToggleGroup() {
         currentAccountRadioButton.setToggleGroup(toggleGroup);
@@ -67,22 +73,41 @@ public class CreateAccountController {
     @FXML
     private void createSelectedAccount() throws IOException {
 
+        Account account = null;
+
         try {
             switch (accountType.toLowerCase()){
-                case "current", "savings" -> {
-                    bank.createAccount(customer, accountType,0,0);
+                case "savings" -> {
+                    bank.checkAccountLimit(customer, ProductTypes.Savings.name(), 1, "You already have a savings account");
+                    account = new SavingsAccount(customer);
+                    Account.nextAccountNumber++;
+                    accountBookHashMap.put(account.getAccountNumber(), account);
+                    customer.accountArrayList.add(account);
                     statusLabel.setText("New account created");
                     statusLabel.setTextFill(Paint.valueOf("black"));
                     loginController.onHelloButtonClick();
+
+                }
+
+                case "current" -> {
+                    bank.checkAccountLimit(customer, ProductTypes.Current.name(), 1, "You already have a current account");
+                    account = new CurrentAccount(customer);
+                    Account.nextAccountNumber++;
+                    accountBookHashMap.put(account.getAccountNumber(), account);
+                    customer.accountArrayList.add(account);
+                    statusLabel.setText("New account created");
+                    statusLabel.setTextFill(Paint.valueOf("black"));
+                    loginController.onHelloButtonClick();
+
                 }
                 case "cd" -> launchCdWindow();
                 default -> {
                     statusLabel.setText("You must select an account type first");
                     statusLabel.setTextFill(Paint.valueOf("red"));
                 }
-
             }
         }
+
         catch (IllegalArgumentException illegalArgumentException){
             statusLabel.setText(illegalArgumentException.getMessage());
             statusLabel.setTextFill(Paint.valueOf("red"));
