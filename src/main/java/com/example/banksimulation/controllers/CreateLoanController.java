@@ -2,6 +2,7 @@ package com.example.banksimulation.controllers;
 
 import com.example.banksimulation.Bank;
 import com.example.banksimulation.Customer;
+import com.example.banksimulation.ProductTypes;
 import com.example.banksimulation.TemporaryApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,15 +49,15 @@ public class CreateLoanController {
 
     @FXML
     private void selectPersonalLoan(){
-        loanType = "PersonalLoan";
+        loanType = ProductTypes.PersonalLoan.name();
     }
     @FXML
     private void selectHomeLoan(){
-        loanType = "HomeLoan";
+        loanType = ProductTypes.HomeLoan.name();
     }
     @FXML
     private void selectCarLoan(){
-        loanType = "CarLoan";
+        loanType = ProductTypes.CarLoan.name();
     }
     @FXML
     private void createSelectedLoan() throws IOException {
