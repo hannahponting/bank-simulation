@@ -37,4 +37,11 @@ public class Customer {
         return (customerName);
     }
 
+    public double getCustomerLoansBalance(){
+        Double balance = 0.0;
+        for (Loan loan: loanArrayList
+        ) {balance += loan.loanAmount;}
+        return balance;
+    }
+
 }

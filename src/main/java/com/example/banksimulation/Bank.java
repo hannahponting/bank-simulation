@@ -24,6 +24,8 @@ public class Bank {
     public  HashMap<String, Customer> customerHashMap = new HashMap<>();
    public HashMap<Integer, Account> accountBookHashMap = new HashMap<>();
     ArrayList<Double> loanAmountList = new ArrayList<>();
+    public final double MAXIMUM_LOAN_RATIO = 0.9;
+    public final double MAXIMUM_CUSTOMER_LOAN_EXPOSURE = 0.1;
   
   public double totalDeposit;
 
@@ -144,62 +146,43 @@ public class Bank {
 
 
     public boolean createLoan(Customer customer, int length, double amount, String type) {
-        boolean isCreated = true;
-        double maxLoanMoney = 0.9 * calculateTotalDeposit();
-        double currentLoanMoney = calculateTotalLoans();
-        if (!loanHashMap.containsKey(customer.getCustomerName())) {
-            if ((currentLoanMoney < maxLoanMoney) && (amount < (currentLoanMoney * 0.1))){
+        if (checkInitialLoanEligibility(customer,amount)){
                 createLoanDependingOnType(customer, length, amount, type);
-            } else {
-                System.err.println("Cannot lend money");
-                isCreated = false;
+                return true;
             }
-        } else {
-            System.out.println("Person does not exist");
-            isCreated = false;
-        }
-        return isCreated;
+        else {return false;}
     }
 
-
+    public boolean checkInitialLoanEligibility(Customer customer, double loanAmount) {
+        double maxLoanMoney = MAXIMUM_LOAN_RATIO * calculateTotalDeposit();
+        double currentLoanMoney = calculateTotalLoans();
+        double customerCurrentLoanValue = customer.getCustomerLoansBalance();
+        if (((currentLoanMoney + loanAmount) > maxLoanMoney)) {
+            System.err.println("The bank does not have sufficient deposits to provide this loan");
+            return false;
+        }
+        if (((customerCurrentLoanValue + loanAmount) > ((currentLoanMoney + loanAmount) * MAXIMUM_CUSTOMER_LOAN_EXPOSURE))) {
+            System.err.println("The loan would expose the bank too much to this customer");
+            return false;
+        }
+        return true;}
    public void createLoanDependingOnType(Customer customer, int length, double amount, String type) {
         Loan loan;
        checkLoanTypeNull(customer, type);
         switch (type.toLowerCase()) {
             case "homeloan" -> {
-                if (amount > 2000000) {
-                    System.err.println("Error, cannot borrow that much money");
-                } else {
                     loan = new HomeLoan(customer, length, amount);
-                    Loan.nextLoan++;
-                    loanHashMap.put(loan.loanNumber, loan);
-                    customer.loanArrayList.add(loan);
                 }
-            }
             case "carloan" -> {
-                if (amount > 50000) {
-                    System.err.println("Error, cannot borrow that much money");
-                } else {
                     loan = new CarLoan(customer, length, amount);
-                    Loan.nextLoan++;
-                    loanHashMap.put(loan.loanNumber, loan);
-                    customer.loanArrayList.add(loan);
-                }
             }
-
-            default -> {
-                if (amount > 45000) {
-                    System.err.println("Error, cannot borrow that much money");
-
-                } else {
-                    loan = new PersonalLoan(customer, length, amount);
-                    Loan.nextLoan++;
-                    loanHashMap.put(loan.loanNumber, loan);
-                    customer.loanArrayList.add(loan);
-                }
+            default -> loan = new PersonalLoan(customer, length, amount);
             }
+       Loan.nextLoan++;
+       loanHashMap.put(loan.loanNumber, loan);
+       customer.loanArrayList.add(loan);
         }
-    }
+
 
     private void checkLoanTypeNull(Customer accountHolder, String type) {
         boolean customerHasLoanType = false;

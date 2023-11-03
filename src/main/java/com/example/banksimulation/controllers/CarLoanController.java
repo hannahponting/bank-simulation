@@ -120,8 +120,8 @@ public class CarLoanController implements Initializable {
             double repaymentPerMonth2 = Double.parseDouble(trimmedNumber);
             repaymentLabel.setText(String.valueOf(repaymentPerMonth2));
 
-        } catch (NumberFormatException nfe) {
-            printCongratulationMessagebutton.setText(nfe.getMessage());
+        } catch (IllegalArgumentException exception) {
+            printCongratulationMessagebutton.setText(exception.getMessage());
             printCongratulationMessagebutton.setTextFill(Paint.valueOf("red"));
         }
 

@@ -76,8 +76,8 @@ public class PersonalLoanController implements Initializable {
                     printCongratulationMessagebutton.setTextFill(Paint.valueOf("red"));
                 }
 
-        } catch (NumberFormatException nfe) {
-            printCongratulationMessagebutton.setText(nfe.getMessage());
+        } catch (IllegalArgumentException exception) {
+            printCongratulationMessagebutton.setText(exception.getMessage());
             printCongratulationMessagebutton.setTextFill(Paint.valueOf("red"));
 
         }

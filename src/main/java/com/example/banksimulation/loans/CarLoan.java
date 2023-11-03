@@ -1,20 +1,29 @@
 package com.example.banksimulation.loans;
 
+import com.example.banksimulation.Bank;
 import com.example.banksimulation.Customer;
+import com.example.banksimulation.ProductTypes;
 
 import java.text.DecimalFormat;
 
 public class CarLoan extends Loan{
+    private final double LOAN_TYPE_MAXIMUM = 50000;
 
     public CarLoan(Customer customer, int length, double amount, int loanNumber) {
         super(customer, length, amount, loanNumber);
-        loanType="CarLoan";
+        loanType= ProductTypes.CarLoan.name();
     }
 
     public CarLoan(Customer customer, int length, double amount) {
         super(customer, length, amount);
-        loanType="CarLoan";
+        loanType=ProductTypes.CarLoan.name();
     }
+
+    @Override
+    void setLoanTypeMaximum() {
+        this.loanTypeMaximum = LOAN_TYPE_MAXIMUM;
+    }
+
     double amount;
   
     double interestRate = 7;
