@@ -51,21 +51,19 @@ public class Bank {
             case "savings" -> {
                 checkAccountLimit(accountHolder, ProductTypes.Savings.name(), 1, "You already have a savings account");
                 account = new SavingsAccount(accountHolder);
-                Account.nextAccountNumber++;
             }
             case "cd" -> {
                 checkAccountLimit(accountHolder, ProductTypes.CD.name(), 3, "You may only have up to three CD accounts");
                 account = new CDAccount(accountHolder);
                 account.interestRateFromCSV = interestRate;
                 account.accountTerm = accountTerm;
-                Account.nextAccountNumber++;
             }
             default -> {
                 checkAccountLimit(accountHolder, ProductTypes.Current.name(), 1, "You already have a current account");
                 account = new CurrentAccount(accountHolder);
-                Account.nextAccountNumber++;
             }
         }
+        Account.nextAccountNumber++;
         accountBookHashMap.put(account.getAccountNumber(), account);
         accountHolder.accountArrayList.add(account);
     }
@@ -104,25 +102,17 @@ public class Bank {
     public void createAccount(Customer accountHolder, String accountType, int accountNumber, double accountBalance, double accountTerm, double interestRate) {
         Account account;
         switch (accountType.toLowerCase()) {
-            case "savings" -> {
-                account = new SavingsAccount(accountNumber, accountBalance, accountHolder);
-                Account.nextAccountNumber++;
-            }
+            case "savings" -> account = new SavingsAccount(accountNumber, accountBalance, accountHolder);
 
             case "cd" -> {
                 account = new CDAccount(accountNumber, accountBalance, accountHolder);
                 account.accountTerm = accountTerm;
                 account.interestRateFromCSV = interestRate;
-                Account.nextAccountNumber++;
             }
 
-            default -> {
-                account = new CurrentAccount(accountNumber, accountBalance, accountHolder);
-                Account.nextAccountNumber++;
-            }
+            default -> account = new CurrentAccount(accountNumber, accountBalance, accountHolder);
         }
-//        customerHashMap.put(accountHolder.getCustomerName(),accountHolder);
-//        int sizeOfAccountMap = accountBookHashMap.size() + 1;
+        Account.nextAccountNumber++;
         accountBookHashMap.put(account.getAccountNumber(), account);
         customerHashMap.put(accountHolder.getCustomerName(), accountHolder);
         accountHolder.accountArrayList.add(account);
