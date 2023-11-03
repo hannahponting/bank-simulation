@@ -175,7 +175,7 @@ public class Bank {
     public void createLoanDependingOnType(Customer customer, int length, double amount, String type, int loanNumber) {
         Loan loan;
         switch (type) {
-            case "HomeLoan" -> loan = new HomeLoan(customer, length, amount);
+            case "HomeLoan" -> loan = new HomeLoan(customer, length, amount, loanNumber);
             case "CarLoan" -> loan = new CarLoan(customer, length, amount, loanNumber);
             default -> loan = new PersonalLoan(customer, length, amount, loanNumber);
         }

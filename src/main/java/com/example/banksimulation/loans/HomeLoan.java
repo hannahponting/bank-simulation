@@ -8,7 +8,7 @@ public class HomeLoan extends Loan{
 
     private final double LOAN_TYPE_MAXIMUM = 2000000;
 
-    HomeLoan(Customer customer, int length, double amount, int loanNumber) {
+    public HomeLoan(Customer customer, int length, double amount, int loanNumber) {
         super(customer, length, amount, loanNumber);
         loanType = ProductTypes.HomeLoan.name();
     }
