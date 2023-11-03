@@ -108,14 +108,14 @@ public class CarLoanController implements Initializable {
             loanTerm = Integer.parseInt(loanLengthSelector.getValue());
 
 
-            double loanWithInterest = (12 * loanTerm) * carLoan.addInterestToLoan(initialLoan, loanTerm);
+            double loanWithInterest = (12 * loanTerm) * carLoan.calculateCarLoanInterest(initialLoan, loanTerm);
 
             String trimmedNumber2 = df.format(loanWithInterest);
             double loanWithInterest2 = Double.parseDouble(trimmedNumber2);
             totalAmountWithInterest.setText(String.valueOf(loanWithInterest2));
 
 
-            double repaymentPerMonth = carLoan.addInterestToLoan(initialLoan, loanTerm);
+            double repaymentPerMonth = carLoan.calculateCarLoanInterest(initialLoan, loanTerm);
             String trimmedNumber = df.format(repaymentPerMonth);
             double repaymentPerMonth2 = Double.parseDouble(trimmedNumber);
             repaymentLabel.setText(String.valueOf(repaymentPerMonth2));
