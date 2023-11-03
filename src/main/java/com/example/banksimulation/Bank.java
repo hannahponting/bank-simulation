@@ -52,7 +52,7 @@ public class Bank {
                 Account.nextAccountNumber++;
             }
             case "cd" -> {
-                //checkAccountLimit(accountHolder, ProductTypes.CD.name(), 3, "You may only have up to three CD accounts");
+                checkAccountLimit(accountHolder, ProductTypes.CD.name(), 3, "You may only have up to three CD accounts");
                 account = new CDAccount(accountHolder);
                 account.interestRateFromCSV = interestRate;
                 account.accountTerm = accountTerm;
