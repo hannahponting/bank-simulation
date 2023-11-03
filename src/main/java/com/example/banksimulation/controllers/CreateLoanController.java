@@ -2,7 +2,8 @@ package com.example.banksimulation.controllers;
 
 import com.example.banksimulation.Bank;
 import com.example.banksimulation.Customer;
-import com.example.banksimulation.TemporaryApplication;
+import com.example.banksimulation.ProductTypes;
+import com.example.banksimulation.HelloApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -48,15 +49,15 @@ public class CreateLoanController {
 
     @FXML
     private void selectPersonalLoan(){
-        loanType = "PersonalLoan";
+        loanType = ProductTypes.PersonalLoan.name();
     }
     @FXML
     private void selectHomeLoan(){
-        loanType = "HomeLoan";
+        loanType = ProductTypes.HomeLoan.name();
     }
     @FXML
     private void selectCarLoan(){
-        loanType = "CarLoan";
+        loanType = ProductTypes.CarLoan.name();
     }
     @FXML
     private void createSelectedLoan() throws IOException {
@@ -88,7 +89,7 @@ public class CreateLoanController {
     }
 Stage stage = new Stage();
     private void launchCarLoanWindow() throws IOException {
-        FXMLLoader fxmlLoaderCarLoan = new FXMLLoader(TemporaryApplication.class.getResource("CarLoanView.fxml"));
+        FXMLLoader fxmlLoaderCarLoan = new FXMLLoader(HelloApplication.class.getResource("CarLoanView.fxml"));
         CarLoanController controller = new CarLoanController();
         fxmlLoaderCarLoan.setController(controller);
         Scene sceneCarLoan = new Scene(fxmlLoaderCarLoan.load(), 500, 600);
@@ -102,7 +103,7 @@ Stage stage = new Stage();
     }
 
     private void launchHomeLoanWindow() throws IOException {
-        FXMLLoader fxmlLoaderHouseLoan = new FXMLLoader(TemporaryApplication.class.getResource("HouseLoanView.fxml"));
+        FXMLLoader fxmlLoaderHouseLoan = new FXMLLoader(HelloApplication.class.getResource("HouseLoanView.fxml"));
         HouseLoanController controller = new HouseLoanController();
         fxmlLoaderHouseLoan.setController(controller);
         Scene sceneHouseLoan = new Scene(fxmlLoaderHouseLoan.load(), 500, 600);
@@ -115,7 +116,7 @@ Stage stage = new Stage();
     }
 
     private void launchPersonalLoanWindow() throws IOException {
-        FXMLLoader fxmlLoaderPersonalLoan = new FXMLLoader(TemporaryApplication.class.getResource("PersonalLoanView.fxml"));
+        FXMLLoader fxmlLoaderPersonalLoan = new FXMLLoader(HelloApplication.class.getResource("PersonalLoanView.fxml"));
         PersonalLoanController controller = new PersonalLoanController();
         fxmlLoaderPersonalLoan.setController(controller);
         Scene scenePersonalLoan = new Scene(fxmlLoaderPersonalLoan.load(), 500, 600);

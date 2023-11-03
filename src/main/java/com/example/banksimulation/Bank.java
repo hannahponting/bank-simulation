@@ -48,6 +48,7 @@ public class Bank {
 
     public void createAccount(Account account, Customer accountHolder, String accountType, double accountTerm, double interestRate) {
         checkAccountLimit(accountHolder, accountType, 1, "You already have a " + accountType + " account");
+
         Account.nextAccountNumber++;
         accountBookHashMap.put(account.getAccountNumber(), account);
         accountHolder.accountArrayList.add(account);
@@ -86,25 +87,17 @@ public class Bank {
     public void createAccount(Customer accountHolder, String accountType, int accountNumber, double accountBalance, double accountTerm, double interestRate) {
         Account account;
         switch (accountType.toLowerCase()) {
-            case "savings" -> {
-                account = new SavingsAccount(accountNumber, accountBalance, accountHolder);
-                Account.nextAccountNumber++;
-            }
+            case "savings" -> account = new SavingsAccount(accountNumber, accountBalance, accountHolder);
 
             case "cd" -> {
                 account = new CDAccount(accountNumber, accountBalance, accountHolder);
                 account.accountTerm = accountTerm;
                 account.interestRateFromCSV = interestRate;
-                Account.nextAccountNumber++;
             }
 
-            default -> {
-                account = new CurrentAccount(accountNumber, accountBalance, accountHolder);
-                Account.nextAccountNumber++;
-            }
+            default -> account = new CurrentAccount(accountNumber, accountBalance, accountHolder);
         }
-//        customerHashMap.put(accountHolder.getCustomerName(),accountHolder);
-//        int sizeOfAccountMap = accountBookHashMap.size() + 1;
+        Account.nextAccountNumber++;
         accountBookHashMap.put(account.getAccountNumber(), account);
         customerHashMap.put(accountHolder.getCustomerName(), accountHolder);
         accountHolder.accountArrayList.add(account);
@@ -167,7 +160,7 @@ public class Bank {
     public void createLoanDependingOnType(Customer customer, int length, double amount, String type, int loanNumber) {
         Loan loan;
         switch (type) {
-            case "HomeLoan" -> loan = new HomeLoan(customer, length, amount);
+            case "HomeLoan" -> loan = new HomeLoan(customer, length, amount, loanNumber);
             case "CarLoan" -> loan = new CarLoan(customer, length, amount, loanNumber);
             default -> loan = new PersonalLoan(customer, length, amount, loanNumber);
         }
