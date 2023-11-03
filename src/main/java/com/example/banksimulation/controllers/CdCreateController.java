@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Paint;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CdCreateController {
@@ -59,11 +60,12 @@ public class CdCreateController {
             ArrayList<Double> totalInvestment;
             totalInvestment = cdAccount1.calculateInterest(amount);
 
-            oneYearMoney.setText("(£" + String.valueOf(totalInvestment.get(0)) + " at " + String.valueOf(cdAccount1.getInterestRate().get(0)) + "%)");
-            twoYearMoney.setText("(£" + String.valueOf(totalInvestment.get(1)) + " at " + String.valueOf(cdAccount1.getInterestRate().get(1)) + "%)");
-            threeYearMoney.setText("(£" + String.valueOf(totalInvestment.get(2)) + " at " + String.valueOf(cdAccount1.getInterestRate().get(2)) + "%)");
-            fourYearMoney.setText("(£" + String.valueOf(totalInvestment.get(3)) + " at " + String.valueOf(cdAccount1.getInterestRate().get(3)) + "%)");
-            fiveYearMoney.setText("(£" + String.valueOf(totalInvestment.get(4)) + " at " + String.valueOf(cdAccount1.getInterestRate().get(4)) + "%)");
+
+            Label[] labelArray = {oneYearMoney,twoYearMoney,threeYearMoney,fourYearMoney,fiveYearMoney};
+            for (int i = 0; i < 5; i++) {
+                labelArray[i].setText("(£" + String.valueOf(totalInvestment.get(i)) + " at " + String.valueOf(cdAccount1.getInterestRate().get(i)) + "%)");
+            }
+
         } catch (NumberFormatException nfe) {
             printCongratulationMessagebutton.setText(nfe.getMessage());
             printCongratulationMessagebutton.setTextFill(Paint.valueOf("red"));
