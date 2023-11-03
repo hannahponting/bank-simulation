@@ -97,7 +97,7 @@ public class CreateAccountController {
     Stage stage = new Stage();
 
     private void launchCdWindow() throws IOException {
-        FXMLLoader fxmlLoaderCD = new FXMLLoader(CdCreateController.class.getResource("CdCreateView.fxml"));
+        FXMLLoader fxmlLoaderCD = new FXMLLoader(CdCreateController.class.getResource("/com/example/banksimulation/CdCreateView.fxml"));
         CdCreateController controller = new CdCreateController();
         fxmlLoaderCD.setController(controller);
         controller.setBank(bank);
