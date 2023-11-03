@@ -22,7 +22,7 @@ public class TemporaryMain {
 
         HomeLoan homeLoan = new HomeLoan(customer, 3, 10000);
 
-        double moneys = homeLoan.addInterestToLoan(10000, 3);
+        double moneys = homeLoan.calculateHomeLoanInterest(10000, 3);
         System.out.println(moneys);
         System.out.println(moneys/(12*3));
     }

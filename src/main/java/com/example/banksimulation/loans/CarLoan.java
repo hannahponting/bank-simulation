@@ -1,6 +1,7 @@
 package com.example.banksimulation.loans;
 
 import com.example.banksimulation.Customer;
+import com.example.banksimulation.Utilities;
 
 import java.text.DecimalFormat;
 
@@ -22,21 +23,10 @@ public class CarLoan extends Loan{
 
     private static final DecimalFormat df = new DecimalFormat("0.00");
 
-    public double addInterestToLoan(double initialLoan, int length) {
+    public double calculateCarLoanInterest(double initialLoan, int length) {
 
-        double finalLoan;
-
-        double x = Math.pow((1 + ((interestRate/100)/12)), (length * 12)) - 1;
-        double y = ((interestRate/100)/12) * Math.pow((1 + ((interestRate/100)/12)),(length * 12));
-
-
-        double loanWithInterest = initialLoan / ( x / y );
-        String trimmedNumber = df.format(loanWithInterest);
-        double loanWithInterest2 = Double.parseDouble(trimmedNumber);
-        finalLoan = loanWithInterest2;
-
-
-        return finalLoan;
+        double loanInterest = Utilities.calculateLoanInterest(initialLoan, length, interestRate);
+        return loanInterest;
     }
 }
 
