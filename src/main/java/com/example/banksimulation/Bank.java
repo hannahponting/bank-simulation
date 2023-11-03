@@ -46,20 +46,20 @@ public class Bank {
     }
 
 
-    public void createAccount(Account account, Customer accountHolder, String accountType, double accountTerm, double interestRate) {
-        checkAccountLimit(accountHolder, accountType, 1, "You already have a " + accountType + " account");
+    public void createAccount(Account account, Customer accountHolder, double accountTerm, double interestRate) {
+        checkAccountLimit(accountHolder, account, 1, "You already have a " + account.accountType + " account");
 
         Account.nextAccountNumber++;
         accountBookHashMap.put(account.getAccountNumber(), account);
         accountHolder.accountArrayList.add(account);
     }
 
-    public void checkAccountLimit(Customer accountHolder, String accountType, int maxLimit, String errorMessage) {
+    public void checkAccountLimit(Customer accountHolder, Account accountToCheck, int maxLimit, String errorMessage) {
         int accountCount = 0;
         boolean alreadyHasAccount = false;
 
         for (Account account : customerHashMap.get(accountHolder.getCustomerName()).accountArrayList) {
-            if (account.accountType.equals(accountType)) {
+            if (account.getClass().equals(accountToCheck.getClass())) {
                 accountCount++;
                 if (accountCount >= maxLimit) {
                     throw new IllegalArgumentException(errorMessage);
@@ -67,15 +67,15 @@ public class Bank {
                 alreadyHasAccount = true;
             }
         }
-        if (accountType != ProductTypes.CD.name() && alreadyHasAccount) {
-            throw new IllegalArgumentException("You already have a " + accountType + " account");
+        if (!accountToCheck.getClass().equals(CDAccount.class) && alreadyHasAccount) {
+            throw new IllegalArgumentException("You already have a " + accountToCheck.accountType + " account");
         }
     }
 
 
     public void createNewCdAccount(Customer accountHolder, double accountTerm, double interestRate, double balance) {
-        checkAccountLimit(accountHolder, ProductTypes.CD.name(), 3, "You may only have up to three CD accounts");
         Account account = new CDAccount(accountHolder);
+        checkAccountLimit(accountHolder, account, 3, "You may only have up to three CD accounts");
         account.accountBalance = balance;
         Account.nextAccountNumber++;
         account.interestRateFromCSV = interestRate;

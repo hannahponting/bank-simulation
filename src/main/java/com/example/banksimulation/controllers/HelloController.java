@@ -2,6 +2,8 @@ package com.example.banksimulation.controllers;
 
 import com.example.banksimulation.*;
 import com.example.banksimulation.accounts.Account;
+import com.example.banksimulation.accounts.CDAccount;
+import com.example.banksimulation.accounts.SavingsAccount;
 import com.example.banksimulation.loans.Loan;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -113,7 +115,7 @@ public class HelloController {
             HBox accountHbox = new HBox();
             RadioButton radioButton;
 
-            if (accountToBeAdded.accountType == "CD") {
+            if (accountToBeAdded.getClass().equals(CDAccount.class)) {
 
                 radioButton = new RadioButton(accountToBeAdded.accountType + "  (Acc No." + accountToBeAdded.getAccountNumber() +
                         " - Interest Rate " + accountToBeAdded.interestRateFromCSV + "% " + " - Term " + accountToBeAdded.accountTerm + " years" + " )");
@@ -235,13 +237,13 @@ public class HelloController {
             } catch (IllegalArgumentException overdrawn) {
                 Boolean hasSavingAccount = false;
 
-                for (Account savingAccount : currentCustomer.accountArrayList
+                for (Account account : currentCustomer.accountArrayList
                 ) {
-                    System.out.println(savingAccount);
-                    if (savingAccount.accountType.equals("Savings")) {
+                    System.out.println(account);
+                    if (account.getClass().equals(SavingsAccount.class)) {
                         hasSavingAccount = true;
-                        System.out.println(savingAccount);
-                        if (savingAccount.accountBalance >= withdrawalAmount) {
+                        System.out.println(account);
+                        if (account.accountBalance >= withdrawalAmount) {
                             System.out.println("saving account balance is big enough");
                             depositWithdrawalStatus.setText("insufficient funds, but you have enough money in saving account ");
                             depositWithdrawalStatus.setTextFill(Paint.valueOf("red"));

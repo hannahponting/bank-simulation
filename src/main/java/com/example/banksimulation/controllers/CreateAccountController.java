@@ -14,7 +14,6 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 public class CreateAccountController {
     private LoginController loginController;
@@ -42,7 +41,7 @@ public class CreateAccountController {
         this.bank = bank;
     }
 
-    private String accountType;
+    private String selectedAccountType;
     ToggleGroup toggleGroup = new ToggleGroup();
     @FXML
     private RadioButton currentAccountRadioButton;
@@ -57,17 +56,17 @@ public class CreateAccountController {
 
     @FXML
     private void selectCurrentAccount() {
-        accountType = ProductTypes.Current.name();
+        selectedAccountType = ProductTypes.Current.name();
     }
 
     @FXML
     private void selectSavingsAccount() {
-        accountType = ProductTypes.Savings.name();
+        selectedAccountType = ProductTypes.Savings.name();
     }
 
     @FXML
     private void selectCdAccount() {
-        accountType = ProductTypes.CD.name();
+        selectedAccountType = ProductTypes.CD.name();
     }
 
     @FXML
@@ -75,7 +74,7 @@ public class CreateAccountController {
 
         try {
 
-            switch (accountType.toLowerCase()) {
+            switch (selectedAccountType.toLowerCase()) {
                 case "current":
                     createAccountAndLogin(new CurrentAccount(customer));
                     break;
@@ -104,7 +103,7 @@ public class CreateAccountController {
     }
 
     public void createAccountAndLogin(Account account) throws IOException {
-        bank.createAccount(account, customer, accountType, 0, 0);
+        bank.createAccount(account, customer, 0, 0);
         statusLabel.setText("New account created");
         statusLabel.setTextFill(Paint.valueOf("black"));
         loginController.onHelloButtonClick();
