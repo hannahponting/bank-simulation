@@ -21,13 +21,13 @@ import static java.lang.Integer.valueOf;
 
 public class Bank {
     public HashMap<Integer, Loan> loanHashMap = new HashMap<>();
-    public  HashMap<String, Customer> customerHashMap = new HashMap<>();
-   public HashMap<Integer, Account> accountBookHashMap = new HashMap<>();
+    public HashMap<String, Customer> customerHashMap = new HashMap<>();
+    public HashMap<Integer, Account> accountBookHashMap = new HashMap<>();
     ArrayList<Double> loanAmountList = new ArrayList<>();
     public final double MAXIMUM_LOAN_RATIO = 0.9;
     public final double MAXIMUM_CUSTOMER_LOAN_EXPOSURE = 0.1;
-  
-  public double totalDeposit;
+
+    public double totalDeposit;
 
 
     FileInputStream fis;
@@ -84,11 +84,10 @@ public class Bank {
                 alreadyHasAccount = true;
             }
         }
-        if (accountType!=ProductTypes.CD.name()&& alreadyHasAccount ) {
+        if (accountType != ProductTypes.CD.name() && alreadyHasAccount) {
             throw new IllegalArgumentException("You already have a " + accountType + " account");
         }
     }
-
 
 
     public void createNewCdAccount(Customer accountHolder, double accountTerm, double interestRate, double balance) {
@@ -99,7 +98,8 @@ public class Bank {
         account.interestRateFromCSV = interestRate;
         account.accountTerm = accountTerm;
         accountBookHashMap.put(account.getAccountNumber(), account);
-        accountHolder.accountArrayList.add(account);}
+        accountHolder.accountArrayList.add(account);
+    }
 
     public void createAccount(Customer accountHolder, String accountType, int accountNumber, double accountBalance, double accountTerm, double interestRate) {
         Account account;
@@ -130,11 +130,12 @@ public class Bank {
 
 
     public boolean createLoan(Customer customer, int length, double amount, String type) {
-        if (checkInitialLoanEligibility(customer,amount)){
-                createLoanDependingOnType(customer, length, amount, type);
-                return true;
-            }
-        else {return false;}
+        if (checkInitialLoanEligibility(customer, amount)) {
+            createLoanDependingOnType(customer, length, amount, type);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean checkInitialLoanEligibility(Customer customer, double loanAmount) {
@@ -149,90 +150,63 @@ public class Bank {
             System.err.println("The loan would expose the bank too much to this customer");
             return false;
         }
-        return true;}
-   public void createLoanDependingOnType(Customer customer, int length, double amount, String type) {
+        return true;
+    }
+
+    public void createLoanDependingOnType(Customer customer, int length, double amount, String type) {
         Loan loan;
-       checkLoanTypeNull(customer, type);
+        checkLoanTypeNull(customer, type);
         switch (type.toLowerCase()) {
-            case "homeloan" -> {
-                    loan = new HomeLoan(customer, length, amount);
-                }
-            case "carloan" -> {
-                    loan = new CarLoan(customer, length, amount);
-            }
+            case "homeloan" -> loan = new HomeLoan(customer, length, amount);
+            case "carloan" -> loan = new CarLoan(customer, length, amount);
             default -> loan = new PersonalLoan(customer, length, amount);
-            }
-       Loan.nextLoan++;
-       loanHashMap.put(loan.loanNumber, loan);
-       customer.loanArrayList.add(loan);
         }
+        Loan.nextLoan++;
+        loanHashMap.put(loan.loanNumber, loan);
+        customer.loanArrayList.add(loan);
+    }
 
 
     private void checkLoanTypeNull(Customer accountHolder, String type) {
         boolean customerHasLoanType = false;
-        for (Loan loan: customerHashMap.get(accountHolder.getCustomerName()).loanArrayList
-        ) {if (loan.loanType.equals(type)){
-            customerHasLoanType = true;
-            break;
+        for (Loan loan : customerHashMap.get(accountHolder.getCustomerName()).loanArrayList
+        ) {
+            if (loan.loanType.equals(type)) {
+                customerHasLoanType = true;
+                break;
+            }
         }
+        if (customerHasLoanType) {
+            throw new IllegalArgumentException("You may only have one loan of this type");
         }
-        if (customerHasLoanType){
-            throw new IllegalArgumentException("You may only have one loan of this type");}
 
     }
 
     public void createLoanDependingOnType(Customer customer, int length, double amount, String type, int loanNumber) {
         Loan loan;
         switch (type) {
-            case "HomeLoan" -> {
-                if (amount > 2000000) {
-                    System.err.println("Error, cannot borrow that much money");
-                } else {
-                    loan = new HomeLoan(customer, length, amount);
-                    Loan.nextLoan++;
-                    loanHashMap.put(loan.loanNumber, loan);
-                    customer.loanArrayList.add(loan);
-                }
-            }
-            case "CarLoan" -> {
-                if (amount > 50000) {
-                    System.err.println("Error, cannot borrow that much money");
-                } else {
-                    loan = new CarLoan(customer, length, amount, loanNumber);
-                    Loan.nextLoan++;
-                    loanHashMap.put(loan.loanNumber, loan);
-                    customer.loanArrayList.add(loan);
-                }
-            }
-
-            default -> {
-                if (amount > 45000) {
-                    System.err.println("Error, cannot borrow that much money");
-
-                } else {
-                    loan = new PersonalLoan(customer, length, amount, loanNumber);
-                    Loan.nextLoan++;
-                    loanHashMap.put(loan.loanNumber, loan);
-                    customer.loanArrayList.add(loan);
-                }
-            }
+            case "HomeLoan" -> loan = new HomeLoan(customer, length, amount);
+            case "CarLoan" -> loan = new CarLoan(customer, length, amount, loanNumber);
+            default -> loan = new PersonalLoan(customer, length, amount, loanNumber);
         }
+        Loan.nextLoan++;
+        loanHashMap.put(loan.loanNumber, loan);
+        customer.loanArrayList.add(loan);
     }
 
 
-
-    public void readCSVBankAndCustomerBook (){
+    public void readCSVBankAndCustomerBook() {
         try {
             fis = new FileInputStream("src/main/resources/com/example/banksimulation/ExampleMixOfAccounts.txt");
-            fileScanner = new Scanner (fis);
+            fileScanner = new Scanner(fis);
             fileScanner.nextLine();
-            while (fileScanner.hasNextLine()){
+            while (fileScanner.hasNextLine()) {
                 String line = fileScanner.nextLine();
-                String [] accountInfo = line.split(Pattern.quote(","));
+                String[] accountInfo = line.split(Pattern.quote(","));
                 Customer customer1;
-                if(!customerHashMap.containsKey(accountInfo[1])){
-                    customer1 = new Customer(accountInfo[1]);}
-                else{
+                if (!customerHashMap.containsKey(accountInfo[1])) {
+                    customer1 = new Customer(accountInfo[1]);
+                } else {
                     customer1 = customerHashMap.get(accountInfo[1]);
                 }
                 int accountNumber = Integer.parseInt(accountInfo[0]);
@@ -240,66 +214,61 @@ public class Bank {
                 double accountTerm = Double.parseDouble(accountInfo[4]);
                 double interestRate = Double.parseDouble(accountInfo[5]);
                 String accountType = accountInfo[3];
-                createAccount(customer1,accountType, accountNumber, accountBalance, accountTerm, interestRate);
+                createAccount(customer1, accountType, accountNumber, accountBalance, accountTerm, interestRate);
             }
             fis.close();
-        }
-        catch (FileNotFoundException fileNotFoundException){
+        } catch (FileNotFoundException fileNotFoundException) {
             System.out.println("Hey, we couldn't find the file.");
-        }
-        catch (IOException ae){
+        } catch (IOException ae) {
             throw new RuntimeException();
         }
     }
 
 
-
-    public void readLoanCSV (){
+    public void readLoanCSV() {
         try {
             fis = new FileInputStream("src/main/resources/com/example/banksimulation/ExampleLoans.csv");
-            fileScanner = new Scanner (fis);
+            fileScanner = new Scanner(fis);
             fileScanner.nextLine();
 
-            while (fileScanner.hasNextLine()){
+            while (fileScanner.hasNextLine()) {
                 String line = fileScanner.nextLine();
-                String [] loanInfo = line.split(Pattern.quote(","));
+                String[] loanInfo = line.split(Pattern.quote(","));
                 Customer customer1;
-                if(!customerHashMap.containsKey(loanInfo[1])){
-                    customer1 = new Customer(loanInfo[1]);}
-                else{
+                if (!customerHashMap.containsKey(loanInfo[1])) {
+                    customer1 = new Customer(loanInfo[1]);
+                } else {
                     customer1 = customerHashMap.get(loanInfo[1]);
                 }
-             
+
                 double loanAmount = Double.parseDouble(loanInfo[2]);
                 String loanType = loanInfo[3];
                 int loanLength = Integer.parseInt(loanInfo[4]);
                 int loanNumber = Integer.parseInt(loanInfo[0]);
-                createLoanDependingOnType(customer1,loanLength,loanAmount, loanType, loanNumber);
+                createLoanDependingOnType(customer1, loanLength, loanAmount, loanType, loanNumber);
                 loanAmountList.add(loanAmount);
 
             }
             fis.close();
-        }
-        catch (FileNotFoundException fileNotFoundException){
+        } catch (FileNotFoundException fileNotFoundException) {
             System.out.println("Hey, we couldn't find the file.");
-        }
-        catch (IOException ae){
+        } catch (IOException ae) {
             throw new RuntimeException();
         }
     }
 
-//TODO: Add the accountTerm and the interestRate
-    public void writeCSVBankAndCustomerBook(){
+    //TODO: Add the accountTerm and the interestRate
+    public void writeCSVBankAndCustomerBook() {
         File file = new File("src/main/resources/com/example/banksimulation/ExampleMixOfAccounts.txt");
-        try{
+        try {
             FileWriter outputFile = new FileWriter(file);
             CSVWriter writer = new CSVWriter(outputFile, ',', CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER,
                     CSVWriter.DEFAULT_LINE_END);
 
-            String[] header = {"Account Number","Name","Account Balance (£)","Account Type","Term","InterestRate"};
+            String[] header = {"Account Number", "Name", "Account Balance (£)", "Account Type", "Term", "InterestRate"};
             writer.writeNext(header);
 
-            for (int i = 1; (i < accountBookHashMap.size()+1); i++) {
+            for (int i = 1; (i < accountBookHashMap.size() + 1); i++) {
                 Account account = accountBookHashMap.get(valueOf(i));
                 String accountNumber = String.valueOf(i);
                 String name = account.accountHolder.getCustomerName();
@@ -313,43 +282,41 @@ public class Bank {
                 writer.writeNext(data);
             }
             writer.close();
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             System.out.println("cant do this");
         }
     }
 
-    public void writeLoanCSV(){
+    public void writeLoanCSV() {
         File file = new File("src/main/resources/com/example/banksimulation/ExampleLoans.csv");
-        try{
+        try {
             FileWriter outputFile = new FileWriter(file);
             CSVWriter writer = new CSVWriter(outputFile, ',', CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER,
                     CSVWriter.DEFAULT_LINE_END);
 
-            String[] header = {"Loan Number", "Name","Loan Amount(£)","Loan Type", "Year"};
+            String[] header = {"Loan Number", "Name", "Loan Amount(£)", "Loan Type", "Year"};
             writer.writeNext(header);
 
-            for (int i = 1; (i < loanHashMap.size()+1); i++) {
+            for (int i = 1; (i < loanHashMap.size() + 1); i++) {
                 Loan loan = loanHashMap.get(valueOf(i));
-                String loanNumber = ""+i;
+                String loanNumber = "" + i;
                 String name = loan.customer.getCustomerName();
-                String  loanAmount = ""+ loan.loanAmount;
+                String loanAmount = "" + loan.loanAmount;
                 String LoanType = loan.loanType;
-                String loanDuration = ""+loan.loanDuration;
+                String loanDuration = "" + loan.loanDuration;
                 String[] data = {loanNumber, name, loanAmount, LoanType, loanDuration};
                 writer.writeNext(data);
             }
             writer.close();
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             System.out.println("cant do this");
         }
     }
 
-  
-    public double calculateTotalDeposit (){
+
+    public double calculateTotalDeposit() {
         double totalDeposit = 0;
-        for (int i = 1; i < accountBookHashMap.size()+1; i++) {
+        for (int i = 1; i < accountBookHashMap.size() + 1; i++) {
             Account account = accountBookHashMap.get(valueOf(i));
             double accountBalance = account.accountBalance;
             totalDeposit = accountBalance + totalDeposit;
@@ -357,10 +324,10 @@ public class Bank {
         return totalDeposit;
     }
 
-    public double calculateTotalLoans (){
+    public double calculateTotalLoans() {
         double totalLoans = 0;
 
-        for (Double x:loanAmountList) {
+        for (Double x : loanAmountList) {
             totalLoans = totalLoans + x;
 
         }
