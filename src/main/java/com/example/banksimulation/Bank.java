@@ -42,34 +42,34 @@ public class Bank {
         customerHashMap.put(customerName, customer);
         return customer;
     }
+//
+//    public void createAccount(Customer accountHolder, String accountType, double accountTerm, double interestRate) {
+//        Account account;
+//        switch (accountType.toLowerCase()) {
+//            case "savings" -> {
+//                checkAccountLimit(accountHolder, ProductTypes.Savings.name(), 1, "You already have a savings account");
+//                account = new SavingsAccount(accountHolder);
+//                Account.nextAccountNumber++;
+//            }
+//            case "cd" -> {
+//                checkAccountLimit(accountHolder, ProductTypes.CD.name(), 3, "You may only have up to three CD accounts");
+//                account = new CDAccount(accountHolder);
+//                account.interestRateFromCSV = interestRate;
+//                account.accountTerm = accountTerm;
+//                Account.nextAccountNumber++;
+//            }
+//            default -> {
+//                checkAccountLimit(accountHolder, ProductTypes.Current.name(), 1, "You already have a current account");
+//                account = new CurrentAccount(accountHolder);
+//                Account.nextAccountNumber++;
+//            }
+//        }
+//        accountBookHashMap.put(account.getAccountNumber(), account);
+//        accountHolder.accountArrayList.add(account);
+//    }
 
-    public void createAccount(Customer accountHolder, String accountType, double accountTerm, double interestRate) {
-        Account account;
-        switch (accountType.toLowerCase()) {
-            case "savings" -> {
-                checkAccountLimit(accountHolder, ProductTypes.Savings.name(), 1, "You already have a savings account");
-                account = new SavingsAccount(accountHolder);
-                Account.nextAccountNumber++;
-            }
-            case "cd" -> {
-                checkAccountLimit(accountHolder, ProductTypes.CD.name(), 3, "You may only have up to three CD accounts");
-                account = new CDAccount(accountHolder);
-                account.interestRateFromCSV = interestRate;
-                account.accountTerm = accountTerm;
-                Account.nextAccountNumber++;
-            }
-            default -> {
-                checkAccountLimit(accountHolder, ProductTypes.Current.name(), 1, "You already have a current account");
-                account = new CurrentAccount(accountHolder);
-                Account.nextAccountNumber++;
-            }
-        }
-        accountBookHashMap.put(account.getAccountNumber(), account);
-        accountHolder.accountArrayList.add(account);
-    }
 
-
-    private void checkAccountLimit(Customer accountHolder, String accountType, int maxLimit, String errorMessage) {
+    public void checkAccountLimit(Customer accountHolder, String accountType, int maxLimit, String errorMessage) {
         int accountCount = 0;
         boolean alreadyHasAccount = false;
 
