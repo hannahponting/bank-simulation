@@ -139,7 +139,7 @@ public class HelloController {
         ) {
             RadioButton radioButton;
             HBox accountHbox = new HBox();
-            if (loanToBeAdded.loanType =="PersonalLoan"){
+            if (loanToBeAdded.loanType ==ProductTypes.PersonalLoan.name()){
                  radioButton = new RadioButton(loanToBeAdded.loanType + " (Loan No." + loanToBeAdded.loanNumber + " )");
             }
             else {

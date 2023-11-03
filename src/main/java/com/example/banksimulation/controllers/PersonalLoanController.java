@@ -2,6 +2,7 @@ package com.example.banksimulation.controllers;
 
 import com.example.banksimulation.Bank;
 import com.example.banksimulation.Customer;
+import com.example.banksimulation.ProductTypes;
 import com.example.banksimulation.Utilities;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -62,7 +63,7 @@ public class PersonalLoanController implements Initializable {
             initialLoan = Utilities.parsePositiveDouble(loanAmount.getText());
                 boolean confirmCreation = false;
                 try {
-                    confirmCreation = bank.createLoan(currentCustomer, 0, initialLoan, "PersonalLoan");
+                    confirmCreation = bank.createLoan(currentCustomer, 0, initialLoan, ProductTypes.PersonalLoan.name());
                     if (confirmCreation) {
                         printCongratulationMessagebutton.setText("Loan application approved");
                         printCongratulationMessagebutton.setTextFill(Paint.valueOf("black"));
