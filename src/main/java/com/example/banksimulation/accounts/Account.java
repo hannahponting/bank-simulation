@@ -51,4 +51,34 @@ public abstract class Account {
         accountBalance = 0;
         accountNumber = nextAccountNumber;
     }
+
+
+//    public createAccount(Customer accountHolder, String accountType, double accountTerm, double interestRate)
+
+////        Account account;
+//
+////        switch (accountType.toLowerCase()) {
+////            case "savings" -> {
+////                //checkSavingsAccountNull(accountHolder);
+////                account = new SavingsAccount(accountHolder);
+////                Account.nextAccountNumber++;
+////            }
+////            case "cd" -> {
+////                //checkCdAccountLessThanFour(accountHolder);
+////                account = new CDAccount(accountHolder);
+////                account.interestRateFromCSV = interestRate;
+////                account.accountTerm = accountTerm;
+////                Account.nextAccountNumber++;
+////            }
+////            default -> {
+////                //checkCurrentAccountNull(accountHolder);
+////                account = new CurrentAccount(accountHolder);
+////                Account.nextAccountNumber++;
+////            }
+////        }
+////        accountBookHashMap.put(account.getAccountNumber(), account);
+////        accountHolder.accountArrayList.add(account);
+//    }
+
+
 }
