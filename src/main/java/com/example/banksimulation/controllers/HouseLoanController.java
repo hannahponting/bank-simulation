@@ -129,8 +129,8 @@ public class HouseLoanController implements Initializable {
 
 
 
-            } catch (NumberFormatException nfe) {
-                printCongratulationMessagebutton.setText(nfe.getMessage());
+            } catch (IllegalArgumentException exception) {
+                printCongratulationMessagebutton.setText(exception.getMessage());
                 printCongratulationMessagebutton.setTextFill(Paint.valueOf("red"));
             }
 
