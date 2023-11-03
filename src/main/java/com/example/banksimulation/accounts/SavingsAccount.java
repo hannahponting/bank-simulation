@@ -1,12 +1,16 @@
 package com.example.banksimulation.accounts;
 
+import com.example.banksimulation.Bank;
 import com.example.banksimulation.Customer;
 import com.example.banksimulation.ProductTypes;
 
 import java.text.DecimalFormat;
+import java.util.HashMap;
 
 
 public class SavingsAccount extends Account {
+
+
 
     public SavingsAccount(int accountNumber, double accountBalance, Customer accountHolder) {
         super(accountNumber, accountBalance, accountHolder);
@@ -19,6 +23,8 @@ public class SavingsAccount extends Account {
     public double getInterest() {
         return 0;
     }
+
+
 
 }
 

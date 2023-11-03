@@ -3,6 +3,9 @@ package com.example.banksimulation.controllers;
 import com.example.banksimulation.Bank;
 import com.example.banksimulation.Customer;
 import com.example.banksimulation.ProductTypes;
+import com.example.banksimulation.accounts.Account;
+import com.example.banksimulation.accounts.CurrentAccount;
+import com.example.banksimulation.accounts.SavingsAccount;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,6 +14,7 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 public class CreateAccountController {
     private LoginController loginController;
@@ -20,6 +24,8 @@ public class CreateAccountController {
     }
 
     private Bank bank;
+
+    private Account account;
     private Customer customer;
 
     public void initialiseToggleGroup() {
@@ -68,20 +74,23 @@ public class CreateAccountController {
     private void createSelectedAccount() throws IOException {
 
         try {
-            switch (accountType.toLowerCase()){
-                case "current", "savings" -> {
-                    bank.createAccount(customer, accountType,0,0);
-                    statusLabel.setText("New account created");
-                    statusLabel.setTextFill(Paint.valueOf("black"));
-                    loginController.onHelloButtonClick();
-                }
-                case "cd" -> launchCdWindow();
-                default -> {
+
+            switch (accountType.toLowerCase()) {
+                case "current":
+                    createAccountAndLogin(new CurrentAccount(customer));
+                    break;
+                case "savings":
+                    createAccountAndLogin(new SavingsAccount(customer));
+                    break;
+                case "cd":
+                    launchCdWindow();
+                    break;
+                default:
                     statusLabel.setText("You must select an account type first");
                     statusLabel.setTextFill(Paint.valueOf("red"));
-                }
-
+                    break;
             }
+
         }
         catch (IllegalArgumentException illegalArgumentException){
             statusLabel.setText(illegalArgumentException.getMessage());
@@ -93,6 +102,15 @@ public class CreateAccountController {
         }
 
     }
+
+    public void createAccountAndLogin(Account account) throws IOException {
+        bank.createAccount(account, customer, accountType, 0, 0);
+        statusLabel.setText("New account created");
+        statusLabel.setTextFill(Paint.valueOf("black"));
+        loginController.onHelloButtonClick();
+    }
+
+
 
     Stage stage = new Stage();
 
