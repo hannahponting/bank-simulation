@@ -87,44 +87,7 @@ public class Bank {
         }
     }
 
-    private void checkCdAccountLessThanFour(Customer accountHolder) {
-        int numberOfCdAccounts = 0;
-        for (Account account: customerHashMap.get(accountHolder.getCustomerName()).accountArrayList
-        ) {
-            if (account.accountType.equals(ProductTypes.CD.name())) {
-                numberOfCdAccounts += 1;
-            }
-        }
-        if (numberOfCdAccounts >= 3){
-            throw new IllegalArgumentException("You may only have up to three CD accounts");}
-    }
 
-
-
-    private void checkCurrentAccountNull(Customer accountHolder) {
-        boolean customerHasCurrentAccount = false;
-        for (Account account: customerHashMap.get(accountHolder.getCustomerName()).accountArrayList
-             ) {if (account.accountType.equals(ProductTypes.Current.name())){
-                 customerHasCurrentAccount = true;
-                 break;
-        }
-        } if (customerHasCurrentAccount){
-        throw new IllegalArgumentException("You already have a current account");}
-    }
-
-
-
-    private void checkSavingsAccountNull(Customer accountHolder) {
-        boolean customerHasSavingsAccount = false;
-        for (Account account: customerHashMap.get(accountHolder.getCustomerName()).accountArrayList
-        ) {if (account.accountType.equals(ProductTypes.Savings.name())){
-            customerHasSavingsAccount = true;
-            break;
-        }
-        }
-        if (customerHasSavingsAccount){
-        throw new IllegalArgumentException("You already have a savings account");}
-    }
 
     public void createNewCdAccount(Customer accountHolder, double accountTerm, double interestRate, double balance) {
         checkAccountLimit(accountHolder, ProductTypes.CD.name(), 3, "You may only have up to three CD accounts");
